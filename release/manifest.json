@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "version": "0.3.0",
-  "status": "prepared_for_owner_review",
+  "status": "approved",
   "licence_selection_status": "selected_by_owner",
   "licence_scopes": {
     "project-code": {
@@ -38,13 +38,11 @@
       "family-names": "Davies"
     }
   ],
-  "publication_approved": false,
+  "publication_approved": true,
   "public_repository_url": "https://github.com/TheOddSock/pi5-wifi-sdr",
   "version_doi": null,
   "concept_doi": null,
-  "release_blockers": [
-    "Owner must approve the exact prepared artifact digest"
-  ],
+  "release_blockers": [],
   "manifest_policy": "Manifest and SHA256SUMS are excluded from their own artifact list; review-bundle manifest binds both externally",
   "artifacts": [
     {
@@ -396,6 +394,13 @@
       "sha256": "e83637ff6fc10aaea71c5a8dc65c1b7904fd8b23b93458dc7eecf914e7c1181f",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
+    },
+    {
+      "path": "release/owner-approval.json",
+      "bytes": 405,
+      "sha256": "ada9aace59e69362aac3bf1317c0896c585a956f10ad34d11808d0bf06b4f2ed",
+      "licence_scope": "project-documentation",
+      "role": "owner_approval_record"
     },
     {
       "path": "release/owner-config.template.json",
