@@ -1,0 +1,21 @@
+{
+  "status": "pass",
+  "issues": [],
+  "module_sha256": "d4374b5607ee43483911702da18516f3b60ecd4385df2edbe7ceee39729412a0",
+  "exact_historical_module_SHA_match": true,
+  "allocated_sections_and_relocations_checked": 45,
+  "compiler_comments": [
+    "GCC: (Debian 14.2.0-19) 14.2.0"
+  ],
+  "hardware_validation": false,
+  "installation_performed": false,
+  "comparator_sha256": "da21b5423fa0f708d2b63564ae7dc0458f7e7e63ffd09028ac75cde372732773",
+  "build_result_sha256": "5c3c5231bfea27fe1072adf9cb91b7e1f69b2d858f5f6858b03ca5c640be2a91",
+  "kernel": "6.18.39+rpt-rpi-2712",
+  "compiler": "aarch64-linux-gnu-gcc-14 (Debian 14.2.0-19) 14.2.0\nCopyright (C) 2024 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.",
+  "module_symvers_sha256": "a840147b7ddf7e617e732c4fc7b37def0e2a81d5a6451b43bf9ddd034327eaa5",
+  "elapsed_ns": 19056766083,
+  "unprivileged": true,
+  "source_files_reconstructed": 96,
+  "private_build_log_exported": false
+}

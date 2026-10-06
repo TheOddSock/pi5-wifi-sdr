@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="540" height="240" preserveAspectRatio="xMinYMin meet" viewBox="0 0 540 240" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="540" height="240"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-240)" style="clip-path: url(#clip)">
+		<g transform="">
+			<rect x="4" y="144" width="157" height="76" rx="4" ry="4" style="stroke: rgb(9%,37%,50%); stroke-linecap: butt; stroke-width: 0.9; fill: rgb(92%,96%,97%); fill-rule: evenodd;"/>
+			<text x="53.325" y="202" style="font-family: Helvetica; font-size: 10px;fill: rgb(9%,37%,50%); stroke:none;" transform="translate(0,404) scale(1,-1)">D11 collector</text>
+			<text x="29.059199999999997" y="186" style="font-family: Helvetica; font-size: 8.4px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,372) scale(1,-1)">Circular source sample RAM</text>
+			<text x="25.7748" y="173" style="font-family: Helvetica; font-size: 8.4px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,346) scale(1,-1)">16,384 packed complex words</text>
+			<text x="24.611400000000003" y="160" style="font-family: Helvetica; font-size: 8.4px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,320) scale(1,-1)">Continues writing during export</text>
+			<rect x="192" y="144" width="157" height="76" rx="4" ry="4" style="stroke: rgb(9%,37%,50%); stroke-linecap: butt; stroke-width: 0.9; fill: rgb(92%,96%,97%); fill-rule: evenodd;"/>
+			<text x="222.15" y="202" style="font-family: Helvetica; font-size: 10px;fill: rgb(9%,37%,50%); stroke:none;" transform="translate(0,404) scale(1,-1)">Embedded Cortex-R4</text>
+			<text x="213.5438" y="186" style="font-family: Helvetica; font-size: 8.4px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,372) scale(1,-1)">Guarded source selection/filter</text>
+			<text x="218.2184" y="173" style="font-family: Helvetica; font-size: 8.4px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,346) scale(1,-1)">Incremental word checksum</text>
+			<text x="206.7692" y="160" style="font-family: Helvetica; font-size: 8.4px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,320) scale(1,-1)">Native watchdog and reader lease</text>
+			<rect x="380" y="144" width="157" height="76" rx="4" ry="4" style="stroke: rgb(9%,37%,50%); stroke-linecap: butt; stroke-width: 0.9; fill: rgb(92%,96%,97%); fill-rule: evenodd;"/>
+			<text x="404.87" y="202" style="font-family: Helvetica; font-size: 10px;fill: rgb(9%,37%,50%); stroke:none;" transform="translate(0,404) scale(1,-1)">Owned publication RAM</text>
+			<text x="399.6748" y="186" style="font-family: Helvetica; font-size: 8.4px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,372) scale(1,-1)">Eight reusable 1,024-word slots</text>
+			<text x="393.60159999999996" y="173" style="font-family: Helvetica; font-size: 8.4px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,346) scale(1,-1)">Sequence committed after payload</text>
+			<text x="405.9748" y="160" style="font-family: Helvetica; font-size: 8.4px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,320) scale(1,-1)">128-word stopped reference</text>
+			<path d="M 163,182 L 189,182 Z" style="stroke: rgb(9%,37%,50%); stroke-linecap: butt; stroke-width: 1.4;"/>
+			<polygon points="189 182, 184.4978 184.1748, 184.4978 179.8252" style="stroke: rgb(9%,37%,50%); stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,37%,50%); fill-rule: evenodd;"/>
+			<path d="M 351,182 L 377,182 Z" style="stroke: rgb(9%,37%,50%); stroke-linecap: butt; stroke-width: 1.4;"/>
+			<polygon points="377 182, 372.4978 184.1748, 372.4978 179.8252" style="stroke: rgb(9%,37%,50%); stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,37%,50%); fill-rule: evenodd;"/>
+			<rect x="380" y="27" width="157" height="76" rx="4" ry="4" style="stroke: rgb(9%,37%,50%); stroke-linecap: butt; stroke-width: 0.9; fill: rgb(92%,96%,97%); fill-rule: evenodd;"/>
+			<text x="414.315" y="85" style="font-family: Helvetica; font-size: 10px;fill: rgb(9%,37%,50%); stroke:none;" transform="translate(0,170) scale(1,-1)">Linux private reader</text>
+			<text x="395.94100000000003" y="69" style="font-family: Helvetica; font-size: 8.4px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,138) scale(1,-1)">SDIO Function1 concurrent reads</text>
+			<text x="394.0678" y="56" style="font-family: Helvetica; font-size: 8.4px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,112) scale(1,-1)">Double copy and metadata checks</text>
+			<text x="400.8382" y="43" style="font-family: Helvetica; font-size: 8.4px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,86) scale(1,-1)">Exact next sequence or refusal</text>
+			<rect x="192" y="27" width="157" height="76" rx="4" ry="4" style="stroke: rgb(9%,37%,50%); stroke-linecap: butt; stroke-width: 0.9; fill: rgb(92%,96%,97%); fill-rule: evenodd;"/>
+			<text x="230.215" y="85" style="font-family: Helvetica; font-size: 10px;fill: rgb(9%,37%,50%); stroke:none;" transform="translate(0,170) scale(1,-1)">Userspace worker</text>
+			<text x="209.8016" y="69" style="font-family: Helvetica; font-size: 8.4px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,138) scale(1,-1)">Bounded acquisition/write queue</text>
+			<text x="221.2466" y="56" style="font-family: Helvetica; font-size: 8.4px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,112) scale(1,-1)">4,176-byte framed records</text>
+			<text x="216.8072" y="43" style="font-family: Helvetica; font-size: 8.4px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,86) scale(1,-1)">Fixed requested frame quota</text>
+			<rect x="4" y="27" width="157" height="76" rx="4" ry="4" style="stroke: rgb(9%,37%,50%); stroke-linecap: butt; stroke-width: 0.9; fill: rgb(92%,96%,97%); fill-rule: evenodd;"/>
+			<text x="46.925" y="85" style="font-family: Helvetica; font-size: 10px;fill: rgb(9%,37%,50%); stroke:none;" transform="translate(0,170) scale(1,-1)">Saved evidence</text>
+			<text x="31.616999999999997" y="69" style="font-family: Helvetica; font-size: 8.4px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,138) scale(1,-1)">Complete framed recording</text>
+			<text x="21.347999999999992" y="56" style="font-family: Helvetica; font-size: 8.4px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,112) scale(1,-1)">Receipt times and stop summary</text>
+			<text x="37.4424" y="43" style="font-family: Helvetica; font-size: 8.4px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,86) scale(1,-1)">Archive and health audit</text>
+			<path d="M 458,141 L 458,106 Z" style="stroke: rgb(9%,37%,50%); stroke-linecap: butt; stroke-width: 1.4;"/>
+			<polygon points="458 106, 460.1748 110.5022, 455.8252 110.5022" style="stroke: rgb(9%,37%,50%); stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,37%,50%); fill-rule: evenodd;"/>
+			<path d="M 377,65 L 351,65 Z" style="stroke: rgb(9%,37%,50%); stroke-linecap: butt; stroke-width: 1.4;"/>
+			<polygon points="351 65, 355.5022 62.82517, 355.5022 67.17483" style="stroke: rgb(9%,37%,50%); stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,37%,50%); fill-rule: evenodd;"/>
+			<path d="M 189,65 L 163,65 Z" style="stroke: rgb(9%,37%,50%); stroke-linecap: butt; stroke-width: 1.4;"/>
+			<polygon points="163 65, 167.5022 62.82517, 167.5022 67.17483" style="stroke: rgb(9%,37%,50%); stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,37%,50%); fill-rule: evenodd;"/>
+			<text x="145.284" y="4" style="font-family: Helvetica; font-size: 8px;fill: rgb(40%,46%,51%); stroke:none;" transform="translate(0,8) scale(1,-1)">Schematic: native capture request stays active until normal completion</text>
+		</g>
+	</g>
+</svg>

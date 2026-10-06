@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "paper_version": "0.3.0-rc5",
+  "run_id": "twin6-step0-demo-a",
+  "transformation": "Allowlisted plan and complete saved ON fit rows/OFF summaries. Private absolute times, sessions, paths, waveform samples and controllers omitted. Mathematical function texts extracted verbatim from the frozen source; strict adapter exposes only missing-neighbor availability.",
+  "original_artifact_hashes": [
+    {
+      "role": "response_strict",
+      "bytes": 308568,
+      "sha256": "aeca4ea89f6747a76f59d85eebbb985cfefc764f6af86e69a0a706701e8f38a8"
+    },
+    {
+      "role": "predeclared_plan",
+      "bytes": 5299,
+      "sha256": "bddabd172a03955819c31c4311c097960725a0a7b9c272d5a2538f9ea934bc7e"
+    },
+    {
+      "role": "frozen_method_snapshot",
+      "bytes": 21317,
+      "sha256": "1c7e822029ea977102c68e8cded76753322f89d22df5e84a4a037cd111605ebd"
+    },
+    {
+      "role": "strict_null_supplement",
+      "bytes": 20541,
+      "sha256": "72838d810184ec561148220c25b1b78c8a5c87f52257afe7dcbc5b686dce1a6f"
+    }
+  ],
+  "frozen_mathematical_functions": [
+    {
+      "function": "scalar",
+      "sha256_of_exact_function_text": "c7049a3db6fc6a8824a0c33c10a12c3815a559629a1e7629b02c64c5345256a6"
+    },
+    {
+      "function": "stats",
+      "sha256_of_exact_function_text": "ac17708d79e83a83945b14d9bc46651d82081fbc30c6d18f411916ae9283d083"
+    },
+    {
+      "function": "fold",
+      "sha256_of_exact_function_text": "33528933591d4fee05e9671c0e22b784dd1f66130226ee994d2d8c67dc618ae0"
+    },
+    {
+      "function": "summation",
+      "sha256_of_exact_function_text": "4401d92fe53bee467bae80c43787192d3d56fb5d944f89560837f7302d7252b6"
+    },
+    {
+      "function": "project",
+      "sha256_of_exact_function_text": "e8e8e5f4f3c48d54ab75853c6378f76cd96ddb97a5cce7661702d9f757eef811"
+    },
+    {
+      "function": "spectrum",
+      "sha256_of_exact_function_text": "049e72458500b97a0c5ecddb9ac02e0e382fdca75f747377c99163ffcb9f67f1"
+    },
+    {
+      "function": "refine",
+      "sha256_of_exact_function_text": "434ac91a7e5a97b722904dfe8d178e4253969e1b48a1f881caa14593f7f0438d"
+    },
+    {
+      "function": "analyse_ON",
+      "sha256_of_exact_function_text": "132ea061003ae5994625640b5ac52a4a4c804b42a7fc3e8ace477c2ef3846917"
+    }
+  ],
+  "portable_method_tested_numpy_version": "2.3.5",
+  "original_fit_numpy_environment_claimed": false,
+  "public_files": [
+    {
+      "path": "evidence/rf-step0/plan.json",
+      "bytes": 3141,
+      "sha256": "0c2014ecd6a644b67bf54257ef610ec7c4723f66891a4cfa3c941d8605dae476"
+    },
+    {
+      "path": "evidence/rf-step0/fitted-values.json",
+      "bytes": 297830,
+      "sha256": "0285bfda3f39ca4dd849f53bd78f4b475bca7dde06d2de0ffb3454f7aaef8963"
+    },
+    {
+      "path": "evidence/rf-step0/decision-result.json",
+      "bytes": 3766,
+      "sha256": "f8150e2b80b397b07dac68be584f70fe490ff75f506b918846d0e0e959b0311e"
+    },
+    {
+      "path": "src/rf_step0/method.py",
+      "bytes": 5649,
+      "sha256": "7874e6c1c5388aad77e35d538c5aa85b5ebd576a16d3ae58029e39341ec467f1"
+    },
+    {
+      "path": "src/rf_step0/decisions.py",
+      "bytes": 13165,
+      "sha256": "d1a2cf7d7dd5e86b51dd26b2abb470d10ef1d9dab54013dc565348b2ce0cf7d8"
+    },
+    {
+      "path": "src/rf_step0/README.md",
+      "bytes": 3089,
+      "sha256": "685f63bb0a6eed9ea63a686fb54138bee455871fffc9f4b61b5e9dec7d41b142"
+    },
+    {
+      "path": "src/rf_step0/requirements.txt",
+      "bytes": 187,
+      "sha256": "a1b8c62cd8b565f8f0276ba72a007e1d220731de5b35feffeb3f6b0f0609a276"
+    }
+  ],
+  "individual_OFF_fits_available": false,
+  "waveform_fitting_repeated_by_decision_reproducer": false,
+  "control_wire_health_or_hardware_reaudit": false,
+  "scope": "Hashes bind exported inputs; decision replication from fitted values is not new waveform fitting or independent laboratory replication.",
+  "packaging_note": "Version 0.3.0 refreshes the public README binding only; measurement, method and original source hashes are unchanged."
+}

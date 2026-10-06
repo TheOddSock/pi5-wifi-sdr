@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "preparation": "prior saved audit results and source inspection",
+  "independent_laboratory_replication": false,
+  "control_wire_and_hardware_health_audits_repeated_this_preparation": false,
+  "runs": [
+    {
+      "run_id": "private-long-b",
+      "source_audit_sha256": "9e7d60551956b5e3f50e19dd2a6a90944de8edc10040cecddf26b1ce7f179201",
+      "scope": "Previously completed saved archive/wire/frame audit; selection does not repeat acquisition"
+    },
+    {
+      "run_id": "sixstream-c",
+      "source_audit_sha256": "d0698128ae264d468a92caa0bc35c213df2183b86c91fba4b7f0e0aa7803506a",
+      "scope": "Previously completed saved archive/wire/frame audit; selection does not repeat acquisition"
+    },
+    {
+      "run_id": "lease-c",
+      "source_audit_sha256": "a3e6dbed9dcdd092febf6051c431b1dc328f0fccaf60fcd878e17f22d4a83795",
+      "scope": "Previously completed saved archive/wire/frame audit; selection does not repeat acquisition"
+    },
+    {
+      "run_id": "sparse-a",
+      "source_audit_sha256": "61548de436125060cef633f6c956c0901c8ab83773084b6872fdcaa9f21032ad",
+      "scope": "Previously completed saved archive/wire/frame audit; selection does not repeat acquisition"
+    },
+    {
+      "run_id": "sparse32-a",
+      "source_audit_sha256": "6dc31f940d3cce41e60ca55d00ba522e6fca4c5342e0e105378d5f9e23f41a48",
+      "scope": "Previously completed saved archive/wire/frame audit; selection does not repeat acquisition"
+    },
+    {
+      "run_id": "twin6-five-a",
+      "source_audit_sha256": "627b49cb017f26a5f24f50985f7f4a6b69602124a2f762102cce5b7e51ab3fc5",
+      "scope": "Previously completed saved archive/wire/frame audit; selection does not repeat acquisition"
+    },
+    {
+      "run_id": "twin6-live-rf-a",
+      "source_audit_sha256": "9f7e57b96733d574922deece8f02acabd2b55e750f69aa99cf8f4affc1223c20",
+      "scope": "Previously completed saved archive/wire/frame audit; selection does not repeat acquisition"
+    },
+    {
+      "run_id": "twin6-step0-demo-a",
+      "source_audit_sha256": "0b4778ea6b828a454b91a41501b5fc8a1c68fe217b80380101c93546862e8a68",
+      "scope": "Previously completed saved archive/wire/frame audit; selection does not repeat acquisition"
+    },
+    {
+      "run_id": "twin6-ten-a",
+      "source_audit_sha256": "e5b999b0fd2816cd5b64eb56e8b5bc059c1f9280f7e1f99a7c45bb6c208cb70b",
+      "scope": "Previously completed saved archive/wire/frame audit; selection does not repeat acquisition"
+    },
+    {
+      "run_id": "twin6-tsf-hour-a",
+      "source_audit_sha256": "39ad0cf7b50f738003f88a2eb9ef39442cb9315846adf8e2d72cb697f7c1e557",
+      "scope": "Previously completed saved archive/wire/frame audit; selection does not repeat acquisition"
+    }
+  ],
+  "complete_frame_payload_recording_rechecks_performed_this_preparation": true,
+  "frame_recheck_runs": [
+    "private-long-b",
+    "sixstream-c",
+    "sparse-a"
+  ],
+  "frame_recheck_total_frames": 614848,
+  "frame_recheck_total_words": 629604352,
+  "scope": "Three supplied-file frame/payload checks were completed offline; original control-wire and hardware-health audits were not repeated",
+  "RF_fitted_value_decisions_recomputed_this_preparation": true,
+  "RF_waveform_fit_or_source_timing_audit_repeated_this_preparation": false
+}

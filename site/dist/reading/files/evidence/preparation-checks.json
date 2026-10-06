@@ -1,0 +1,34 @@
+{
+  "kind": "offline_publication_preparation_checks",
+  "independent_hardware_replication": false,
+  "original_recordings_exported": false,
+  "checks": [
+    {
+      "run_id": "private-long-b",
+      "frames": 368640,
+      "words": 377487360,
+      "framed_bytes": 1539440640,
+      "framed_file_sha256": "e50442821af506ab2f58f83b8acce5fa694f9c18b1c718ffeea90ae00640f155",
+      "checked_utc": "2026-10-05T11:41:23.102900+00:00",
+      "scope": "Fresh complete saved-data-frame sequence/metadata/publisher-checksum/file-hash check; no hardware/wire/health re-audit"
+    },
+    {
+      "run_id": "sixstream-c",
+      "frames": 244160,
+      "words": 250019840,
+      "framed_bytes": 1019612160,
+      "framed_file_sha256": "68ebdb6ca4318319f13739394152cb19a3cbd2faa6e04f2a78202e05d210c763",
+      "checked_utc": "2026-10-05T11:38:36.640709+00:00",
+      "scope": "Fresh complete saved-data-frame sequence/metadata/publisher-checksum/file-hash check; no hardware/wire/health re-audit"
+    },
+    {
+      "run_id": "sparse-a",
+      "frames": 2048,
+      "words": 2097152,
+      "framed_bytes": 8552448,
+      "framed_file_sha256": "96261181da34abdbfd5e276c3c9abecc91a76df0ec2284c2d3f12e0bf17cf416",
+      "checked_utc": "2026-10-05T11:39:35.713649+00:00",
+      "scope": "Fresh complete saved-data-frame sequence/metadata/publisher-checksum/file-hash check; no hardware/wire/health re-audit"
+    }
+  ]
+}

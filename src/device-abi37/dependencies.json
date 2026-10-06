@@ -1,0 +1,90 @@
+{
+  "native": {
+    "compiler": "xPack GNU Arm Embedded GCC9.3.1 20200408",
+    "PlatformIO_package_version": "1.90301.200702",
+    "target": "cortex-r4 thumb soft-float freestanding",
+    "python": "3.11+",
+    "capstone": "5.0.6",
+    "pyelftools": "0.33",
+    "input_image_bytes": 507048,
+    "input_image_sha256": "a8793f02aed5730fc8020e93e49911e6183458497e0b26be633a2e35d337ab8a",
+    "tested_output_image_bytes": 652800,
+    "tested_output_image_sha256": "58a9740679366ddb1007bf79abe983aca4d4ad9458c841af33091052e163b62e",
+    "ROM_required_for_build": false,
+    "Nexmon_framework_required_for_build": false,
+    "observed_Windows_toolchain_inputs": [
+      {
+        "package_relative_path": "bin/arm-none-eabi-gcc.exe",
+        "bytes": 1982263,
+        "sha256": "3a7d3a87aed3e9c7216bc75e25d6d89f2d294f46af9590429b5553c604a978be"
+      },
+      {
+        "package_relative_path": "bin/arm-none-eabi-as.exe",
+        "bytes": 2326230,
+        "sha256": "f66fab8b8e4db36bb281da0ce2285e2084e7ad63107a0e94d6d28b0231e67daa"
+      },
+      {
+        "package_relative_path": "bin/arm-none-eabi-ld.exe",
+        "bytes": 2000705,
+        "sha256": "faa11df6a07405772af5d21d2f1808e28d06bb1a1f9af289a58f910be9978b84"
+      },
+      {
+        "package_relative_path": "bin/arm-none-eabi-objcopy.exe",
+        "bytes": 1468207,
+        "sha256": "888862dddd75e737ee00dec4088a369da65a3700807fa54dcce80c1025dcc250"
+      },
+      {
+        "package_relative_path": "bin/arm-none-eabi-objdump.exe",
+        "bytes": 2031913,
+        "sha256": "5b32bcb28323d5375d405eb944200f88ffee44634a98629083da32fb12c23bd3"
+      },
+      {
+        "package_relative_path": "libexec/gcc/arm-none-eabi/9.3.1/cc1.exe",
+        "bytes": 32897525,
+        "sha256": "d33cfd089727530f1ab6a8565eacb087dd78ef0c402a1092763ad4be1079a3ce"
+      },
+      {
+        "package_relative_path": "lib/gcc/arm-none-eabi/9.3.1/include/stdint.h",
+        "bytes": 328,
+        "sha256": "86a7914ab7d6a18465a6fb9a7b54f945cad604fdbf3ca0d10e4e0254e0037911"
+      },
+      {
+        "package_relative_path": "lib/gcc/arm-none-eabi/9.3.1/include/stdint-gcc.h",
+        "bytes": 9457,
+        "sha256": "34bfc080a004f51bab25912abe93b7599ad45d29b722efda2c0f10e27ccf72f5"
+      },
+      {
+        "package_relative_path": "lib/gcc/arm-none-eabi/9.3.1/include/stddef.h",
+        "bytes": 12959,
+        "sha256": "45e80e1302342753d2f9e5945248fe3af7cf328a99804d2ec561850bbb550f7d"
+      }
+    ],
+    "toolchain_bundled": false
+  },
+  "kernel": {
+    "repository": "https://github.com/raspberrypi/linux",
+    "commit": "60ea684a8ace97bb0db1a16e20753bdd6ab371ff",
+    "release": "6.18.39+rpt-rpi-2712",
+    "package": "linux1:6.18.39-1+rpt1",
+    "architecture": "aarch64",
+    "page_size_bytes": 16384,
+    "compiler_from_tested_module_comment": "GCC(Debian14.2.0-19)14.2.0",
+    "header_config_and_Module_symvers_required": true,
+    "tested_module_sha256": "44c21fc659f3182655757a2b6dfd3c969fd713dda03b910863e1925de69d01be",
+    "tested_module_build_id": "078fb157155b3c3245454eaaec96370fc33afc51",
+    "tested_module_srcversion": "58CDCF73CB7E677D5C0CDEF",
+    "tested_module_license": "Dual BSD/GPL"
+  },
+  "excluded": [
+    "manufacturer firmware and ROM",
+    "kernel tree and headers",
+    "toolchain/dependency packages",
+    "patched binary images/modules",
+    "RF data and host records",
+    "deployment or capture workers"
+  ],
+  "owner_new_source_license": "GPL-2.0-or-later",
+  "public_release": false,
+  "owner_original_documentation_license": "CC-BY-4.0",
+  "standalone_ABI37_driver_rebuilt": true
+}
