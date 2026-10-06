@@ -1,0 +1,91 @@
+{
+  "draft_version": "0.3.0-rc5",
+  "run_id": "twin6-step0-demo-a",
+  "frames": 244160,
+  "words": 250019840,
+  "host_receipt_span_ns": 300025188989,
+  "recording_sha256": "324440eb1aeb00aa841277a1923a0f766717f661e018a795963738979186ab07",
+  "bursts_approx_elapsed_seconds": [
+    10,
+    277
+  ],
+  "continuous_transmitter": false,
+  "ON_windows": [
+    {
+      "burst": 0,
+      "median_amplitude_counts": 211.4441902482588,
+      "matched_OFF95_counts": 2.5859046198056967,
+      "median_mu_cycles_per_output": -0.0790928744126871,
+      "passing_chunks": 20,
+      "chunks": 20,
+      "preset_gate_pass": true
+    },
+    {
+      "burst": 0,
+      "median_amplitude_counts": 189.87550586818313,
+      "matched_OFF95_counts": 2.490966419921129,
+      "median_mu_cycles_per_output": -0.07914526210297793,
+      "passing_chunks": 20,
+      "chunks": 20,
+      "preset_gate_pass": true
+    },
+    {
+      "burst": 1,
+      "median_amplitude_counts": 194.06548229097507,
+      "matched_OFF95_counts": 2.4657539999086397,
+      "median_mu_cycles_per_output": -0.07966331515671772,
+      "passing_chunks": 20,
+      "chunks": 20,
+      "preset_gate_pass": true
+    },
+    {
+      "burst": 1,
+      "median_amplitude_counts": 178.39659289300323,
+      "matched_OFF95_counts": 2.4863568810470023,
+      "median_mu_cycles_per_output": -0.07971452429021915,
+      "passing_chunks": 20,
+      "chunks": 20,
+      "preset_gate_pass": true
+    }
+  ],
+  "passing_chunks": 80,
+  "tested_chunks": 80,
+  "minimum_chunk_ON_over_adjacent_OFF95": 26.733026989053336,
+  "fixed_ratio_requirement": 10,
+  "fixed_minimum_passing_chunks_per_window": 12,
+  "fixed_frequency_gate": [
+    -0.13,
+    -0.02
+  ],
+  "optional_neighbor_diagnostics_unavailable": 40,
+  "missing_diagnostics_representation": null,
+  "floor_qualification": "Conditional LS scale is descriptive; IID/stationarity/confidence coverage unverified. Missing neighbor medians are unavailable, never zero.",
+  "inside_previous_wanted_halfwidth048": false,
+  "raw_reference_available": false,
+  "general_LPF_proven": false,
+  "absolute_RF_or_clock_calibrated": false,
+  "image_sha256": "b4b1196c961533ac42b9604c945f3932097dfba80347857e431c03a5c6759f20",
+  "module_sha256": "d4374b5607ee43483911702da18516f3b60ecd4385df2edbe7ceee39729412a0",
+  "latency": {
+    "first_userspace_after_reader_arm_ns": 6931463,
+    "first_userspace_after_private_query_start_ns": 6515833,
+    "first_kernel_frame_copy_ns": 142278,
+    "first_kernel_copy_end_to_userspace_ns": 3704,
+    "first_userspace_lead_before_vendor_return_ns": 300028382849,
+    "first_to_last_userspace_span_ns": 300025188989,
+    "maximum_all_userspace_interframe_gap_ns": 1458134,
+    "maximum_kernel_interframe_copy_gap_ns": 1233837,
+    "maximum_kernel_frame_copy_ns": 270889,
+    "stop_to_private_query_return_ns": 2122691
+  },
+  "latency_domain": "Pi host monotonic timestamps, not RF or ADC timing",
+  "offline_publication_preparation_independent_hardware_replication": false,
+  "separate_research_experiments_completed_during_drafting": true,
+  "RF_decision_export": {
+    "plan": "rf-step0/plan.json",
+    "fitted_values": "rf-step0/fitted-values.json",
+    "decision_result": "rf-step0/decision-result.json",
+    "provenance": "evidence/rf-step0/provenance.json",
+    "scope": "Recomputes acceptance from all 80 supplied ON fits and bound OFF95 summaries; no waveform refit, OFF percentile recomputation or wire/health/hardware re-audit."
+  }
+}

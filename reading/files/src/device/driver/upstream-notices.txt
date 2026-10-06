@@ -1,0 +1,64 @@
+Pinned Raspberry Pi Linux commit60ea684a8ace97bb0db1a16e20753bdd6ab371ff.
+Upstream headers for six changed ISC files; new changes are separately rights-pending.
+The reader retains the complete original tree and its notices.
+
+brcmfmac/bcmsdh.c
+// SPDX-License-Identifier: ISC
+/*
+ * Copyright (c) 2010 Broadcom Corporation
+ */
+/* ****************** SDIO CARD Interface Functions **************************/
+
+#include <linux/types.h>
+#include <linux/netdevice.h>
+
+brcmfmac/core.c
+// SPDX-License-Identifier: ISC
+/*
+ * Copyright (c) 2010 Broadcom Corporation
+ */
+
+#include <linux/kernel.h>
+#include <linux/etherdevice.h>
+#include <linux/module.h>
+
+brcmfmac/fwil.c
+// SPDX-License-Identifier: ISC
+/*
+ * Copyright (c) 2012 Broadcom Corporation
+ */
+
+/* FWIL is the Firmware Interface Layer. In this module the support functions
+ * are located to set and get variables to and from the firmware.
+ */
+
+brcmfmac/fwil.h
+// SPDX-License-Identifier: ISC
+/*
+ * Copyright (c) 2012 Broadcom Corporation
+ */
+
+#ifndef _fwil_h_
+#define _fwil_h_
+
+
+brcmfmac/sdio.c
+// SPDX-License-Identifier: ISC
+/*
+ * Copyright (c) 2010 Broadcom Corporation
+ */
+
+#include <linux/types.h>
+#include <linux/atomic.h>
+#include <linux/kernel.h>
+
+brcmfmac/sdio.h
+// SPDX-License-Identifier: ISC
+/*
+ * Copyright (c) 2010 Broadcom Corporation
+ */
+
+#ifndef	BRCMFMAC_SDIO_H
+#define	BRCMFMAC_SDIO_H
+
+

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="540" height="145" preserveAspectRatio="xMinYMin meet" viewBox="0 0 540 145" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="540" height="145"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-145)" style="clip-path: url(#clip)">
+		<g transform="">
+			<rect x="3" y="57" width="82" height="60" rx="4" ry="4" style="stroke: rgb(9%,37%,50%); stroke-linecap: butt; stroke-width: 0.9; fill: rgb(92%,96%,97%); fill-rule: evenodd;"/>
+			<text x="31.22" y="99" style="font-family: Helvetica; font-size: 10px;fill: rgb(9%,37%,50%); stroke:none;" transform="translate(0,198) scale(1,-1)">Admit</text>
+			<text x="7.817" y="83" style="font-family: Helvetica; font-size: 8.4px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,166) scale(1,-1)">Identity / ownership</text>
+			<path d="M 87,87 L 91,87 Z" style="stroke: rgb(9%,37%,50%); stroke-linecap: butt; stroke-width: 1.4;"/>
+			<polygon points="91 87, 86.49776 89.17483, 86.49776 84.82517" style="stroke: rgb(9%,37%,50%); stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,37%,50%); fill-rule: evenodd;"/>
+			<rect x="93" y="57" width="82" height="60" rx="4" ry="4" style="stroke: rgb(9%,37%,50%); stroke-linecap: butt; stroke-width: 0.9; fill: rgb(92%,96%,97%); fill-rule: evenodd;"/>
+			<text x="124.83500000000001" y="99" style="font-family: Helvetica; font-size: 10px;fill: rgb(9%,37%,50%); stroke:none;" transform="translate(0,198) scale(1,-1)">Arm</text>
+			<text x="93.6128" y="83" style="font-family: Helvetica; font-size: 8.4px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,166) scale(1,-1)">Save and set controls</text>
+			<path d="M 177,87 L 181,87 Z" style="stroke: rgb(9%,37%,50%); stroke-linecap: butt; stroke-width: 1.4;"/>
+			<polygon points="181 87, 176.4978 89.17483, 176.4978 84.82517" style="stroke: rgb(9%,37%,50%); stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,37%,50%); fill-rule: evenodd;"/>
+			<rect x="183" y="57" width="82" height="60" rx="4" ry="4" style="stroke: rgb(9%,37%,50%); stroke-linecap: butt; stroke-width: 0.9; fill: rgb(92%,96%,97%); fill-rule: evenodd;"/>
+			<text x="207.885" y="99" style="font-family: Helvetica; font-size: 10px;fill: rgb(9%,37%,50%); stroke:none;" transform="translate(0,198) scale(1,-1)">Stream</text>
+			<text x="183.3818" y="83" style="font-family: Helvetica; font-size: 8.4px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,166) scale(1,-1)">Publish / read / renew</text>
+			<path d="M 267,87 L 271,87 Z" style="stroke: rgb(9%,37%,50%); stroke-linecap: butt; stroke-width: 1.4;"/>
+			<polygon points="271 87, 266.4978 89.17483, 266.4978 84.82517" style="stroke: rgb(9%,37%,50%); stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,37%,50%); fill-rule: evenodd;"/>
+			<rect x="273" y="57" width="82" height="60" rx="4" ry="4" style="stroke: rgb(9%,37%,50%); stroke-linecap: butt; stroke-width: 0.9; fill: rgb(92%,96%,97%); fill-rule: evenodd;"/>
+			<text x="303.715" y="99" style="font-family: Helvetica; font-size: 10px;fill: rgb(9%,37%,50%); stroke:none;" transform="translate(0,198) scale(1,-1)">Stop</text>
+			<text x="280.6184" y="83" style="font-family: Helvetica; font-size: 8.4px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,166) scale(1,-1)">Block-aligned end</text>
+			<path d="M 357,87 L 361,87 Z" style="stroke: rgb(9%,37%,50%); stroke-linecap: butt; stroke-width: 1.4;"/>
+			<polygon points="361 87, 356.4978 89.17483, 356.4978 84.82517" style="stroke: rgb(9%,37%,50%); stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,37%,50%); fill-rule: evenodd;"/>
+			<rect x="363" y="57" width="82" height="60" rx="4" ry="4" style="stroke: rgb(9%,37%,50%); stroke-linecap: butt; stroke-width: 0.9; fill: rgb(92%,96%,97%); fill-rule: evenodd;"/>
+			<text x="380.935" y="99" style="font-family: Helvetica; font-size: 10px;fill: rgb(9%,37%,50%); stroke:none;" transform="translate(0,198) scale(1,-1)">Reference</text>
+			<text x="369.6818" y="83" style="font-family: Helvetica; font-size: 8.4px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,166) scale(1,-1)">Latest retained tail</text>
+			<path d="M 447,87 L 451,87 Z" style="stroke: rgb(9%,37%,50%); stroke-linecap: butt; stroke-width: 1.4;"/>
+			<polygon points="451 87, 446.4978 89.17483, 446.4978 84.82517" style="stroke: rgb(9%,37%,50%); stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,37%,50%); fill-rule: evenodd;"/>
+			<rect x="453" y="57" width="82" height="60" rx="4" ry="4" style="stroke: rgb(9%,37%,50%); stroke-linecap: butt; stroke-width: 0.9; fill: rgb(92%,96%,97%); fill-rule: evenodd;"/>
+			<text x="476.495" y="99" style="font-family: Helvetica; font-size: 10px;fill: rgb(9%,37%,50%); stroke:none;" transform="translate(0,198) scale(1,-1)">Restore</text>
+			<text x="456.6494" y="83" style="font-family: Helvetica; font-size: 8.4px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,166) scale(1,-1)">Genuine completion</text>
+			<text x="120.06710000000001" y="31" style="font-family: Helvetica; font-size: 8.2px;fill: rgb(40%,46%,51%); stroke:none;" transform="translate(0,62) scale(1,-1)">STOP or lease expiry ends collection; failures preserve a separate recovery record</text>
+			<text x="170.4192" y="13" style="font-family: Helvetica; font-size: 8.2px;fill: rgb(40%,46%,51%); stroke:none;" transform="translate(0,26) scale(1,-1)">Explanatory order only. It is not a measured time trace.</text>
+		</g>
+	</g>
+</svg>

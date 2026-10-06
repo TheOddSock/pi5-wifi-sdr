@@ -1,0 +1,8 @@
+{
+  "status": "exact_tested_driver_source_reconstructed",
+  "files": 96,
+  "all_tested_source_hashes_equal": true,
+  "module_compiled_by_new_wrapper": true,
+  "hardware_access": false,
+  "new_source_licences_approved": false
+}

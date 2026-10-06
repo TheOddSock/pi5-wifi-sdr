@@ -1,0 +1,27 @@
+{
+  "status": "pass",
+  "issues": [],
+  "module_sha256": "d4374b5607ee43483911702da18516f3b60ecd4385df2edbe7ceee39729412a0",
+  "elf_identity": {
+    "class_bits": 64,
+    "little_endian": true,
+    "machine": "EM_AARCH64",
+    "type": "ET_REL"
+  },
+  "elf_identity_validated": true,
+  "exact_historical_module_SHA_match": true,
+  "allocated_sections_and_relocations_checked": 45,
+  "compiler_comments": [
+    "GCC: (Debian 14.2.0-19) 14.2.0"
+  ],
+  "debug_paths_and_build_id_ignored": true,
+  "hardware_validation": false,
+  "installation_performed": false,
+  "schema_version": "1.0",
+  "comparator_sha256": "e3bcfb63cac1c73a552e0e3eb898c005a8f6cefef1324931f63e8c8a6e20ab30",
+  "historical_compile_receipt_sha256": "ce8cb4464aaaad2fb2ab60ba4b37d58259c12ac0698cdb650ed882530a3b7646",
+  "historical_comparator_sha256": "da21b5423fa0f708d2b63564ae7dc0458f7e7e63ffd09028ac75cde372732773",
+  "historical_compile_result_sha256": "5c3c5231bfea27fe1072adf9cb91b7e1f69b2d858f5f6858b03ca5c640be2a91",
+  "compilation_repeated": false,
+  "scope": "Corrected comparator applied offline to the already compiled exact tested module; not a new compile or hardware test"
+}

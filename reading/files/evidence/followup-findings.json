@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0",
+  "selected_draft_version": "0.3.0-rc5",
+  "public_release_time_utc": null,
+  "original_waveforms_exported": false,
+  "finite_twin6_RF": {
+    "raw_words": 64000,
+    "signed_reference_words": 3072,
+    "epochs": [
+      {
+        "epoch": 2,
+        "input_frequency_cycles_per_word": -0.2979138079814362,
+        "folded_frequency_cycles_per_output": 0.23337907229702104,
+        "additional_twin6_attenuation_vs_sparse4_dB": 3.332212349401896,
+        "ideal_selected_line_extra_attenuation_dB": 4.537809701891346,
+        "inside_wanted_halfwidth048": false
+      },
+      {
+        "epoch": 3,
+        "input_frequency_cycles_per_word": -0.2979133764907482,
+        "folded_frequency_cycles_per_output": 0.23338597614802836,
+        "additional_twin6_attenuation_vs_sparse4_dB": 4.6831210194039254,
+        "ideal_selected_line_extra_attenuation_dB": 4.537793717326093,
+        "inside_wanted_halfwidth048": false
+      }
+    ],
+    "scope": "Selected-line partial-filter comparison only; outside wanted band; not general LPF or calibrated RF"
+  },
+  "source_marked_five_minutes": {
+    "run_id": "twin6-live-rf-a",
+    "bursts_approx_elapsed_seconds": [
+      138,
+      277
+    ],
+    "primary_correlation_pass": false,
+    "fixed_ON_OFF_amplitude_ratio_requirement": 10,
+    "minimum_passing_chunks_per_ON": 12,
+    "ON_windows": [
+      {
+        "burst": 0,
+        "median_amplitude_counts": 3.0682085561519656,
+        "matched_OFF95_counts": 2.1339686283735477,
+        "passing_chunks": 0,
+        "chunks": 20,
+        "spectral_gate_pass": false
+      },
+      {
+        "burst": 0,
+        "median_amplitude_counts": 3.2690887140851848,
+        "matched_OFF95_counts": 2.06871657109856,
+        "passing_chunks": 0,
+        "chunks": 20,
+        "spectral_gate_pass": false
+      },
+      {
+        "burst": 1,
+        "median_amplitude_counts": 3.6304046958022544,
+        "matched_OFF95_counts": 1.6373549565671404,
+        "passing_chunks": 0,
+        "chunks": 20,
+        "spectral_gate_pass": false
+      },
+      {
+        "burst": 1,
+        "median_amplitude_counts": 3.7959625627811384,
+        "matched_OFF95_counts": 1.8447860407454308,
+        "passing_chunks": 0,
+        "chunks": 20,
+        "spectral_gate_pass": false
+      }
+    ],
+    "initial_helper_error_before_source_STEP": true,
+    "capture_restarted": false,
+    "post_hoc_companion_diagnostics_are_acceptance_proof": false,
+    "scope": "Timing/source integrity and stream integrity pass; primary RF correlation remains unproved"
+  }
+}
