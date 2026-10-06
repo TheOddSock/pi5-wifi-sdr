@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 650" role="img" aria-labelledby="streaming-title streaming-desc">
+<title id="streaming-title">Collect, publish, reuse</title>
+<desc id="streaming-desc">Explanatory schematic, not measured timing. The active collector repeatedly writes its source sample ring. Firmware selects completed inputs, checks lag, and publishes complete blocks into a different RAM ring with sequence and checksum metadata. A schematic producer cycle fills a block, commits it, advances to another slot, then eventually overwrites old slots. The twin6 ring has 32 slots. Publisher reuse follows its own schedule; a late reader fails with an overrun instead of releasing or blocking slots. Linux concurrently reads committed blocks into a disk queue while collection remains active.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 Z" fill="#5edee4"/></marker></defs>
+<g font-family="system-ui, -apple-system, Segoe UI, sans-serif">
+<rect x="24" y="12" width="372" height="132" rx="10" fill="none" stroke="#5edee4" stroke-width="1.5"/>
+<text x="210" y="40" font-size="21" fill="#e8edf5" text-anchor="middle" font-weight="600">Collector stays active</text>
+<rect x="42" y="63" width="33" height="31" rx="4" fill="#17313e" stroke="#5edee4" stroke-width="1.5"/>
+<rect x="84" y="63" width="33" height="31" rx="4" fill="#17313e" stroke="#5edee4" stroke-width="1.5"/>
+<rect x="126" y="63" width="33" height="31" rx="4" fill="none" stroke="#42516b" stroke-width="1.5"/>
+<rect x="168" y="63" width="33" height="31" rx="4" fill="none" stroke="#42516b" stroke-width="1.5"/>
+<rect x="210" y="63" width="33" height="31" rx="4" fill="none" stroke="#42516b" stroke-width="1.5"/>
+<rect x="252" y="63" width="33" height="31" rx="4" fill="none" stroke="#42516b" stroke-width="1.5"/>
+<rect x="294" y="63" width="33" height="31" rx="4" fill="none" stroke="#42516b" stroke-width="1.5"/>
+<rect x="336" y="63" width="33" height="31" rx="4" fill="none" stroke="#42516b" stroke-width="1.5"/>
+<path d="M370,102 C385,115 42,115 43,103" fill="none" stroke="#5edee4" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="210" y="132" font-size="19" fill="#a6b2c6" text-anchor="middle" font-weight="400">Circular source sample memory</text>
+<path d="M210,146 L210,167" fill="none" stroke="#5edee4" stroke-width="1.5" marker-end="url(#arrow)"/>
+<rect x="24" y="174" width="372" height="65" rx="10" fill="none" stroke="#5edee4" stroke-width="1.5"/>
+<text x="210" y="200" font-size="20" fill="#e8edf5" text-anchor="middle" font-weight="400">Firmware selects completed inputs</text>
+<text x="210" y="224" font-size="18" fill="#a6b2c6" text-anchor="middle" font-weight="400">Checks lag before each batch</text>
+<path d="M210,241 L210,263" fill="none" stroke="#5edee4" stroke-width="1.5" marker-end="url(#arrow)"/>
+<rect x="24" y="271" width="372" height="170" rx="10" fill="none" stroke="#42516b" stroke-width="1.5"/>
+<text x="210" y="299" font-size="21" fill="#e8edf5" text-anchor="middle" font-weight="600">Separate publication RAM</text>
+<rect x="40" y="318" width="150" height="43" rx="10" fill="none" stroke="#5edee4" stroke-width="1.5"/>
+<text x="115" y="346" font-size="19" fill="#e8edf5" text-anchor="middle" font-weight="400">1 • fill</text>
+<rect x="230" y="318" width="150" height="43" rx="10" fill="none" stroke="#5edee4" stroke-width="1.5"/>
+<text x="305" y="346" font-size="19" fill="#e8edf5" text-anchor="middle" font-weight="400">2 • commit</text>
+<rect x="230" y="383" width="150" height="43" rx="10" fill="none" stroke="#5edee4" stroke-width="1.5"/>
+<text x="305" y="411" font-size="19" fill="#e8edf5" text-anchor="middle" font-weight="400">3 • advance</text>
+<rect x="40" y="383" width="150" height="43" rx="10" fill="none" stroke="#5edee4" stroke-width="1.5"/>
+<text x="115" y="411" font-size="19" fill="#e8edf5" text-anchor="middle" font-weight="400">4 • overwrite</text>
+<path d="M192,339 L223,339" fill="none" stroke="#5edee4" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M305,363 L305,377" fill="none" stroke="#5edee4" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M228,404 L197,404" fill="none" stroke="#5edee4" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M115,381 L115,367" fill="none" stroke="#5edee4" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="210" y="465" font-size="18" fill="#a6b2c6" text-anchor="middle" font-weight="400">Publisher reuses 32 slots on schedule</text>
+<text x="210" y="491" font-size="18" fill="#ffc477" text-anchor="middle" font-weight="400">A late reader fails with an overrun</text>
+<path d="M210,500 L210,517" fill="none" stroke="#5edee4" stroke-width="1.5" marker-end="url(#arrow)"/>
+<rect x="24" y="524" width="372" height="62" rx="10" fill="none" stroke="#5edee4" stroke-width="1.5"/>
+<text x="210" y="550" font-size="20" fill="#e8edf5" text-anchor="middle" font-weight="400">Linux reads committed blocks</text>
+<text x="210" y="574" font-size="18" fill="#a6b2c6" text-anchor="middle" font-weight="400">Sequence + checksum checks</text>
+<path d="M210,588 L210,609" fill="none" stroke="#5edee4" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="210" y="632" font-size="20" fill="#e8edf5" text-anchor="middle" font-weight="400">Disk queue → recording</text>
+</g>
+</svg>

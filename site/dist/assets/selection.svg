@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 615" role="img" aria-labelledby="selection-title selection-desc">
+<title id="selection-title">Select fewer positions</title>
+<desc id="selection-desc">Explanatory sample-position schematic. Ordinary stride16 selection keeps one of sixteen input positions for each output. The twin6 partial filter combines positions 0, 1, 2, 8, 9 and 10, then advances sixteen positions. Its exact signed nested averaging includes intermediate rounding. Partial filtering can reduce selected lines, but a general low-pass or alias-free response has not been established. Highlighted cells indicate contributing positions, not measured signal amplitudes.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 Z" fill="#5edee4"/></marker></defs>
+<g font-family="system-ui, -apple-system, Segoe UI, sans-serif">
+<text x="24" y="26" font-size="22" fill="#e8edf5" text-anchor="start" font-weight="600">Ordinary stride16 selection</text>
+<text x="24" y="56" font-size="19" fill="#a6b2c6" text-anchor="start" font-weight="400">Keep one input, then advance 16</text>
+<rect x="31" y="77" width="33" height="35" rx="5" fill="#17313e" stroke="#5edee4" stroke-width="1.5"/>
+<text x="47.5" y="102" font-size="19" fill="#5edee4" text-anchor="middle" font-weight="400">0</text>
+<rect x="76" y="77" width="33" height="35" rx="5" fill="none" stroke="#42516b" stroke-width="1.5"/>
+<text x="92.5" y="102" font-size="19" fill="#a6b2c6" text-anchor="middle" font-weight="400">1</text>
+<rect x="121" y="77" width="33" height="35" rx="5" fill="none" stroke="#42516b" stroke-width="1.5"/>
+<text x="137.5" y="102" font-size="19" fill="#a6b2c6" text-anchor="middle" font-weight="400">2</text>
+<rect x="166" y="77" width="33" height="35" rx="5" fill="none" stroke="#42516b" stroke-width="1.5"/>
+<text x="182.5" y="102" font-size="19" fill="#a6b2c6" text-anchor="middle" font-weight="400">3</text>
+<rect x="211" y="77" width="33" height="35" rx="5" fill="none" stroke="#42516b" stroke-width="1.5"/>
+<text x="227.5" y="102" font-size="19" fill="#a6b2c6" text-anchor="middle" font-weight="400">4</text>
+<rect x="256" y="77" width="33" height="35" rx="5" fill="none" stroke="#42516b" stroke-width="1.5"/>
+<text x="272.5" y="102" font-size="19" fill="#a6b2c6" text-anchor="middle" font-weight="400">5</text>
+<rect x="301" y="77" width="33" height="35" rx="5" fill="none" stroke="#42516b" stroke-width="1.5"/>
+<text x="317.5" y="102" font-size="19" fill="#a6b2c6" text-anchor="middle" font-weight="400">6</text>
+<rect x="346" y="77" width="33" height="35" rx="5" fill="none" stroke="#42516b" stroke-width="1.5"/>
+<text x="362.5" y="102" font-size="19" fill="#a6b2c6" text-anchor="middle" font-weight="400">7</text>
+<rect x="31" y="129" width="33" height="35" rx="5" fill="none" stroke="#42516b" stroke-width="1.5"/>
+<text x="47.5" y="154" font-size="19" fill="#a6b2c6" text-anchor="middle" font-weight="400">8</text>
+<rect x="76" y="129" width="33" height="35" rx="5" fill="none" stroke="#42516b" stroke-width="1.5"/>
+<text x="92.5" y="154" font-size="19" fill="#a6b2c6" text-anchor="middle" font-weight="400">9</text>
+<rect x="121" y="129" width="33" height="35" rx="5" fill="none" stroke="#42516b" stroke-width="1.5"/>
+<text x="137.5" y="154" font-size="19" fill="#a6b2c6" text-anchor="middle" font-weight="400">10</text>
+<rect x="166" y="129" width="33" height="35" rx="5" fill="none" stroke="#42516b" stroke-width="1.5"/>
+<text x="182.5" y="154" font-size="19" fill="#a6b2c6" text-anchor="middle" font-weight="400">11</text>
+<rect x="211" y="129" width="33" height="35" rx="5" fill="none" stroke="#42516b" stroke-width="1.5"/>
+<text x="227.5" y="154" font-size="19" fill="#a6b2c6" text-anchor="middle" font-weight="400">12</text>
+<rect x="256" y="129" width="33" height="35" rx="5" fill="none" stroke="#42516b" stroke-width="1.5"/>
+<text x="272.5" y="154" font-size="19" fill="#a6b2c6" text-anchor="middle" font-weight="400">13</text>
+<rect x="301" y="129" width="33" height="35" rx="5" fill="none" stroke="#42516b" stroke-width="1.5"/>
+<text x="317.5" y="154" font-size="19" fill="#a6b2c6" text-anchor="middle" font-weight="400">14</text>
+<rect x="346" y="129" width="33" height="35" rx="5" fill="none" stroke="#42516b" stroke-width="1.5"/>
+<text x="362.5" y="154" font-size="19" fill="#a6b2c6" text-anchor="middle" font-weight="400">15</text>
+<text x="210" y="193" font-size="19" fill="#5edee4" text-anchor="middle" font-weight="400">1 of 16 positions contributes</text>
+<path d="M24,220 L396,220" fill="none" stroke="#42516b" stroke-width="1.5"/>
+<text x="24" y="253" font-size="22" fill="#e8edf5" text-anchor="start" font-weight="600">Twin6 partial filter</text>
+<text x="24" y="283" font-size="19" fill="#a6b2c6" text-anchor="start" font-weight="400">Combine six inputs, then advance 16</text>
+<rect x="31" y="304" width="33" height="35" rx="5" fill="#17313e" stroke="#5edee4" stroke-width="1.5"/>
+<text x="47.5" y="329" font-size="19" fill="#5edee4" text-anchor="middle" font-weight="400">0</text>
+<rect x="76" y="304" width="33" height="35" rx="5" fill="#17313e" stroke="#5edee4" stroke-width="1.5"/>
+<text x="92.5" y="329" font-size="19" fill="#5edee4" text-anchor="middle" font-weight="400">1</text>
+<rect x="121" y="304" width="33" height="35" rx="5" fill="#17313e" stroke="#5edee4" stroke-width="1.5"/>
+<text x="137.5" y="329" font-size="19" fill="#5edee4" text-anchor="middle" font-weight="400">2</text>
+<rect x="166" y="304" width="33" height="35" rx="5" fill="none" stroke="#42516b" stroke-width="1.5"/>
+<text x="182.5" y="329" font-size="19" fill="#a6b2c6" text-anchor="middle" font-weight="400">3</text>
+<rect x="211" y="304" width="33" height="35" rx="5" fill="none" stroke="#42516b" stroke-width="1.5"/>
+<text x="227.5" y="329" font-size="19" fill="#a6b2c6" text-anchor="middle" font-weight="400">4</text>
+<rect x="256" y="304" width="33" height="35" rx="5" fill="none" stroke="#42516b" stroke-width="1.5"/>
+<text x="272.5" y="329" font-size="19" fill="#a6b2c6" text-anchor="middle" font-weight="400">5</text>
+<rect x="301" y="304" width="33" height="35" rx="5" fill="none" stroke="#42516b" stroke-width="1.5"/>
+<text x="317.5" y="329" font-size="19" fill="#a6b2c6" text-anchor="middle" font-weight="400">6</text>
+<rect x="346" y="304" width="33" height="35" rx="5" fill="none" stroke="#42516b" stroke-width="1.5"/>
+<text x="362.5" y="329" font-size="19" fill="#a6b2c6" text-anchor="middle" font-weight="400">7</text>
+<rect x="31" y="356" width="33" height="35" rx="5" fill="#17313e" stroke="#5edee4" stroke-width="1.5"/>
+<text x="47.5" y="381" font-size="19" fill="#5edee4" text-anchor="middle" font-weight="400">8</text>
+<rect x="76" y="356" width="33" height="35" rx="5" fill="#17313e" stroke="#5edee4" stroke-width="1.5"/>
+<text x="92.5" y="381" font-size="19" fill="#5edee4" text-anchor="middle" font-weight="400">9</text>
+<rect x="121" y="356" width="33" height="35" rx="5" fill="#17313e" stroke="#5edee4" stroke-width="1.5"/>
+<text x="137.5" y="381" font-size="19" fill="#5edee4" text-anchor="middle" font-weight="400">10</text>
+<rect x="166" y="356" width="33" height="35" rx="5" fill="none" stroke="#42516b" stroke-width="1.5"/>
+<text x="182.5" y="381" font-size="19" fill="#a6b2c6" text-anchor="middle" font-weight="400">11</text>
+<rect x="211" y="356" width="33" height="35" rx="5" fill="none" stroke="#42516b" stroke-width="1.5"/>
+<text x="227.5" y="381" font-size="19" fill="#a6b2c6" text-anchor="middle" font-weight="400">12</text>
+<rect x="256" y="356" width="33" height="35" rx="5" fill="none" stroke="#42516b" stroke-width="1.5"/>
+<text x="272.5" y="381" font-size="19" fill="#a6b2c6" text-anchor="middle" font-weight="400">13</text>
+<rect x="301" y="356" width="33" height="35" rx="5" fill="none" stroke="#42516b" stroke-width="1.5"/>
+<text x="317.5" y="381" font-size="19" fill="#a6b2c6" text-anchor="middle" font-weight="400">14</text>
+<rect x="346" y="356" width="33" height="35" rx="5" fill="none" stroke="#42516b" stroke-width="1.5"/>
+<text x="362.5" y="381" font-size="19" fill="#a6b2c6" text-anchor="middle" font-weight="400">15</text>
+<text x="210" y="420" font-size="19" fill="#5edee4" text-anchor="middle" font-weight="400">6 of 16 positions contribute</text>
+<path d="M210,433 L210,451" fill="none" stroke="#5edee4" stroke-width="1.5" marker-end="url(#arrow)"/>
+<rect x="66" y="461" width="288" height="45" rx="10" fill="none" stroke="#5edee4" stroke-width="1.5"/>
+<text x="210" y="490" font-size="20" fill="#e8edf5" text-anchor="middle" font-weight="400">One combined output</text>
+<text x="210" y="542" font-size="18" fill="#a6b2c6" text-anchor="middle" font-weight="400">Intermediate signed rounding applies.</text>
+<text x="24" y="571" font-size="18" fill="#ffc477" text-anchor="start" font-weight="400">General low-pass / alias-free response</text>
+<text x="24" y="596" font-size="18" fill="#ffc477" text-anchor="start" font-weight="400">has not been established.</text>
+</g>
+</svg>

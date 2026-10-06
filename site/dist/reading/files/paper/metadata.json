@@ -1,0 +1,34 @@
+{
+  "title": "Sustained Selected Complex Receive Streaming from the BCM43455 on Raspberry Pi 5",
+  "version": "0.3.0",
+  "status": "approved_for_publication",
+  "approved_creators": [
+    {
+      "name": "Adam Davies",
+      "given-names": "Adam",
+      "family-names": "Davies"
+    }
+  ],
+  "affiliations": [],
+  "public_release_time_utc": null,
+  "report_doi": null,
+  "software_doi": null,
+  "public_repository_url": "https://github.com/TheOddSock/pi5-wifi-sdr",
+  "keywords": [
+    "CYW43455",
+    "BCM43455c0",
+    "Raspberry Pi 5",
+    "sample_collect",
+    "D11",
+    "Template RAM",
+    "Cortex-R4",
+    "SDIO",
+    "time-domain complex samples"
+  ],
+  "resource_type": "technical_report",
+  "licence_status": "approved",
+  "report_license": "CC-BY-4.0",
+  "original_code_license": "GPL-2.0-or-later",
+  "prepared_date": "2026-10-06",
+  "release_date": "2026-10-06"
+}

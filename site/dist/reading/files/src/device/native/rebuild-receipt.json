@@ -1,0 +1,14 @@
+{
+  "status": "exact_tested_image_rebuilt",
+  "image_sha256": "b4b1196c961533ac42b9604c945f3932097dfba80347857e431c03a5c6759f20",
+  "expected_tested_image_sha256": "b4b1196c961533ac42b9604c945f3932097dfba80347857e431c03a5c6759f20",
+  "image_bytes": 652488,
+  "compiler": "arm-none-eabi-gcc.exe (xPack GNU Arm Embedded GCC, 64-bit) 9.3.1 20200408 (release)",
+  "GNU_Capstone_boundaries": 1907,
+  "record_bytes": 132736,
+  "slots": 32,
+  "ABI": 36,
+  "ROM_blob_required": false,
+  "hardware_access": false,
+  "installation_performed": false
+}

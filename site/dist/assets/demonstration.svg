@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 564" role="img" aria-labelledby="demonstration-title demonstration-desc">
+<title id="demonstration-title">Two bursts in five minutes</title>
+<desc id="demonstration-desc">Measured public aggregates from known-signal-findings.json. 244,160 checked frames span 300.025 seconds of Pi host receipt time. Two short source bursts, each capped at two seconds, occur at approximately 10 and 277 elapsed seconds; timeline marker widths are exaggerated. Four ON-window median fitted amplitudes and matched adjacent OFF95 amplitudes, in sample counts, are respectively 211.444 versus 2.586; 189.876 versus 2.491; 194.065 versus 2.466; 178.397 versus 2.486. All 80 preset RF chunks pass. The weakest chunk&#x27;s ratio is 26.733, above the fixed tenfold requirement. Amplitudes are not calibrated RF power and host timestamps are not RF or ADC clock calibration.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 Z" fill="#5edee4"/></marker></defs>
+<g font-family="system-ui, -apple-system, Segoe UI, sans-serif">
+<path d="M32,54 L388,54" fill="none" stroke="#5edee4" stroke-width="1.5"/>
+<rect x="39.87" y="45" width="8" height="18" rx="1" fill="#ffc477" stroke="#ffc477" stroke-width="1.5"/>
+<path d="M43.86567038586391,43 L43.86567038586391,29" fill="none" stroke="#ffc477" stroke-width="1.5"/>
+<rect x="356.68" y="45" width="8" height="18" rx="1" fill="#ffc477" stroke="#ffc477" stroke-width="1.5"/>
+<path d="M360.6790696884303,43 L360.6790696884303,29" fill="none" stroke="#ffc477" stroke-width="1.5"/>
+<text x="32" y="24" font-size="18" fill="#ffc477" text-anchor="start" font-weight="400">≈10 s</text>
+<text x="388" y="24" font-size="18" fill="#ffc477" text-anchor="end" font-weight="400">≈277 s</text>
+<path d="M32.0,58 L32.0,65" fill="none" stroke="#42516b" stroke-width="1.5"/>
+<text x="32.0" y="86" font-size="18" fill="#a6b2c6" text-anchor="start" font-weight="400">0</text>
+<path d="M209.98505578795863,58 L209.98505578795863,65" fill="none" stroke="#42516b" stroke-width="1.5"/>
+<text x="209.98505578795863" y="86" font-size="18" fill="#a6b2c6" text-anchor="middle" font-weight="400">150</text>
+<path d="M387.97011157591726,58 L387.97011157591726,65" fill="none" stroke="#42516b" stroke-width="1.5"/>
+<text x="387.97011157591726" y="86" font-size="18" fill="#a6b2c6" text-anchor="end" font-weight="400">300 s</text>
+<text x="24" y="116" font-size="19" fill="#e8edf5" text-anchor="start" font-weight="400">Two short bursts, each capped at 2 s</text>
+<text x="24" y="143" font-size="18" fill="#a6b2c6" text-anchor="start" font-weight="400">Marker widths exaggerated; times approximate</text>
+<rect x="24" y="170" width="12" height="12" rx="2" fill="#5edee4" stroke="#5edee4" stroke-width="1.5"/>
+<text x="46" y="183" font-size="19" fill="#e8edf5" text-anchor="start" font-weight="400">ON median</text>
+<rect x="226" y="170" width="12" height="12" rx="2" fill="#ffc477" stroke="#ffc477" stroke-width="1.5"/>
+<text x="248" y="183" font-size="19" fill="#e8edf5" text-anchor="start" font-weight="400">Adjacent OFF95</text>
+<text x="24" y="213" font-size="19" fill="#a6b2c6" text-anchor="start" font-weight="400">Fitted amplitude • sample counts</text>
+<path d="M32.0,239 L32.0,527" fill="none" stroke="#42516b" stroke-width="1.5" stroke-dasharray="4 5"/>
+<text x="32.0" y="239" font-size="18" fill="#a6b2c6" text-anchor="middle" font-weight="400">0</text>
+<path d="M172.0,239 L172.0,527" fill="none" stroke="#42516b" stroke-width="1.5" stroke-dasharray="4 5"/>
+<text x="172.0" y="239" font-size="18" fill="#a6b2c6" text-anchor="middle" font-weight="400">100</text>
+<path d="M312.0,239 L312.0,527" fill="none" stroke="#42516b" stroke-width="1.5" stroke-dasharray="4 5"/>
+<text x="312.0" y="239" font-size="18" fill="#a6b2c6" text-anchor="middle" font-weight="400">200</text>
+<text x="24" y="269" font-size="19" fill="#e8edf5" text-anchor="start" font-weight="550">Early window 1</text>
+<rect x="32" y="280" width="296.022" height="10" rx="1" fill="#5edee4" stroke="#5edee4" stroke-width="1.5"/>
+<rect x="32" y="300" width="3.62" height="5" rx="1" fill="#ffc477" stroke="#ffc477" stroke-width="1.5"/>
+<text x="396" y="290" font-size="18" fill="#5edee4" text-anchor="end" font-weight="400">211.4</text>
+<text x="396" y="310" font-size="18" fill="#ffc477" text-anchor="end" font-weight="400">2.59</text>
+<text x="24" y="339" font-size="19" fill="#e8edf5" text-anchor="start" font-weight="550">Early window 2</text>
+<rect x="32" y="350" width="265.826" height="10" rx="1" fill="#5edee4" stroke="#5edee4" stroke-width="1.5"/>
+<rect x="32" y="370" width="3.487" height="5" rx="1" fill="#ffc477" stroke="#ffc477" stroke-width="1.5"/>
+<text x="396" y="360" font-size="18" fill="#5edee4" text-anchor="end" font-weight="400">189.9</text>
+<text x="396" y="380" font-size="18" fill="#ffc477" text-anchor="end" font-weight="400">2.49</text>
+<text x="24" y="409" font-size="19" fill="#e8edf5" text-anchor="start" font-weight="550">Late window 1</text>
+<rect x="32" y="420" width="271.692" height="10" rx="1" fill="#5edee4" stroke="#5edee4" stroke-width="1.5"/>
+<rect x="32" y="440" width="3.452" height="5" rx="1" fill="#ffc477" stroke="#ffc477" stroke-width="1.5"/>
+<text x="396" y="430" font-size="18" fill="#5edee4" text-anchor="end" font-weight="400">194.1</text>
+<text x="396" y="450" font-size="18" fill="#ffc477" text-anchor="end" font-weight="400">2.47</text>
+<text x="24" y="479" font-size="19" fill="#e8edf5" text-anchor="start" font-weight="550">Late window 2</text>
+<rect x="32" y="490" width="249.755" height="10" rx="1" fill="#5edee4" stroke="#5edee4" stroke-width="1.5"/>
+<rect x="32" y="510" width="3.481" height="5" rx="1" fill="#ffc477" stroke="#ffc477" stroke-width="1.5"/>
+<text x="396" y="500" font-size="18" fill="#5edee4" text-anchor="end" font-weight="400">178.4</text>
+<text x="396" y="520" font-size="18" fill="#ffc477" text-anchor="end" font-weight="400">2.49</text>
+<text x="24" y="549" font-size="18" fill="#a6b2c6" text-anchor="start" font-weight="400">Amplitude is not calibrated RF power.</text>
+</g>
+</svg>

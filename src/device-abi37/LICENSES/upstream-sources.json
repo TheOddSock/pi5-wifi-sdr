@@ -1,0 +1,20 @@
+[
+  {
+    "url": "https://raw.githubusercontent.com/raspberrypi/linux/60ea684a8ace97bb0db1a16e20753bdd6ab371ff/LICENSES/deprecated/ISC",
+    "file": "ISC.txt",
+    "sha256": "cbdf535b99a9f4cb208c5495c6dd9a1f84104d83c03f8f0d98ee7a0c43805388",
+    "bytes": 1046
+  },
+  {
+    "url": "https://raw.githubusercontent.com/raspberrypi/linux/60ea684a8ace97bb0db1a16e20753bdd6ab371ff/COPYING",
+    "file": "COPYING.txt",
+    "sha256": "fb5a425bd3b3cd6071a3a9aff9909a859e7c1158d54d32e07658398cd67eb6a0",
+    "bytes": 496
+  },
+  {
+    "url": "https://raw.githubusercontent.com/raspberrypi/linux/60ea684a8ace97bb0db1a16e20753bdd6ab371ff/LICENSES/preferred/GPL-2.0",
+    "file": "GPL-2.0.txt",
+    "sha256": "8780e78a1a737e127f25a65f6d95269bffd36158dc261114de7859b490bfc5aa",
+    "bytes": 18600
+  }
+]

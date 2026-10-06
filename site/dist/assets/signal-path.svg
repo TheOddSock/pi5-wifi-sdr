@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 684" role="img" aria-labelledby="signal-path-title signal-path-desc">
+<title id="signal-path-title">From receive path to recording</title>
+<desc id="signal-path-desc">Explanatory schematic. The Pi antenna supplies the Wi-Fi chip&#x27;s receive path, which feeds circular collector sample memory. Custom embedded firmware selects or combines completed inputs and writes reusable publication buffers. The twin6 configuration has 32 slots. A concurrent Linux reader transfers committed data over SDIO to a buffered recording. This is not an ADC or security-bypass diagram.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 Z" fill="#5edee4"/></marker></defs>
+<g font-family="system-ui, -apple-system, Segoe UI, sans-serif">
+<rect x="36" y="12" width="348" height="36" rx="10" fill="none" stroke="#42516b" stroke-width="1.5"/>
+<text x="210" y="37" font-size="20" fill="#e8edf5" text-anchor="middle" font-weight="400">Pi antenna</text>
+<path d="M210,50 L210,71" fill="none" stroke="#5edee4" stroke-width="1.5" marker-end="url(#arrow)"/>
+<rect x="12" y="80" width="396" height="396" rx="10" fill="none" stroke="#42516b" stroke-width="1.5"/>
+<text x="30" y="107" font-size="20" fill="#a6b2c6" text-anchor="start" font-weight="600">BCM43455 Wi-Fi chip</text>
+<rect x="36" y="122" width="348" height="60" rx="10" fill="none" stroke="#42516b" stroke-width="1.5"/>
+<text x="210" y="146" font-size="20" fill="#e8edf5" text-anchor="middle" font-weight="400">Receive path</text>
+<text x="210" y="173" font-size="18" fill="#a6b2c6" text-anchor="middle" font-weight="400">Receive samples</text>
+<path d="M210,184 L210,205" fill="none" stroke="#5edee4" stroke-width="1.5" marker-end="url(#arrow)"/>
+<rect x="36" y="212" width="348" height="58" rx="10" fill="none" stroke="#5edee4" stroke-width="1.5"/>
+<text x="210" y="236" font-size="20" fill="#e8edf5" text-anchor="middle" font-weight="400">Collector sample memory</text>
+<text x="210" y="261" font-size="18" fill="#a6b2c6" text-anchor="middle" font-weight="400">Circular source ring</text>
+<path d="M210,272 L210,293" fill="none" stroke="#5edee4" stroke-width="1.5" marker-end="url(#arrow)"/>
+<rect x="36" y="300" width="348" height="64" rx="10" fill="none" stroke="#5edee4" stroke-width="1.5"/>
+<text x="210" y="325" font-size="20" fill="#e8edf5" text-anchor="middle" font-weight="600">Custom firmware</text>
+<text x="210" y="351" font-size="18" fill="#a6b2c6" text-anchor="middle" font-weight="400">Select or combine completed inputs</text>
+<path d="M210,366 L210,387" fill="none" stroke="#5edee4" stroke-width="1.5" marker-end="url(#arrow)"/>
+<rect x="36" y="394" width="348" height="65" rx="10" fill="none" stroke="#5edee4" stroke-width="1.5"/>
+<text x="210" y="420" font-size="20" fill="#e8edf5" text-anchor="middle" font-weight="400">Reusable publication buffers</text>
+<text x="210" y="445" font-size="18" fill="#a6b2c6" text-anchor="middle" font-weight="400">32 slots in twin6</text>
+<path d="M210,478 L210,527" fill="none" stroke="#5edee4" stroke-width="1.5" marker-end="url(#arrow)"/>
+<rect x="225" y="492" width="157" height="28" rx="5" fill="#152032" stroke="#42516b" stroke-width="1.5"/>
+<text x="303" y="513" font-size="18" fill="#a6b2c6" text-anchor="middle" font-weight="400">SDIO transfer</text>
+<rect x="12" y="538" width="396" height="134" rx="10" fill="none" stroke="#42516b" stroke-width="1.5"/>
+<text x="30" y="564" font-size="20" fill="#a6b2c6" text-anchor="start" font-weight="600">Raspberry Pi • Linux</text>
+<rect x="36" y="580" width="348" height="42" rx="10" fill="none" stroke="#5edee4" stroke-width="1.5"/>
+<text x="210" y="607" font-size="20" fill="#e8edf5" text-anchor="middle" font-weight="400">Concurrent checked reader</text>
+<path d="M210,624 L210,642" fill="none" stroke="#5edee4" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="210" y="661" font-size="20" fill="#e8edf5" text-anchor="middle" font-weight="400">Buffered recording</text>
+</g>
+</svg>

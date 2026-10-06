@@ -1,0 +1,10 @@
+{
+  "kind": "synthetic_protocol_fixture",
+  "RF_capture": false,
+  "frames": 11,
+  "words": 11264,
+  "bytes": 45936,
+  "sha256": "f7a58273a2e5784d743b1a57a97d2ae311373499c5b8ffba4532903d9b7255ca",
+  "generator": "tools/frame_protocol.py synthetic_frame; sequences 1 through 11",
+  "purpose": "Parser and corruption tests only; not hardware or rate evidence"
+}

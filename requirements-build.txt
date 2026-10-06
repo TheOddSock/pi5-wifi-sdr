@@ -1,0 +1,2 @@
+# Needed only for figure/PDF regeneration, not the offline verification tools.
+reportlab==4.4.9

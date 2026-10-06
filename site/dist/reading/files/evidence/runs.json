@@ -1,0 +1,301 @@
+{
+  "schema_version": "1.0",
+  "prepared_at_utc": "2026-10-05T21:39:49.960459+00:00",
+  "public_release_time_utc": null,
+  "runs": [
+    {
+      "run_id": "private-long-b",
+      "experiment_date": "2026-10-04",
+      "profile": "selected_stride16",
+      "evidence_status": "prior_complete_saved_archive_audit_pass",
+      "frames": 368640,
+      "words": 377487360,
+      "host_receipt_span_ns": 301990723487,
+      "nominal_output_words_per_second": 1250000,
+      "channel": 40,
+      "image_sha256": "69cef337c50de6a2ccef6a7402c919c74b3fed973b14bf19996a8f52fc515b4e",
+      "module_sha256": "be069e1217374b74679f1a53515c7d7f634c324a46a54c8606b85cb12ece1301",
+      "source_audit_sha256": "9e7d60551956b5e3f50e19dd2a6a90944de8edc10040cecddf26b1ce7f179201",
+      "published_output_integrity": "all requested sequences/publisher checksums passed prior audit",
+      "stop": {
+        "firmware_blocks": 368641,
+        "unread_suffix_blocks": 1,
+        "tail_comparison": "latest firmware retained tail and stopped aperture"
+      },
+      "queue": {
+        "capacity_frames": 8192,
+        "maximum_backlog_frames": 6931
+      },
+      "introduced_in_public_version": null,
+      "limitations": [
+        "nominal sample clock",
+        "no absolute physical-input continuity proof",
+        "no calibrated alias-free RF bandwidth",
+        "complete original recordings remain private"
+      ]
+    },
+    {
+      "run_id": "sixstream-c",
+      "experiment_date": "2026-10-05",
+      "profile": "six_input_stride16",
+      "evidence_status": "prior_complete_saved_archive_audit_pass",
+      "frames": 244160,
+      "words": 250019840,
+      "host_receipt_span_ns": 300023884130,
+      "nominal_output_words_per_second": 833333.3333333334,
+      "channel": 40,
+      "image_sha256": "07ab31ff7cd78a682f493ece9e3923d58a1d1a9dbf288d31c48cc89eface2dac",
+      "module_sha256": "be069e1217374b74679f1a53515c7d7f634c324a46a54c8606b85cb12ece1301",
+      "source_audit_sha256": "d0698128ae264d468a92caa0bc35c213df2183b86c91fba4b7f0e0aa7803506a",
+      "published_output_integrity": "all requested sequences/publisher checksums passed prior audit",
+      "stop": {
+        "firmware_blocks": 244161,
+        "unread_suffix_blocks": 1,
+        "tail_comparison": "latest firmware retained tail and stopped filtered aperture"
+      },
+      "queue": {
+        "capacity_frames": 8192,
+        "maximum_backlog_frames": 93
+      },
+      "introduced_in_public_version": null,
+      "limitations": [
+        "nominal sample clock",
+        "no absolute physical-input continuity proof",
+        "no calibrated alias-free RF bandwidth",
+        "complete original recordings remain private"
+      ]
+    },
+    {
+      "run_id": "lease-c",
+      "experiment_date": "2026-10-04",
+      "profile": "selected_stride16",
+      "evidence_status": "prior_complete_saved_archive_audit_pass",
+      "frames": 73728,
+      "words": 75497472,
+      "host_receipt_span_ns": 60397535486,
+      "nominal_output_words_per_second": 1250000,
+      "channel": 40,
+      "image_sha256": "69cef337c50de6a2ccef6a7402c919c74b3fed973b14bf19996a8f52fc515b4e",
+      "module_sha256": "ab3d1af7a0046121e815b692f584fb3918fb7a3af5b9feeb016198d012d6f76f",
+      "source_audit_sha256": "a3e6dbed9dcdd092febf6051c431b1dc328f0fccaf60fcd878e17f22d4a83795",
+      "published_output_integrity": "all requested sequences/publisher checksums passed prior audit",
+      "stop": {
+        "firmware_blocks": 73729,
+        "unread_suffix_blocks": 1,
+        "tail_comparison": "latest firmware retained tail and stopped aperture"
+      },
+      "queue": {
+        "capacity_frames": 1024,
+        "maximum_backlog_frames": 104
+      },
+      "introduced_in_public_version": null,
+      "limitations": [
+        "nominal sample clock",
+        "no absolute physical-input continuity proof",
+        "no calibrated alias-free RF bandwidth",
+        "complete original recordings remain private"
+      ]
+    },
+    {
+      "run_id": "sparse-a",
+      "experiment_date": "2026-10-05",
+      "profile": "sparse_four_stride16",
+      "evidence_status": "prior_complete_saved_archive_audit_pass",
+      "frames": 2048,
+      "words": 2097152,
+      "host_receipt_span_ns": 2515536915,
+      "nominal_output_words_per_second": 833333.3333333334,
+      "channel": 1,
+      "image_sha256": "fa5580c38ca327a33df0f991a0adad921579a752391f6341eea2337e5f7d0911",
+      "module_sha256": "be069e1217374b74679f1a53515c7d7f634c324a46a54c8606b85cb12ece1301",
+      "source_audit_sha256": "61548de436125060cef633f6c956c0901c8ab83773084b6872fdcaa9f21032ad",
+      "published_output_integrity": "all requested sequences/publisher checksums passed prior audit",
+      "stop": {
+        "firmware_blocks": 2049,
+        "unread_suffix_blocks": 1,
+        "tail_comparison": "latest firmware retained tail and stopped aperture"
+      },
+      "queue": {
+        "capacity_frames": 1024,
+        "maximum_backlog_frames": 1
+      },
+      "introduced_in_public_version": null,
+      "limitations": [
+        "nominal sample clock",
+        "no absolute physical-input continuity proof",
+        "no calibrated alias-free RF bandwidth",
+        "complete original recordings remain private"
+      ]
+    },
+    {
+      "run_id": "sparse32-a",
+      "experiment_date": "2026-10-05",
+      "profile": "sparse_four_stride16_32slots",
+      "evidence_status": "prior_complete_saved_archive_audit_pass",
+      "frames": 244160,
+      "words": 250019840,
+      "host_receipt_span_ns": 300024784325,
+      "nominal_output_words_per_second": 833333.3333333334,
+      "channel": 1,
+      "image_sha256": "e9c4579ecc8765178b3d744fe1c929ff103cb42aeacba5f6d90c87941a5be68d",
+      "module_sha256": "5ab7fa5b6d7bb721fdc77715755b6d42abf99e28e9b3d7c0f053da6a33b8c1f5",
+      "source_audit_sha256": "6dc31f940d3cce41e60ca55d00ba522e6fca4c5342e0e105378d5f9e23f41a48",
+      "published_output_integrity": "all requested sequences/publisher checksums passed prior audit",
+      "stop": {
+        "firmware_blocks": 244161,
+        "unread_suffix_blocks": 1,
+        "tail_comparison": "128 newest-owned-tail words against stopped filtered aperture"
+      },
+      "queue": {
+        "capacity_frames": 8192,
+        "maximum_backlog_frames": 529
+      },
+      "native_publication_slots": 32,
+      "payload_copies_per_frame": 1,
+      "introduced_in_public_version": null,
+      "limitations": [
+        "nominal sample clock",
+        "no absolute physical-input continuity proof",
+        "no calibrated alias-free RF bandwidth",
+        "complete original recordings remain private",
+        "five-minute bounded observation only"
+      ]
+    },
+    {
+      "run_id": "twin6-five-a",
+      "experiment_date": "2026-10-05",
+      "profile": "twin6_stride16_32slots",
+      "evidence_status": "prior_complete_saved_archive_audit_pass",
+      "frames": 244160,
+      "words": 250019840,
+      "host_receipt_span_ns": 300025637336,
+      "nominal_output_words_per_second": 833333.3333333334,
+      "channel": 1,
+      "image_sha256": "b4b1196c961533ac42b9604c945f3932097dfba80347857e431c03a5c6759f20",
+      "module_sha256": "d4374b5607ee43483911702da18516f3b60ecd4385df2edbe7ceee39729412a0",
+      "source_audit_sha256": "627b49cb017f26a5f24f50985f7f4a6b69602124a2f762102cce5b7e51ab3fc5",
+      "published_output_integrity": "all requested sequences/publisher checksums passed prior audit",
+      "stop": {
+        "firmware_blocks": 244161,
+        "unread_suffix_blocks": 1,
+        "tail_comparison": "128 newest-owned-tail words against stopped filtered aperture"
+      },
+      "queue": {
+        "capacity_frames": 8192,
+        "maximum_backlog_frames": 433
+      },
+      "native_publication_slots": 32,
+      "payload_copies_per_frame": 1,
+      "introduced_in_public_version": null,
+      "limitations": [
+        "nominal sample clock",
+        "no absolute physical-input continuity proof",
+        "no calibrated alias-free RF bandwidth",
+        "complete original recordings remain private",
+        "five-minute bounded observation only"
+      ]
+    },
+    {
+      "run_id": "twin6-live-rf-a",
+      "experiment_date": "2026-10-05",
+      "profile": "twin6_stride16_32slots_source_marked",
+      "evidence_status": "prior_complete_saved_archive_audit_pass",
+      "frames": 244160,
+      "words": 250019840,
+      "host_receipt_span_ns": 300025167594,
+      "nominal_output_words_per_second": 833333.3333333334,
+      "channel": 1,
+      "image_sha256": "b4b1196c961533ac42b9604c945f3932097dfba80347857e431c03a5c6759f20",
+      "module_sha256": "d4374b5607ee43483911702da18516f3b60ecd4385df2edbe7ceee39729412a0",
+      "source_audit_sha256": "9f7e57b96733d574922deece8f02acabd2b55e750f69aa99cf8f4affc1223c20",
+      "published_output_integrity": "all requested sequences/publisher checksums passed prior audit",
+      "stop": {
+        "firmware_blocks": 244161,
+        "unread_suffix_blocks": 1,
+        "tail_comparison": "128 newest-owned-tail words against stopped filtered aperture"
+      },
+      "queue": {
+        "capacity_frames": 8192,
+        "maximum_backlog_frames": 453
+      },
+      "native_publication_slots": 32,
+      "payload_copies_per_frame": 1,
+      "introduced_in_public_version": null,
+      "limitations": [
+        "nominal sample clock",
+        "no absolute physical-input continuity proof",
+        "no calibrated alias-free RF bandwidth",
+        "complete original recordings remain private",
+        "source-marked trial does not pass the primary RF correlation test"
+      ]
+    },
+    {
+      "run_id": "twin6-step0-demo-a",
+      "experiment_date": "2026-10-05",
+      "profile": "twin6_stride16_32slots_STEP0",
+      "evidence_status": "prior_complete_saved_archive_audit_pass",
+      "frames": 244160,
+      "words": 250019840,
+      "host_receipt_span_ns": 300025188989,
+      "nominal_output_words_per_second": 833333.3333333334,
+      "channel": 1,
+      "image_sha256": "b4b1196c961533ac42b9604c945f3932097dfba80347857e431c03a5c6759f20",
+      "module_sha256": "d4374b5607ee43483911702da18516f3b60ecd4385df2edbe7ceee39729412a0",
+      "source_audit_sha256": "0b4778ea6b828a454b91a41501b5fc8a1c68fe217b80380101c93546862e8a68",
+      "native_publication_slots": 32,
+      "payload_copies_per_frame": 1,
+      "limitations": [
+        "Two bounded RF bursts only",
+        "No calibrated clock or alias-free receiver bandwidth",
+        "Original waveform remains private"
+      ]
+    },
+    {
+      "run_id": "twin6-ten-a",
+      "experiment_date": "2026-10-06",
+      "profile": "twin6_stride16_32slots_passive",
+      "evidence_status": "prior_complete_saved_archive_audit_pass",
+      "frames": 488320,
+      "words": 500039680,
+      "host_receipt_span_ns": 600051726406,
+      "nominal_output_words_per_second": 833333.3333333334,
+      "channel": 1,
+      "image_sha256": "b4b1196c961533ac42b9604c945f3932097dfba80347857e431c03a5c6759f20",
+      "module_sha256": "d4374b5607ee43483911702da18516f3b60ecd4385df2edbe7ceee39729412a0",
+      "source_audit_sha256": "e5b999b0fd2816cd5b64eb56e8b5bc059c1f9280f7e1f99a7c45bb6c208cb70b",
+      "native_publication_slots": 32,
+      "payload_copies_per_frame": 1,
+      "introduced_in_public_version": null,
+      "limitations": [
+        "One bounded workload; no unlimited reliability",
+        "No current reduced-rate protocol decode",
+        "Uncalibrated clock/RF; hidden physical-ring laps not independently excluded",
+        "Original recordings/controller private"
+      ]
+    },
+    {
+      "run_id": "twin6-tsf-hour-a",
+      "experiment_date": "2026-10-06",
+      "profile": "twin6_stride16_32slots_passive",
+      "evidence_status": "prior_complete_saved_archive_audit_pass",
+      "frames": 2929920,
+      "words": 3000238080,
+      "host_receipt_span_ns": 3600316538804,
+      "nominal_output_words_per_second": 833333.3333333334,
+      "channel": 1,
+      "image_sha256": "58a9740679366ddb1007bf79abe983aca4d4ad9458c841af33091052e163b62e",
+      "module_sha256": "44c21fc659f3182655757a2b6dfd3c969fd713dda03b910863e1925de69d01be",
+      "source_audit_sha256": "39ad0cf7b50f738003f88a2eb9ef39442cb9315846adf8e2d72cb697f7c1e557",
+      "native_publication_slots": 32,
+      "payload_copies_per_frame": 1,
+      "introduced_in_public_version": null,
+      "limitations": [
+        "One bounded workload; no unlimited reliability",
+        "No current reduced-rate protocol decode",
+        "Uncalibrated clock/RF; hidden physical-ring laps not independently excluded",
+        "Original recordings/controller private"
+      ]
+    }
+  ],
+  "scope": "allowlisted aggregate derivatives of prior complete audits; not full raw evidence"
+}

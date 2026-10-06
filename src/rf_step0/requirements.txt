@@ -1,0 +1,3 @@
+# Tested portable extracted method dependency; not a claim about the original fit environment.
+# The fitted-value decisions.py tool uses only the Python standard library.
+numpy==2.3.5

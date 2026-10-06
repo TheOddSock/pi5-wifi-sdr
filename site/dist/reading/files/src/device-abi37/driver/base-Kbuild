@@ -1,0 +1,2 @@
+subdir-ccflags-$(CONFIG_BRCMDBG) += -DDEBUG
+obj-m += brcmfmac/

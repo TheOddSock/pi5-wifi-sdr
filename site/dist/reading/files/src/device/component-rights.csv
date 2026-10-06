@@ -1,0 +1,32 @@
+component,origin,observed_license,rights_status,distribution
+native/source/average.S,byte-identical tested project native append,no explicit header,GPL-2.0-or-later via outer grant,source under selected scope
+native/source/core/hooks.S,byte-identical tested project native append,no explicit header,GPL-2.0-or-later via outer grant,source under selected scope
+native/source/core/lease.inc,byte-identical tested project native append,no explicit header,GPL-2.0-or-later via outer grant,source under selected scope
+native/source/core/modular.h,byte-identical tested project native append,no explicit header,GPL-2.0-or-later via outer grant,source under selected scope
+native/source/core/progress.h,byte-identical tested project native append,no explicit header,GPL-2.0-or-later via outer grant,source under selected scope
+native/source/core/reader_common.h,byte-identical tested project native append,no explicit header,GPL-2.0-or-later via outer grant,source under selected scope
+native/source/core/ring_config.h,byte-identical tested project native append,no explicit header,GPL-2.0-or-later via outer grant,source under selected scope
+native/source/core/sampler.inc,byte-identical tested project native append,no explicit header,GPL-2.0-or-later via outer grant,source under selected scope
+native/source/core/speed.S,byte-identical tested project native append,no explicit header,GPL-2.0-or-later via outer grant,source under selected scope
+native/source/core/target.c,byte-identical tested project native append,no explicit header,GPL-2.0-or-later via outer grant,source under selected scope
+native/source/core/watchdog.inc,byte-identical tested project native append,no explicit header,GPL-2.0-or-later via outer grant,source under selected scope
+native/source/patch.ld,byte-identical tested project native append,no explicit header,GPL-2.0-or-later via outer grant,source under selected scope
+native/source/phase.c,byte-identical tested project native append,no explicit header,GPL-2.0-or-later via outer grant,source under selected scope
+native/source/phase.h,byte-identical tested project native append,no explicit header,GPL-2.0-or-later via outer grant,source under selected scope
+native/source/phase_hooks.S,byte-identical tested project native append,no explicit header,GPL-2.0-or-later via outer grant,source under selected scope
+driver/additions/brcmfmac/diagnostic_driver.inc,byte-identical tested project driver fragment or generated contract,no explicit header,GPL-2.0-or-later via outer grant,source under selected scope
+driver/additions/brcmfmac/diagnostic_types.h,byte-identical tested project driver fragment or generated contract,no explicit header,GPL-2.0-or-later via outer grant,source under selected scope
+driver/additions/brcmfmac/geometry_driver.inc,byte-identical tested project driver fragment or generated contract,no explicit header,GPL-2.0-or-later via outer grant,source under selected scope
+driver/additions/brcmfmac/geometry_types.h,byte-identical tested project driver fragment or generated contract,no explicit header,GPL-2.0-or-later via outer grant,source under selected scope
+driver/additions/brcmfmac/lease_driver.inc,byte-identical tested project driver fragment or generated contract,no explicit header,GPL-2.0-or-later via outer grant,source under selected scope
+driver/additions/brcmfmac/lease_wait.inc,byte-identical tested project driver fragment or generated contract,no explicit header,GPL-2.0-or-later via outer grant,source under selected scope
+driver/additions/brcmfmac/pi5_owned_contract.h,byte-identical tested project driver fragment or generated contract,no explicit header,GPL-2.0-or-later via outer grant,source under selected scope
+driver/additions/brcmfmac/pi5_owned_ram.h,byte-identical tested project driver fragment or generated contract,no explicit header,GPL-2.0-or-later via outer grant,source under selected scope
+driver/additions/brcmfmac/private_collect.inc,byte-identical tested project driver fragment or generated contract,no explicit header,GPL-2.0-or-later via outer grant,source under selected scope
+driver/additions/brcmfmac/proto_gate.inc,byte-identical tested project driver fragment or generated contract,no explicit header,GPL-2.0-or-later via outer grant,source under selected scope
+driver/additions/brcmfmac/stop_driver.inc,byte-identical tested project driver fragment or generated contract,no explicit header,GPL-2.0-or-later via outer grant,source under selected scope
+driver/additions/brcmfmac/wait_match.inc,byte-identical tested project driver fragment or generated contract,no explicit header,GPL-2.0-or-later via outer grant,source under selected scope
+driver/twin6-linux.patch,six modified pinned Linux ISC files plus project Kbuild wrapper,upstream ISC context; original contributions GPL-2.0-or-later,retain upstream ISC and whole-kernel GPLv2 terms,source under exact outer scope
+native/build.py and driver/prepare.py,new source-only portable adaptation of preserved project build logic,GPL-2.0-or-later via outer grant,GPL-2.0-or-later via outer grant,source under selected scope
+LICENSES/*.txt,exact pinned Raspberry Pi Linux licence texts,ISC/COPYING/GPL2 notices,upstream notices retained; does not clear other components,licence text only
+driver/compare_module.py and verify.py,new private offline identity checks,GPL-2.0-or-later via outer grant,GPL-2.0-or-later via outer grant,source under selected scope

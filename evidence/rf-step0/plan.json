@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "paper_version": "0.3.0-rc5",
+  "run_id": "twin6-step0-demo-a",
+  "selection": "Pre-acquisition plan, sanitized by explicit key selection; original preserved.",
+  "record_format": {
+    "bytes": 4176,
+    "header_u32": 8,
+    "time_u64_offset": 32,
+    "publisher_u32_offset": 48,
+    "payload_offset": 80,
+    "complex_words": 1024,
+    "orientation": "signed low16 + j signed high16"
+  },
+  "native": {
+    "ABI_version": 36,
+    "slots": 32,
+    "image_sha256": "b4b1196c961533ac42b9604c945f3932097dfba80347857e431c03a5c6759f20",
+    "module_sha256": "d4374b5607ee43483911702da18516f3b60ecd4385df2edbe7ceee39729412a0"
+  },
+  "quota": {
+    "frames": 244160,
+    "words": 250019840,
+    "bursts": 2,
+    "source_code": 0,
+    "source_maximum_burst_ms": 2000
+  },
+  "marker_clock_and_intervals": {
+    "clock": "Pi time.monotonic_ns / native ktime_get_ns",
+    "kinds": [
+      "pre-start",
+      "after-start",
+      "pre-stop",
+      "post-stop"
+    ],
+    "maximum_pre_start_to_pre_stop_ns": 1850000000,
+    "minimum_after_start_to_pre_stop_ns": 1100000000
+  },
+  "windows": {
+    "seconds": 0.4,
+    "ON": [
+      "after-start+.15 .. after-start+.55",
+      "pre-stop-.55 .. pre-stop-.15"
+    ],
+    "OFF": [
+      "pre-start-1.8 .. pre-start-1.4",
+      "pre-start-1.4 .. pre-start-1.0",
+      "post-stop+1.0 .. post-stop+1.4",
+      "post-stop+1.4 .. post-stop+1.8"
+    ],
+    "edge_exclusion_seconds": 0.15,
+    "OFF_edge_guard_seconds": 1,
+    "minimum_complete_chunks_per_window": 16,
+    "nonoverlap_chunk_words": 16384,
+    "minimum_passing_chunks_per_ON_window": 12,
+    "maximum_selected_interframe_copy_gap_ns": 50000000
+  },
+  "spectral": {
+    "primary_mu_gate": [
+      -0.13,
+      -0.02
+    ],
+    "expected_primary_mu": -0.0785,
+    "placement_qualification": "Broad STEP0 output gate covers measured S3-only and historical matched Pi-intercept predictions; fresh Pi spectra decide. No calibrated sample/RF conversion.",
+    "main_mu_gate": [
+      -0.04,
+      0.005
+    ],
+    "expected_main_mu": -0.0165,
+    "positive_mu_gate": [
+      -0.29,
+      -0.24
+    ],
+    "expected_positive_mu": -0.2664,
+    "minimum_primary_amplitude_counts": 3,
+    "minimum_ON_to_OFF_amplitude_ratio": 10,
+    "descriptive_floor_multiplier": 3,
+    "maximum_passing_frequency_IQR_cycles": 0.0005,
+    "maximum_window_center_difference_cycles": 0.001,
+    "FFT_size": 65536,
+    "maximum_joint_lines": 12,
+    "corroborating_products_required_for_primary_pass": false
+  },
+  "scope": "Source-correlated filtered output present during two bounded bursts and below detection criterion in matched adjacent OFF windows. No raw-reference attenuation or calibrated RF/clock/generalLPF inference.",
+  "statistical_qualification": "Thresholds and empirical floors are descriptive. Chunks within one burst are dependent; confidence coverage/stationarity/noise independence are not established.",
+  "frame_time_qualification": "Copy timestamps fence host retrieval, not calibrated RF sampling.150ms edge exclusion exceeds nominal32-slot retention; actual selected gaps and native no-overwrite audit remain required."
+}
