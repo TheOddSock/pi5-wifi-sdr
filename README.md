@@ -2,12 +2,12 @@
 
 Technical report: Sustained Selected Complex Receive Streaming from the BCM43455 on Raspberry Pi 5.
 
-Author: Adam Davies. Prepared 2026-10-06. [Source and evidence](https://github.com/TheOddSock/pi5-wifi-sdr).
+Author: Adam Davies. Published 2026-10-06. [Source and evidence](https://github.com/TheOddSock/pi5-wifi-sdr).
 
 
 Inspired by [ESP-SDR](https://espargos.net/espsdr/), this project turns an existing diagnostic capture mechanism in the Pi 5's BCM43455c0 Wi-Fi chip into sustained, checked delivery of selected radio samples to Linux.
 
-Start with the [illustrated overview](site/dist/index.html), or read the [technical report](pi5-receive-stream.pdf) and [implementation appendix](paper/implementation-appendix.md). Version 0.3.0 includes evidence selected through 6 October 2026.
+Start with the [illustrated overview](https://theoddsock.github.io/pi5-wifi-sdr/), or read the [technical report](pi5-receive-stream.pdf) and [implementation appendix](paper/implementation-appendix.md). Version 0.3.0 includes evidence selected through 6 October 2026.
 
 ## What this project achieves
 
@@ -45,6 +45,8 @@ python tools/verify_release.py
 ```
 
 Synthetic fixtures check parser behaviour. Aggregate calculations do not repeat the private historical recording audits. Report rendering additionally requires ReportLab; optional module inspection uses pyelftools. See the [reproduction guide](docs/reproducing.md).
+
+The archived report is available on [Zenodo, DOI 10.5281/zenodo.23192805](https://doi.org/10.5281/zenodo.23192805). The [versioned release](https://github.com/TheOddSock/pi5-wifi-sdr/releases/tag/v0.3.0) preserves the exact published files.
 
 ## Attribution and versions
 
