@@ -25,8 +25,8 @@
     },
     {
       "path": "index.html",
-      "bytes": 14136,
-      "sha256": "46ad96d4ffe10582f8c3d6993d75be79af8f8b363c9594523333e21cc445b5a1"
+      "bytes": 14127,
+      "sha256": "f2456d5244fba4a347b54d57addbfd73110a2cd705dcf4ce5a091b9b45c7f99c"
     },
     {
       "path": "reading.css",
@@ -935,8 +935,8 @@
     },
     {
       "path": "styles.css",
-      "bytes": 7538,
-      "sha256": "2af487d5d260aa666c6eaee8dc689f58dcc20333c3a6385b0982bd937024ef87"
+      "bytes": 7540,
+      "sha256": "866126e00c953eeb80728ea756c05ed09518934808636f0cbdf22b6be13ce230"
     }
   ]
 }
