@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0",
+  "run_id": "sparse-rf-a",
+  "experiment_date": "2026-10-05",
+  "channel": 1,
+  "kind": "finite_same_epoch_software_filter_transfer",
+  "audit_status": "independent_saved_SPC1_four_alias_source_wire_raw3072_reference_causality_restore_archive_health_review_pass",
+  "source_audit_sha256": "f71c33666a6e1896439a323bcc581eea8e1b24e44aaf8fc5dae1e01c9494f210",
+  "source_response_sha256": "961e546a1b2582cb29c4d6d93b82ce21b33130ced8b49559b0723c52ef87de27",
+  "raw_words": 64000,
+  "reference_words": 3072,
+  "epochs": [
+    {
+      "epoch": 2,
+      "input_frequency_cycles_per_word": -0.0670921145763442,
+      "folded_frequency_cycles_per_output": -0.07347383322150725,
+      "wanted_alias_gate_pass": false,
+      "six_attenuation_dB": 1.7103846217276186,
+      "sparse_attenuation_dB": 18.449158025998727,
+      "additional_sparse_attenuation_dB": 16.738773404271107,
+      "matched_output_words": 256
+    },
+    {
+      "epoch": 3,
+      "input_frequency_cycles_per_word": -0.06709249241232093,
+      "folded_frequency_cycles_per_output": -0.0734798785971349,
+      "wanted_alias_gate_pass": false,
+      "six_attenuation_dB": 1.8779503677534128,
+      "sparse_attenuation_dB": 17.69479446841836,
+      "additional_sparse_attenuation_dB": 15.816844100664945,
+      "matched_output_words": 256
+    }
+  ],
+  "first_alias_gate": "abs(nu-k/16)<=0.003 for k=+1 or -1",
+  "physical_clock_or_RF_calibrated": false,
+  "source_is_clean_CW": false,
+  "scope": "Nearby-line attenuation outside wanted +/-40 kHz nominal; not wanted-band rejection or general receiver response",
+  "introduced_in_public_version": null,
+  "public_release_time_utc": null
+}

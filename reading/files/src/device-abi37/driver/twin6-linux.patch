@@ -1,0 +1,343 @@
+--- a/brcmfmac/bcmsdh.c
++++ b/brcmfmac/bcmsdh.c
+@@ -280,6 +280,9 @@
+ 	if (ret)
+ 		*ret = retval;
+ }
++
++int brcmf_sdiod_pi5_owned_restore_window(struct brcmf_sdio_dev *sd,u32 window)
++{ sd->sbwad=~window; return brcmf_sdiod_set_backplane_window(sd,window); }
+ 
+ static int brcmf_sdiod_skbuff_read(struct brcmf_sdio_dev *sdiodev,
+ 				   struct sdio_func *func, u32 addr,
+--- a/brcmfmac/core.c
++++ b/brcmfmac/core.c
+@@ -1449,11 +1449,19 @@
+ #endif
+ 
+ 	brcmf_bus_change_state(bus_if, BRCMF_BUS_DOWN);
+-	/* make sure primary interface removed last */
+-	for (i = BRCMF_MAX_IFS - 1; i > -1; i--) {
++	/* Serialize secondary interface lookup and removal with nl80211. */
++	rtnl_lock();
++	wiphy_lock(drvr->wiphy);
++	for (i = BRCMF_MAX_IFS - 1; i > 0; i--) {
+ 		if (drvr->iflist[i])
+-			brcmf_remove_interface(drvr->iflist[i], false);
+-	}
++			brcmf_remove_interface(drvr->iflist[i], true);
++	}
++	wiphy_unlock(drvr->wiphy);
++	rtnl_unlock();
++
++	/* The primary stop path takes RTNL itself; keep it last. */
++	if (drvr->iflist[0])
++		brcmf_remove_interface(drvr->iflist[0], false);
+ 	brcmf_bus_stop(drvr->bus_if);
+ 
+ 	brcmf_fweh_detach(drvr);
+--- a/brcmfmac/fwil.c
++++ b/brcmfmac/fwil.c
+@@ -8,6 +8,7 @@
+  */
+ 
+ #include <linux/kernel.h>
++#include <linux/sched.h>
+ #include <linux/netdevice.h>
+ #include <brcmu_utils.h>
+ #include <brcmu_wifi.h>
+@@ -19,6 +20,10 @@
+ #include "fwil.h"
+ #include "proto.h"
+ 
++
++#ifdef DEBUG
++#include "proto_gate.inc"
++#endif
+ 
+ #define MAX_HEX_DUMP_LEN	64
+ 
+@@ -131,6 +136,9 @@
+ {
+ 	s32 err;
+ 
++#ifdef DEBUG
++	int admission=pi5_proto_admit(ifp->drvr);if(admission<0)return admission;
++#endif
+ 	mutex_lock(&ifp->drvr->proto_block);
+ 
+ 	brcmf_dbg(FIL, "ifidx=%d, cmd=%d, len=%d\n", ifp->ifidx, cmd, len);
+@@ -139,6 +147,9 @@
+ 
+ 	err = brcmf_fil_cmd_data(ifp, cmd, data, len, true);
+ 	mutex_unlock(&ifp->drvr->proto_block);
++#ifdef DEBUG
++	if(admission)atomic_dec(&pi5_proto_gate);
++#endif
+ 
+ 	return err;
+ }
+@@ -149,6 +160,9 @@
+ {
+ 	s32 err;
+ 
++#ifdef DEBUG
++	int admission=pi5_proto_admit(ifp->drvr);if(admission<0)return admission;
++#endif
+ 	mutex_lock(&ifp->drvr->proto_block);
+ 	err = brcmf_fil_cmd_data(ifp, cmd, data, len, false);
+ 
+@@ -158,6 +172,9 @@
+ 			   min_t(uint, len, MAX_HEX_DUMP_LEN), "data\n");
+ 
+ 	mutex_unlock(&ifp->drvr->proto_block);
++#ifdef DEBUG
++	if(admission)atomic_dec(&pi5_proto_gate);
++#endif
+ 
+ 	return err;
+ }
+@@ -192,6 +209,9 @@
+ 	s32 err;
+ 	u32 buflen;
+ 
++#ifdef DEBUG
++	int admission=pi5_proto_admit(drvr);if(admission<0)return admission;
++#endif
+ 	mutex_lock(&drvr->proto_block);
+ 
+ 	brcmf_dbg(FIL, "ifidx=%d, name=%s, len=%d\n", ifp->ifidx, name, len);
+@@ -209,6 +229,9 @@
+ 	}
+ 
+ 	mutex_unlock(&drvr->proto_block);
++#ifdef DEBUG
++	if(admission)atomic_dec(&pi5_proto_gate);
++#endif
+ 	return err;
+ }
+ BRCMF_EXPORT_SYMBOL_GPL(brcmf_fil_iovar_data_set);
+@@ -221,6 +244,9 @@
+ 	s32 err;
+ 	u32 buflen;
+ 
++#ifdef DEBUG
++	int admission=pi5_proto_admit(drvr);if(admission<0)return admission;
++#endif
+ 	mutex_lock(&drvr->proto_block);
+ 
+ 	buflen = brcmf_create_iovar(name, data, len, drvr->proto_buf,
+@@ -241,6 +267,9 @@
+ 			   min_t(uint, len, MAX_HEX_DUMP_LEN), "data\n");
+ 
+ 	mutex_unlock(&drvr->proto_block);
++#ifdef DEBUG
++	if(admission)atomic_dec(&pi5_proto_gate);
++#endif
+ 	return err;
+ }
+ BRCMF_EXPORT_SYMBOL_GPL(brcmf_fil_iovar_data_get);
+@@ -298,6 +327,9 @@
+ 	s32 err;
+ 	u32 buflen;
+ 
++#ifdef DEBUG
++	int admission=pi5_proto_admit(drvr);if(admission<0)return admission;
++#endif
+ 	mutex_lock(&drvr->proto_block);
+ 
+ 	brcmf_dbg(FIL, "ifidx=%d, bsscfgidx=%d, name=%s, len=%d\n", ifp->ifidx,
+@@ -316,6 +348,9 @@
+ 	}
+ 
+ 	mutex_unlock(&drvr->proto_block);
++#ifdef DEBUG
++	if(admission)atomic_dec(&pi5_proto_gate);
++#endif
+ 	return err;
+ }
+ BRCMF_EXPORT_SYMBOL_GPL(brcmf_fil_bsscfg_data_set);
+@@ -328,6 +363,9 @@
+ 	s32 err;
+ 	u32 buflen;
+ 
++#ifdef DEBUG
++	int admission=pi5_proto_admit(drvr);if(admission<0)return admission;
++#endif
+ 	mutex_lock(&drvr->proto_block);
+ 
+ 	buflen = brcmf_create_bsscfg(ifp->bsscfgidx, name, data, len,
+@@ -347,6 +385,9 @@
+ 			   min_t(uint, len, MAX_HEX_DUMP_LEN), "data\n");
+ 
+ 	mutex_unlock(&drvr->proto_block);
++#ifdef DEBUG
++	if(admission)atomic_dec(&pi5_proto_gate);
++#endif
+ 	return err;
+ }
+ BRCMF_EXPORT_SYMBOL_GPL(brcmf_fil_bsscfg_data_get);
+@@ -379,6 +420,9 @@
+ 	s32 err;
+ 	u32 buflen;
+ 
++#ifdef DEBUG
++	int admission=pi5_proto_admit(drvr);if(admission<0)return admission;
++#endif
+ 	mutex_lock(&drvr->proto_block);
+ 
+ 	brcmf_dbg(FIL, "ifidx=%d, name=%s, id=%u, len=%u\n", ifp->ifidx, name,
+@@ -397,6 +441,9 @@
+ 	}
+ 
+ 	mutex_unlock(&drvr->proto_block);
++#ifdef DEBUG
++	if(admission)atomic_dec(&pi5_proto_gate);
++#endif
+ 	return err;
+ }
+ BRCMF_EXPORT_SYMBOL_GPL(brcmf_fil_xtlv_data_set);
+@@ -408,6 +455,9 @@
+ 	s32 err;
+ 	u32 buflen;
+ 
++#ifdef DEBUG
++	int admission=pi5_proto_admit(drvr);if(admission<0)return admission;
++#endif
+ 	mutex_lock(&drvr->proto_block);
+ 
+ 	buflen = brcmf_create_xtlv(name, id, data, len,
+@@ -427,6 +477,9 @@
+ 			   min_t(uint, len, MAX_HEX_DUMP_LEN), "data\n");
+ 
+ 	mutex_unlock(&drvr->proto_block);
++#ifdef DEBUG
++	if(admission)atomic_dec(&pi5_proto_gate);
++#endif
+ 	return err;
+ }
+ BRCMF_EXPORT_SYMBOL_GPL(brcmf_fil_xtlv_data_get);
+--- a/brcmfmac/fwil.h
++++ b/brcmfmac/fwil.h
+@@ -222,3 +222,9 @@
+ }
+ 
+ #endif /* _fwil_h_ */
++
++#ifdef DEBUG
++int brcmf_pi5_private_start(struct brcmf_pub *drvr);
++void brcmf_pi5_private_end(struct brcmf_pub *drvr);
++int brcmf_pi5_private_refusals(void);
++#endif
+--- a/brcmfmac/sdio.c
++++ b/brcmfmac/sdio.c
+@@ -446,6 +446,9 @@
+ 
+ /* misc chip info needed by some of the routines */
+ /* Private data for SDIO bus interaction */
++#include "diagnostic_types.h"
++#include "geometry_types.h"
++
+ struct brcmf_sdio {
+ 	struct brcmf_sdio_dev *sdiodev;	/* sdio device handler */
+ 	struct brcmf_chip *ci;	/* Chip info struct */
+@@ -536,6 +539,13 @@
+ 	bool txglom;		/* host tx glomming enable flag */
+ 	u16 head_align;		/* buffer pointer alignment */
+ 	u16 sgentry_align;	/* scatter-gather buffer alignment */
++#ifdef DEBUG
++	bool pi5_iq_verified,pi5_long_wait,pi5_lease_withheld;u32 pi5_lease_token,pi5_lease_renewals,pi5_withhold_used;int pi5_lease_error;u64 pi5_lease_ns;u32 pi5_wait_used,pi5_wait_ms,pi5_request_matches;
++	struct pi5_iq_failure pi5_iq_failure; /* Immutable first host-reader failure. */
++	struct pi5_iq_geometry pi5_iq_geometry; /* Prearm SRAM snapshot only. */
++	u32 pi5_stop_attempts,pi5_stop_already,pi5_stop_summary_used;int pi5_stop_error;u64 pi5_stop_ns;
++	u32 pi5_private_attempts;u32 pi5_owned_attempts; /* One finite concurrent owned-RAM reader per module load. */
++#endif
+ };
+ 
+ /* clkstate */
+@@ -1741,11 +1751,19 @@
+ 	return num;
+ }
+ 
++#ifdef DEBUG
++#include <linux/ktime.h>
++#include "lease_wait.inc"
++#endif
++
+ static int brcmf_sdio_dcmd_resp_wait(struct brcmf_sdio *bus, uint *condition,
+ 				     bool *pending)
+ {
+ 	DECLARE_WAITQUEUE(wait, current);
+ 	int timeout = DCMD_RESP_TIMEOUT;
++#ifdef DEBUG
++	if(READ_ONCE(bus->pi5_long_wait))return pi5_iq_lease_wait(bus,condition,pending);
++#endif
+ 
+ 	/* Wait until control frame is available */
+ 	add_wait_queue(&bus->dcmd_resp_wait, &wait);
+@@ -3126,6 +3144,10 @@
+ }
+ #endif				/* DEBUG */
+ 
++#ifdef DEBUG
++#include "wait_match.inc"
++#endif
++
+ static int
+ brcmf_sdio_bus_txctl(struct device *dev, unsigned char *msg, uint msglen)
+ {
+@@ -3138,6 +3160,10 @@
+ 	if (sdiodev->state != BRCMF_SDIOD_DATA)
+ 		return -EIO;
+ 
++#ifdef DEBUG
++	WRITE_ONCE(bus->pi5_long_wait,pi5_iq_wait_match(bus,msg,msglen));
++	if(READ_ONCE(bus->pi5_long_wait))bus->pi5_request_matches++;
++#endif
+ 	/* Send from dpc */
+ 	bus->ctrl_frame_buf = msg;
+ 	bus->ctrl_frame_len = msglen;
+@@ -3406,6 +3432,9 @@
+ 	return 0;
+ }
+ 
++#include "pi5_owned_ram.h"
++#include "private_collect.inc"
++
+ static void brcmf_sdio_debugfs_create(struct device *dev)
+ {
+ 	struct brcmf_bus *bus_if = dev_get_drvdata(dev);
+@@ -3418,6 +3447,12 @@
+ 		return;
+ 
+ 	bus->console_interval = BRCMF_CONSOLE;
++	debugfs_create_file("pi5_iq_long",0400,dentry,dev,&pi5_owned_fops);
++	debugfs_create_file("pi5_iq_long_summary",0400,dentry,dev,&pi5_stop_summary_fops);
++	debugfs_create_file("pi5_iq_reader_diagnostic",0400,dentry,dev,&pi5_iq_diagnostic_fops);
++	debugfs_create_file("pi5_iq_prearm_geometry",0400,dentry,dev,&pi5_iq_geometry_fops);
++	debugfs_create_file("pi5_iq_lease_withhold",0400,dentry,dev,&pi5_iq_withhold_fops);
++	debugfs_create_file("pi5_iq_private_collect",0400,dentry,dev,&pi5_private_collect_fops);
+ 
+ 	brcmf_debugfs_add_entry(drvr, "forensics", brcmf_sdio_forensic_read);
+ 	brcmf_debugfs_add_entry(drvr, "counters",
+@@ -3453,6 +3488,9 @@
+ 
+ 	/* Wait until control frame is available */
+ 	timeleft = brcmf_sdio_dcmd_resp_wait(bus, &bus->rxlen, &pending);
++#ifdef DEBUG
++	WRITE_ONCE(bus->pi5_long_wait,false);
++#endif
+ 
+ 	spin_lock_bh(&bus->rxctl_lock);
+ 	rxlen = bus->rxlen;
+--- a/brcmfmac/sdio.h
++++ b/brcmfmac/sdio.h
+@@ -334,6 +334,8 @@
+ #define brcmf_sdiod_writeb(sdiodev, addr, v, ret) \
+ 	sdio_writeb((sdiodev)->func1, (v), (addr), (ret))
+ 
++int brcmf_sdiod_pi5_owned_restore_window(struct brcmf_sdio_dev *sd,u32 window);
++
+ u32 brcmf_sdiod_readl(struct brcmf_sdio_dev *sdiodev, u32 addr, int *ret);
+ void brcmf_sdiod_writel(struct brcmf_sdio_dev *sdiodev, u32 addr, u32 data,
+ 			int *ret);

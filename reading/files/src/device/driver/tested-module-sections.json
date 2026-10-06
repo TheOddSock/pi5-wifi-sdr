@@ -1,0 +1,189 @@
+{
+  "module_sha256": "d4374b5607ee43483911702da18516f3b60ecd4385df2edbe7ceee39729412a0",
+  "allocated_and_relocation_sections": {
+    "__ksymtab_gpl": {
+      "bytes": 180,
+      "sha256": "10b2a66888c58a54b277fe2e68fb6e87150c3cd2c537b7f6a2d84559017438c7"
+    },
+    ".rela__ksymtab_gpl": {
+      "bytes": 1080,
+      "sha256": "37d94681a17861492c3a222a97798c7b0570ab1547c34b24f7f1ec916783a20a"
+    },
+    "__kcrctab_gpl": {
+      "bytes": 60,
+      "sha256": "9d768175a4f1fd9254cfd6202e291099a465e6cce809a2cad6d3f05229220968"
+    },
+    ".altinstructions": {
+      "bytes": 1248,
+      "sha256": "d700bcbd926548b3f3255ddf605830268fe3b20382f87648472f06877ecc9fd6"
+    },
+    ".rela.altinstructions": {
+      "bytes": 4992,
+      "sha256": "39a62f51977baa77c0ba666bbcb9b1193bcb545e8a3fc573ea00dde46b5f1d39"
+    },
+    "__bug_table": {
+      "bytes": 1284,
+      "sha256": "4246bbe4ffdea6306221515de7915a99e601501589e1d1fc753a1240be227f4a"
+    },
+    ".rela__bug_table": {
+      "bytes": 5136,
+      "sha256": "d8121acf52ba03218983b3cf6986a3b27446e0093e6c7dbe52d0eb850fbfb8d2"
+    },
+    "__jump_table": {
+      "bytes": 80,
+      "sha256": "5b6fb58e61fa475939767d68a446f97f1bff02c0e5935a3ea8bb51e6515783d8"
+    },
+    ".rela__jump_table": {
+      "bytes": 360,
+      "sha256": "99cc70f9fa8ecfc4952e9f11b5657e96f312a0a71c6cd52689c1472bf1b17db3"
+    },
+    "__patchable_function_entries": {
+      "bytes": 3744,
+      "sha256": "72ec3570721e1cd0ad873a1c8c7ed33ce0e5e849551dfb84aa781082657160e9"
+    },
+    ".rela__patchable_function_entries": {
+      "bytes": 11232,
+      "sha256": "d36c1a51ef55c029140dc44c5e58e874186c358b2552c2905ab57cf089cb8b82"
+    },
+    ".data": {
+      "bytes": 4800,
+      "sha256": "f6809b31af01fd12248b3de57e31dba7036cd75323b6a8dc4071eac46445afd3"
+    },
+    ".rela.data": {
+      "bytes": 1848,
+      "sha256": "140a9c626175e6e8cce149edc4786519bcb4103e8fbc4899eb136200cca21be6"
+    },
+    ".data..read_mostly": {
+      "bytes": 3,
+      "sha256": "709e80c88487a2411e1ee4dfb9f22a861492d20c4765150c0c794abd70f8147c"
+    },
+    ".exit.data": {
+      "bytes": 8,
+      "sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc"
+    },
+    ".rela.exit.data": {
+      "bytes": 24,
+      "sha256": "bfdb4d0adfc1beb45d9fca58ac0c41e237a4472fb5fb009221f68ffa9674451a"
+    },
+    ".init.data": {
+      "bytes": 8,
+      "sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc"
+    },
+    ".rela.init.data": {
+      "bytes": 24,
+      "sha256": "a8078ea2eb36d22779e14db6905bd20780e051b9a47cb4212292a42a510e0ac1"
+    },
+    ".data..once": {
+      "bytes": 1,
+      "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+    },
+    ".gnu.linkonce.this_module": {
+      "bytes": 1216,
+      "sha256": "5a0cabbc638c45997a13861939156345090b4db5bb680b194068453cd6433157"
+    },
+    ".rela.gnu.linkonce.this_module": {
+      "bytes": 48,
+      "sha256": "7f2c49ee712672b003f2375199cd59a49594ea9fe42e8913eeff05116d85cd53"
+    },
+    ".plt": {
+      "bytes": 1,
+      "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+    },
+    ".init.plt": {
+      "bytes": 1,
+      "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+    },
+    ".text.ftrace_trampoline": {
+      "bytes": 1,
+      "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+    },
+    ".rodata": {
+      "bytes": 26216,
+      "sha256": "c1cab9a8c9b742e6c211ee9ae37bf3a40f157d3aba1e233df94ada11a4061352"
+    },
+    ".rela.rodata": {
+      "bytes": 7632,
+      "sha256": "6664c4f64b4a02e4f4c699819a5e725d99dd854684a8df61225505471c0dab86"
+    },
+    ".rodata.str": {
+      "bytes": 4737,
+      "sha256": "83cefa12201bf2d3f199a145dca5d7150d40398085bdbfbf8035246263bbadec"
+    },
+    ".rodata.str1.8": {
+      "bytes": 43361,
+      "sha256": "d60b20895af1e77b01e76e883cde0f70f8e0d45b97c11461a725413dbcc7f53e"
+    },
+    "__param": {
+      "bytes": 360,
+      "sha256": "94098730d198cb0e5731f3985f373f5a206d6cc23e32b64c057fe76dadc95e12"
+    },
+    ".rela__param": {
+      "bytes": 864,
+      "sha256": "27fad3ba20bf8126682a88f7f1ae98af895e3e655536e68c4658e34f2b6e6005"
+    },
+    ".rodata.str2.8": {
+      "bytes": 12,
+      "sha256": "89ef06302e74a9f26f8584c89989e1411d934ed3dedabb0adaaa2bfb5b5e13b3"
+    },
+    ".init.text.ftrace_trampoline": {
+      "bytes": 1,
+      "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+    },
+    ".note.gnu.property": {
+      "bytes": 32,
+      "sha256": "076f3eb977987fdc6645868544363325577398311296348480cb32b3def26739"
+    },
+    ".note.Linux": {
+      "bytes": 68,
+      "sha256": "9cd63003d3b7c5046f7a2ddab8c76d6d7bfcb0b8d59d1f9a1562b70eaba004d6"
+    },
+    "__ksymtab_strings": {
+      "bytes": 481,
+      "sha256": "b0eb650af6f28fd887b84ab2b6025fed63da450a2c6fc99bb8c0f81156751877"
+    },
+    "__versions": {
+      "bytes": 17088,
+      "sha256": "58b09a8f698b7ff5ee04c6174e41533a156b1b84b3cdafbc92bf0ff656412fd4"
+    },
+    ".text": {
+      "bytes": 218464,
+      "sha256": "17ca0d798e47488ea7be87be725fbabdb1ace82e23da4deb5b1b9e5bf250a8f7"
+    },
+    ".rela.text": {
+      "bytes": 211416,
+      "sha256": "ca4e0da6ea9b975af9e95ed184a99fcf435e2a164a8522a05ade12bb0945deed"
+    },
+    ".init.text": {
+      "bytes": 408,
+      "sha256": "5f0888b8aca32277e51911abf9f12ef8a0d90f0479d7b52548f0b83c4d8f08ee"
+    },
+    ".rela.init.text": {
+      "bytes": 672,
+      "sha256": "2dcc0999f144f23988f20fb6f9ba8c89bcc0689c96ae06fc0be8164b2d1cceba"
+    },
+    ".exit.text": {
+      "bytes": 88,
+      "sha256": "d69cb2de111f00ced95275fe8829e8a86af28cd60e5e97284d63745c7b306986"
+    },
+    ".rela.exit.text": {
+      "bytes": 192,
+      "sha256": "e456145ce88f1acddb0141e6d75441685ad7caf451541016b8006993cb1708f2"
+    },
+    ".text.unlikely": {
+      "bytes": 316,
+      "sha256": "e254f7dce3805f452b1e9175f1eda113bb1b642fa874d6f9eab988fbda0fabeb"
+    },
+    ".rela.text.unlikely": {
+      "bytes": 384,
+      "sha256": "b6caa20a507a186a2850a22597ca083ec9fbbacd51118978b8460908addfbff0"
+    },
+    ".bss": {
+      "bytes": 768,
+      "sha256": "ef115a0e0c15cdc41958ca46b5b14b456115f4baec5e3ca68599d2a8f435e3b8"
+    }
+  },
+  "native_contract_fingerprint_hex": "10b53b4623f064fa10bd2de90f50eff3008c82b0cdf800c02046294600f0bcfb",
+  "vermagic": "6.18.39+rpt-rpi-2712 SMP preempt mod_unload modversions aarch64",
+  "srcversion": "9454D5850E6A2119D00CB39",
+  "license": "Dual BSD/GPL"
+}

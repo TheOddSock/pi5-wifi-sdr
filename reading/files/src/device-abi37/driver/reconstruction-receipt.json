@@ -1,0 +1,9 @@
+{
+  "status": "exact_ABI37_96_source_files_reconstructed_locally",
+  "source_files": 96,
+  "portable_prepare_recipe_executed": true,
+  "kernel_commit": "60ea684a8ace97bb0db1a16e20753bdd6ab371ff",
+  "two_negative_source_and_output_refusals": true,
+  "module_compiled_by_this_recipe": false,
+  "hardware_access": false
+}

@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="An illustrated introduction to streaming selected radio samples from the Raspberry Pi 5's onboard Wi-Fi chip: the mechanism, one-hour selected stream, separate source demonstration and research limits.">
+  <title>Radio samples from a Raspberry Pi</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230b1020'/%3E%3Cpath d='M4 17h5l3-9 5 17 3-8h8' fill='none' stroke='%235edee4' stroke-width='2.5'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to the article</a>
+<header class="site-header wrap">
+  <nav aria-label="Article sections"><a href="#context">What we achieved</a><a href="#mechanism">How it works</a><a href="#longrun">The hour-long result</a><a href="#demonstration">Signal evidence</a><a href="#reading">Read more</a></nav>
+</header>
+<main id="main">
+  <section class="hero wrap" aria-labelledby="title">
+    <div class="hero-copy">
+      <p class="eyebrow">Raspberry Pi 5 · Experimental receive research</p>
+      <h1 id="title">A closer look at the radio <span>inside your Pi.</span></h1>
+      <p class="standfirst">Streaming selected radio samples from the onboard Wi-Fi chip.</p>
+      <p>Wi-Fi normally delivers decoded packets. Radio samples let us study the signal itself. With custom firmware and a Linux driver, we exported selected complex receive samples from the Pi 5’s BCM43455 chip while its collector stayed active.</p>
+      <p>One checked recording lasted an hour and delivered three billion selected complex samples. A separate five-minute test detected two short transmissions from a known source.</p>
+      <a class="text-link" href="#longrun">See the measured result</a>
+    </div>
+    <figure class="hero-figure">
+      <div class="figure-label"><span>01 / The sample path</span></div>
+      <img src="assets/signal-path.svg" alt="Receive samples pass through chip sample memory, custom firmware and reusable buffers to a Linux reader and recording." width="400" height="640">
+      <figcaption>Selected receive samples travel from the chip’s sample memory to a checked Linux recording.</figcaption>
+    </figure>
+  </section>
+  <div class="summary-strip wrap" aria-label="Selected hour-long delivery results">
+    <div><strong>1 hour</strong><span>Host-observed receipt span</span></div>
+    <div><strong>3 billion</strong><span>Selected complex samples delivered</span></div>
+    <div><strong>Every frame</strong><span>Sequence and checksum checked</span></div>
+  </div>
+  <section id="context" class="article-section wrap" aria-labelledby="context-title">
+    <div class="section-heading">
+      <h2 id="context-title">How this relates to ESP-SDR.</h2>
+      <p class="section-deck">This project was inspired by <a href="https://espargos.net/espsdr/">ESP-SDR</a> and its work exposing received waveforms on Espressif chips, including continuous streaming. We explored the same broad idea using the Raspberry Pi 5’s Broadcom Wi-Fi chip.</p>
+    </div>
+    <p>The chip already had a diagnostic sample-capture mechanism. We adapted it into sustained, checked export to Linux using small, reusable buffers. We have not established a first-ever discovery of radio-sample access.</p>
+    <p>We have demonstrated experimental sample streaming with an audited one-hour recording. Making it a practical general-purpose receiver is the next stage: filtering, calibration and continuous protocol decoding still need work.</p>
+  </section>
+  <section id="mechanism" class="article-section wrap two-column" aria-labelledby="mechanism-title">
+    <div class="section-copy">
+      <p class="eyebrow">01 / The mechanism</p>
+      <h2 id="mechanism-title">Small buffers.<br>A much longer recording.</h2>
+      <p>A finite diagnostic capture fills memory, stops, and then hands the samples to the host. This implementation reads completed positions while the collector is still writing. It does not need a decoded Wi-Fi packet for each exported block.</p>
+      <p>Custom firmware selects or combines input samples and publishes them in reusable buffers. Linux reads completed blocks through the chip’s existing SDIO connection, then records them to disk. The hour-long recording and separate source demonstration use 32 publication slots.</p>
+      <p>Sequence numbers and checksums help detect delivery errors. Timeout and stop checks keep each session bounded. Slow-reader failures are reported rather than silently accepted.</p>
+      <p class="quiet">The samples are pairs of numbers describing the received signal, often called complex or I/Q samples. Their exact physical I/Q orientation is not calibrated.</p>
+    </div>
+    <figure class="diagram-panel">
+      <div class="figure-label"><span>02 / Reusing memory</span></div>
+      <img src="assets/streaming.svg" alt="The collector keeps writing circular source memory while firmware and Linux repeatedly fill and read separate publication slots. This is a schematic, not measured timing." width="400" height="560" loading="lazy">
+      <figcaption>Source sample memory and publication buffers are separate. Reuse lets a recording exceed the amount of memory available on the chip.</figcaption>
+    </figure>
+  </section>
+  <section id="longrun" class="article-section wrap" aria-labelledby="longrun-title">
+    <div class="section-heading">
+      <p class="eyebrow">02 / Longer checked delivery</p>
+      <h2 id="longrun-title">An hour from small, reusable buffers.</h2>
+      <p class="section-deck">The receiver ran for an hour with a revised clock read and the same partial filter. Its reader kept recording completed blocks as the chip reused its memory.</p>
+    </div>
+    <dl class="receipt"><div><dt>Delivered samples</dt><dd>3,000,238,080</dd></div><div><dt>Checked frames</dt><dd>2,929,920</dd></div><div><dt>Host receipt span</dt><dd>3600.316538804 seconds</dd></div></dl>
+    <p>Every delivered frame passed the saved sequence and checksum audit. The capture stopped normally, its newest retained tail matched the stopped reference, and the receiver remained healthy. An earlier ten-minute trial passed the same checks with the previous ABI36 implementation.</p>
+    <p>The audit also followed the raw-position values across 11 counter rollovers. This checks a boundary that the earlier twin6 five-minute trials had not reached; it does not independently locate every physical input sample.</p>
+    <p class="quiet">This was a passive recording. It did not contain the two deliberate source bursts shown below. One accepted hour extends the demonstrated duration; other workloads and longer operation still need testing.</p>
+    <a class="text-link" href="reading/files/evidence/longrun-findings.json">Inspect the duration aggregates</a>
+  </section>
+  <section id="demonstration" class="article-section wrap" aria-labelledby="demonstration-title">
+    <div class="section-heading">
+      <p class="eyebrow">03 / Separate signal evidence</p>
+      <h2 id="demonstration-title">A known signal, early and late.</h2>
+      <p class="section-deck">In the selected known-source test, an ESP32-C3 emitted two short bursts during one five-minute receiver session. The receiver gain and capture configuration stayed unchanged.</p>
+    </div>
+    <div class="evidence-layout">
+      <figure class="diagram-panel measured">
+        <div class="figure-label"><span>03 / Separate five-minute demonstration</span><span>Measured aggregates</span></div>
+        <img src="assets/demonstration.svg" alt="Two test bursts occurred at approximately 10 and 277 seconds. Four analysed ON windows have median fitted amplitudes about 178 to 211 sample counts, versus adjacent OFF95 levels about 2.5 counts." width="400" height="640" loading="lazy">
+        <figcaption>Timing marks are approximate host elapsed time. Amplitudes come from saved fit summaries; this graphic does not display original waveforms or calibrated RF power.</figcaption>
+      </figure>
+      <div class="evidence-copy">
+        <p class="result-number">80<span>/80</span></p>
+        <h3>Analysed signal chunks passed the preset test.</h3>
+        <p>The weakest ON chunk exceeded its adjacent OFF reference by 26.7 times in fitted amplitude, against a tenfold requirement. The reference is the 95th percentile of adjacent source-off fits.</p>
+        <dl class="receipt"><div><dt>Delivered samples</dt><dd>250,019,840</dd></div><div><dt>Checked frames</dt><dd>244,160</dd></div><div><dt>Host receipt span</dt><dd>300.025 seconds</dd></div></dl>
+        <p>Every delivered frame passed the saved sequence and checksum audit. The capture stopped normally and its retained tail was checked. These checks establish delivered-output integrity within the tested session.</p>
+        <p class="quiet">The transmitter was off between the two bursts. This result establishes early and late source correlation; it does not establish a known signal at every moment of the recording.</p>
+        <a class="text-link" href="reading/files/evidence/known-signal-findings.json">Inspect the result data</a>
+      </div>
+    </div>
+  </section>
+  <p class="wrap quiet">Earlier full-rate finite recordings also contain real on-air Wi-Fi: a separate offline replay recovered twelve complete frames with valid checksums. That is evidence of real reception in those older records, not packet decoding in this reduced-rate hour-long stream.</p>
+  <section id="selection" class="article-section wrap two-column" aria-labelledby="selection-title">
+    <div class="section-copy">
+      <p class="eyebrow">04 / Understanding the output</p>
+      <h2 id="selection-title">A stream of selected samples.</h2>
+      <p>The chip produces more input data than this implementation exports. The simplest tested path keeps one position out of every sixteen. Later paths combine several inputs before advancing sixteen positions.</p>
+      <p>The hour-long recording used the twin6 partial filter and delivered about 833,000 complex samples per second. This is an approximate host delivery cadence, not a calibrated radio clock or a measured usable bandwidth.</p>
+      <p>Combining inputs can reduce some unwanted frequency content. These short filters still leave alias exposure: signals outside the intended band can fold into the output. A clean, calibrated receiver passband remains a research question.</p>
+    </div>
+    <figure class="diagram-panel">
+      <div class="figure-label"><span>04 / Selection and combining</span></div>
+      <img src="assets/selection.svg" alt="Ordinary selection keeps one input position in sixteen. Twin6 combines inputs at positions 0, 1, 2, 8, 9 and 10 before advancing sixteen. The partial filter does not establish alias-free reception." width="400" height="550" loading="lazy">
+      <figcaption>The diagram shows which input positions contribute. Exact signed arithmetic and filter responses are documented in the implementation appendix.</figcaption>
+    </figure>
+  </section>
+  <section id="limits" class="article-section wrap limits" aria-labelledby="limits-title">
+    <p class="eyebrow">05 / Current boundaries</p>
+    <h2 id="limits-title">A research prototype.</h2>
+    <div class="limits-grid"><div><h3>What the tests support</h3><p>One-hour delivery of selected complex samples, checked buffer reuse and raw-position rollover. Two source bursts were detected in a separate five-minute demonstration.</p></div><div><h3>What remains open</h3><p>Complete-input physical continuity, calibrated tuning and clocks, converter resolution, comprehensive alias rejection and reliability beyond the tested workloads.</p></div><div><h3>What you can reproduce</h3><p>Separate source recipes reproduce the historical ABI36 builds and the newer ABI37 firmware and complete driver in their documented environments. Offline tools check supplied frames and aggregate results. The full installation, acquisition and recovery controller remains private.</p></div></div>
+    <p class="availability">The tested configuration changes ordinary Wi-Fi operation. Hardware acquisition is not yet turnkey. Original ambient recordings and proprietary firmware binaries are excluded from the package.</p>
+  </section>
+  <section id="reading" class="article-section wrap reading" aria-labelledby="reading-title">
+    <p class="eyebrow">06 / Go deeper</p>
+    <h2 id="reading-title">Choose your level of detail.</h2>
+    <div class="reading-grid"><a href="reading/report.html#report"><span class="resource-type">Technical report</span><h3>The mechanism and evidence</h3><p>Methods, tested configurations, measured results and practical limitations.</p></a><a href="reading/report.html#appendix"><span class="resource-type">Implementation appendix</span><h3>The exact contract</h3><p>Memory ownership, integer arithmetic, frame layout and lifecycle checks.</p></a><a href="reading/files/src/device/BUILD.html"><span class="resource-type">Source and build notes</span><h3>Rebuild the historical implementation</h3><p>Tested inputs, source availability and build-only reproduction.</p></a></div>
+    <p class="reading-bottom"><a href="https://github.com/TheOddSock/pi5-wifi-sdr">GitHub repository</a> <a href="reading/files/src/device-abi37/BUILD.html">ABI37 source and exact build notes</a> <a href="reading/report.pdf">Download the report PDF</a></p>
+  </section>
+</main>
+<footer class="wrap"><p>Pi 5 Wi-Fi SDR · Adam Davies</p><p>Version <span data-version>0.3.0</span> · Evidence through 6 October 2026</p><p>Original code: GPL-2.0-or-later. Original report and diagrams: CC BY 4.0. <a href="reading/files/LICENSING.html">Licence grants and retained third-party terms</a>.</p><p>Related work: <a href="https://espargos.net/espsdr/">ESP-SDR</a> and <a href="https://nexmon.org/">Nexmon</a>. See the report for attribution, AI assistance and the bounded prior-art comparison.</p></footer>
+</body>
+</html>

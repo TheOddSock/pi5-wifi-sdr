@@ -1,0 +1,284 @@
+{
+  "schema": 1,
+  "kind": "source_only_build_package",
+  "publication": false,
+  "ABI": 37,
+  "image_sha256": "58a9740679366ddb1007bf79abe983aca4d4ad9458c841af33091052e163b62e",
+  "module_target_sha256": "44c21fc659f3182655757a2b6dfd3c969fd713dda03b910863e1925de69d01be",
+  "standalone_native_rebuild_done": true,
+  "standalone_driver_rebuild_done": true,
+  "files": [
+    {
+      "path": "BUILD.md",
+      "bytes": 2149,
+      "sha256": "2202fbb654d2c34c40c5942b643e6e8d8bb42cc4ea96ec1882f43b6b30ff7787"
+    },
+    {
+      "path": "component-licences.csv",
+      "bytes": 4098,
+      "sha256": "ca23186bd1b40d03cc5a872b58ac5bc1b609d520e3c4a27aab13d80e6928eb1b"
+    },
+    {
+      "path": "dependencies.json",
+      "bytes": 3657,
+      "sha256": "451e76b8515e9bfad1aadce331529c8f373343d10e1c7748fea56af38f76d43f"
+    },
+    {
+      "path": "driver/additions/brcmfmac/diagnostic_driver.inc",
+      "bytes": 2039,
+      "sha256": "b494edf180f5a17dcf26432dfdebb05673503baeffd3143adf18b1371e4de8c9"
+    },
+    {
+      "path": "driver/additions/brcmfmac/diagnostic_types.h",
+      "bytes": 353,
+      "sha256": "c9864f48e90d9b79122ee13f23d9fa2648dfc3b543b7bc452d4e2c92ea6935ab"
+    },
+    {
+      "path": "driver/additions/brcmfmac/geometry_driver.inc",
+      "bytes": 1504,
+      "sha256": "ef16d413c9393c2b7d36b53f28bfe4535bdafa55ce6d7bb4fe786afc9023e2b2"
+    },
+    {
+      "path": "driver/additions/brcmfmac/geometry_types.h",
+      "bytes": 169,
+      "sha256": "2436dddf81a1153582f0c89e1b152127b841d04c06a2ec2be3f0e285aa3a4ba7"
+    },
+    {
+      "path": "driver/additions/brcmfmac/lease_driver.inc",
+      "bytes": 3231,
+      "sha256": "44a63f58edb8f3e3bec29ee533a775a39ffc55c35b49d99829566baf2b56f74b"
+    },
+    {
+      "path": "driver/additions/brcmfmac/lease_wait.inc",
+      "bytes": 1051,
+      "sha256": "b100cd7001ef5cb5bf5dab6ce94b0c4f24005667ed70194f81e03064109eec7d"
+    },
+    {
+      "path": "driver/additions/brcmfmac/pi5_owned_contract.h",
+      "bytes": 667,
+      "sha256": "4129483933692013c5c471de5883f649e4b53707726730d3897a81a4fedc33e2"
+    },
+    {
+      "path": "driver/additions/brcmfmac/pi5_owned_ram.h",
+      "bytes": 10764,
+      "sha256": "c923d071ec52e657b0a0d9029d9cf49e020bf9e1f52f686a5da2b3b848468711"
+    },
+    {
+      "path": "driver/additions/brcmfmac/private_collect.inc",
+      "bytes": 2878,
+      "sha256": "40df457d0c1f9d9ad28793fbcc1fe3cb737e41845113e0ee0dc9f8cf5a723381"
+    },
+    {
+      "path": "driver/additions/brcmfmac/proto_gate.inc",
+      "bytes": 1661,
+      "sha256": "4f955955318169a7a341fb6c8d537a0fc93277dc72f04909cbf6d3c527fc51eb"
+    },
+    {
+      "path": "driver/additions/brcmfmac/stop_driver.inc",
+      "bytes": 4474,
+      "sha256": "9d7db527fe73d926392c9a5c65fb55c858231ad43fd9d03f9fdf7e0d26e73d71"
+    },
+    {
+      "path": "driver/additions/brcmfmac/wait_match.inc",
+      "bytes": 784,
+      "sha256": "24102f5a35d2ee2e1943851692739bca93dc145755eabbe96a3266d9632c1226"
+    },
+    {
+      "path": "driver/base-Kbuild",
+      "bytes": 63,
+      "sha256": "1ca6d32a492c1d00e2684eb3c6c82ba384c76778ee18c8bf1fce1d08e330a41c"
+    },
+    {
+      "path": "driver/compare_module.py",
+      "bytes": 3685,
+      "sha256": "e3bcfb63cac1c73a552e0e3eb898c005a8f6cefef1324931f63e8c8a6e20ab30"
+    },
+    {
+      "path": "driver/compile-receipt.json",
+      "bytes": 1471,
+      "sha256": "9788a5bf4676038d2d418c06102f2140c24a1a1e032bad61dcbdc8f38f1dc5ae"
+    },
+    {
+      "path": "driver/expected-source.json",
+      "bytes": 24557,
+      "sha256": "97aaa8478ea021eba2d3563436fea4078663e33e00b44dcf3784f6dc547f863b"
+    },
+    {
+      "path": "driver/prepare.py",
+      "bytes": 2449,
+      "sha256": "b44e388364001fa7aa9bb96511439cb200b377659818a0cd801d6cb408922d95"
+    },
+    {
+      "path": "driver/reconstruction-receipt.json",
+      "bytes": 328,
+      "sha256": "6daf6f0ac1bafa6f7990b423dc1f2e44ae0f6a2f80091edaea8bc4edb47016a6"
+    },
+    {
+      "path": "driver/tested-module-sections.json",
+      "bytes": 6628,
+      "sha256": "bee2b6117d83a6f67eaa486a844998b8ae192c9ae1e9f0fee222f05c63f69121"
+    },
+    {
+      "path": "driver/twin6-linux.patch",
+      "bytes": 9163,
+      "sha256": "543a31fa59e9419f7c526814ff013672b8c0d5b3c40b38b1489c58786229c58c"
+    },
+    {
+      "path": "driver/upstream-notices.txt",
+      "bytes": 1417,
+      "sha256": "9c4c4c195a77e4488f64ba8764d987fb75f3c0d595ccbdc38557b2db0b89a9a3"
+    },
+    {
+      "path": "INTEGRATION.md",
+      "bytes": 926,
+      "sha256": "55f92cddf113b02f8b86ac983cf94f96f700701cb312240e1a2bfa65cf8d0f36"
+    },
+    {
+      "path": "LICENSES/CC-BY-4.0.txt",
+      "bytes": 18657,
+      "sha256": "9ba9550ad48438d0836ddab3da480b3b69ffa0aac7b7878b5a0039e7ab429411"
+    },
+    {
+      "path": "LICENSES/COPYING.txt",
+      "bytes": 496,
+      "sha256": "fb5a425bd3b3cd6071a3a9aff9909a859e7c1158d54d32e07658398cd67eb6a0"
+    },
+    {
+      "path": "LICENSES/GPL-2.0-or-later.txt",
+      "bytes": 17882,
+      "sha256": "77dc7854b1bdc02d96ab5e531e1023482c94dc4a24d28637e2d3d26554b33346"
+    },
+    {
+      "path": "LICENSES/GPL-2.0.txt",
+      "bytes": 18600,
+      "sha256": "8780e78a1a737e127f25a65f6d95269bffd36158dc261114de7859b490bfc5aa"
+    },
+    {
+      "path": "LICENSES/ISC.txt",
+      "bytes": 1046,
+      "sha256": "cbdf535b99a9f4cb208c5495c6dd9a1f84104d83c03f8f0d98ee7a0c43805388"
+    },
+    {
+      "path": "LICENSES/upstream-sources.json",
+      "bytes": 807,
+      "sha256": "10c10fc872a6d0c06e91990f601b1691f0ce136362a82cac8f874d304dc58790"
+    },
+    {
+      "path": "native/build.py",
+      "bytes": 12639,
+      "sha256": "62b7c24a0f3d5c5132baf740596bedeb3b6ecb306b1e97d262b57dd8b2add654"
+    },
+    {
+      "path": "native/rebuild-receipt.json",
+      "bytes": 555,
+      "sha256": "f180361562733706f50b6bfc54dfd8f66679fbe1ebabcc3b9f27db7fabcaf554"
+    },
+    {
+      "path": "native/source/average.S",
+      "bytes": 2648,
+      "sha256": "2c0833fb19bbc8ea15bbbead7c53fa6dbd371a2be4c266e6669e79c2302e29b5"
+    },
+    {
+      "path": "native/source/core/coherent_tsf.h",
+      "bytes": 1558,
+      "sha256": "fd13c0d47ab2a4839b18a1b095b53112a84b5d79e7acb73be6056978f764b4fe"
+    },
+    {
+      "path": "native/source/core/hooks.S",
+      "bytes": 2133,
+      "sha256": "2dc848ef2f0d250d3fbc5d406433df309a37c2455c6c6880a4e1af1834ff6d22"
+    },
+    {
+      "path": "native/source/core/lease.inc",
+      "bytes": 1438,
+      "sha256": "17b0993215a04e16b6f7b95a29d86efa7b2ff7125011594508806be94c9e404a"
+    },
+    {
+      "path": "native/source/core/modular.h",
+      "bytes": 445,
+      "sha256": "062b505b897714ed661346646266a2d2e915689030d5662de91b049365065ba6"
+    },
+    {
+      "path": "native/source/core/progress.h",
+      "bytes": 3156,
+      "sha256": "333d2ad853d15bbca32b4734ac6811fb0eaf053bdd63d3b72a88f882ca347707"
+    },
+    {
+      "path": "native/source/core/reader_common.h",
+      "bytes": 3555,
+      "sha256": "44194ecd1ffeb6755561612afae21bf4021b79aef587ef8a27c68d2e871255a3"
+    },
+    {
+      "path": "native/source/core/ring_config.h",
+      "bytes": 374,
+      "sha256": "46f81b0219f58a957d5abb7e28d2a79b8a4bfb2138b9c14e9c919f50b08af1b2"
+    },
+    {
+      "path": "native/source/core/sampler.inc",
+      "bytes": 7392,
+      "sha256": "3efa512dd9c5b01345bb4cef340896d2218545cfbea153f64c277ff813e3595e"
+    },
+    {
+      "path": "native/source/core/speed.S",
+      "bytes": 81,
+      "sha256": "1ff0ca6cd8fc6f58462ba2365daeeb5ca7bafcd8ab04de370bd72bde739aee3e"
+    },
+    {
+      "path": "native/source/core/target.c",
+      "bytes": 11893,
+      "sha256": "19ea75fd2aaa96105c4c99ed295f64326a76698736b159c4d43929ec1c336aba"
+    },
+    {
+      "path": "native/source/core/watchdog.inc",
+      "bytes": 2052,
+      "sha256": "d7237c763b14885643b1a96b63423d47bf1e4e43f1f99e879569a852e7b904fd"
+    },
+    {
+      "path": "native/source/patch.ld",
+      "bytes": 1341,
+      "sha256": "aafaac3c56c591492eeea350e3ee127ab2f05c344ab5e271a7df982ee653133c"
+    },
+    {
+      "path": "native/source/phase.c",
+      "bytes": 6115,
+      "sha256": "6fe6246127d5c6a17213c0e6b405ff1e854006649a01cc201d1b0ffd5a797109"
+    },
+    {
+      "path": "native/source/phase.h",
+      "bytes": 709,
+      "sha256": "eb4b93c34011151507d6e39c019ea50801f019c2169a9945c3ad55b7f6e11c1b"
+    },
+    {
+      "path": "native/source/phase_hooks.S",
+      "bytes": 336,
+      "sha256": "0fa6c3676bd9c1640c72acae03a5205ce5368cc71051c340de0f37780b9d4589"
+    },
+    {
+      "path": "README.md",
+      "bytes": 1160,
+      "sha256": "246861e0711c1dd4ef36ec2667568f65c6c1ea7915fe4397fa238f61e7fa2a6a"
+    },
+    {
+      "path": "requirements-native.txt",
+      "bytes": 35,
+      "sha256": "f7af8bedf71cd81a696b710b07cd8b0e0ef2e9990e3a70de9f59cd582700e671"
+    },
+    {
+      "path": "RIGHTS.md",
+      "bytes": 1097,
+      "sha256": "4b7a1bbeb66967c72e04e2ffb3b02cb35f6baf705232a5c8c1874b5e94cfb2ec"
+    },
+    {
+      "path": "SOURCE-AVAILABILITY.md",
+      "bytes": 1280,
+      "sha256": "9e89d6ec738d971326b5b53766c2d52d9719d0572dd410ae430c17e4ff7e166e"
+    }
+  ],
+  "standalone_driver_reconstruction_done": true,
+  "scope_revision": "D_actual_standalone_native_driver_exact_rebuild_selected_scope_carry",
+  "standalone_driver_complete_SHA_match": true,
+  "original_code_licence": "GPL-2.0-or-later",
+  "documentation_licence": "CC-BY-4.0",
+  "repackaging_note": "Version 0.3.0 refreshes documentation and this inventory; tested code, build inputs and historical receipts are unchanged.",
+  "source_inventory_sha256": "95c88f927144551b2ee46c258a19e2e669073a5f7d148f3414fde7aa41ba7222"
+}
