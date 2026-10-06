@@ -110,8 +110,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 5217,
-      "sha256": "1f0dac7f20a49f46422ee044b7e7088448347adc9c2287d3c5c02e55bdbc6f9b",
+      "bytes": 5429,
+      "sha256": "cd96ed6c17bac7bf85076c0c59fc613d5de7a6dc6bc4345153610464ebda3d23",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
@@ -398,7 +398,7 @@
     {
       "path": "release/owner-approval.json",
       "bytes": 405,
-      "sha256": "ada9aace59e69362aac3bf1317c0896c585a956f10ad34d11808d0bf06b4f2ed",
+      "sha256": "f8b3a75f1965d6416114af0ec0c8fa22c2fbfe20ab530637c32878d63772cd29",
       "licence_scope": "project-documentation",
       "role": "owner_approval_record"
     },
