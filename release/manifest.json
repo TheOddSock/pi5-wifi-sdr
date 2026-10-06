@@ -398,7 +398,7 @@
     {
       "path": "release/owner-approval.json",
       "bytes": 405,
-      "sha256": "f8b3a75f1965d6416114af0ec0c8fa22c2fbfe20ab530637c32878d63772cd29",
+      "sha256": "0155b250149798e71c2da52f039173dc86d8f4df5cc6915ca52f060b1096842f",
       "licence_scope": "project-documentation",
       "role": "owner_approval_record"
     },
@@ -440,7 +440,7 @@
     {
       "path": "site/asset-manifest.json",
       "bytes": 35233,
-      "sha256": "de22b72f773aeec3d76d0777db409b6ba387aea9c9847108a452b3fb610e1f43",
+      "sha256": "298d81d0466d7027c4eeb9230fc3028506f3272f16501880efe60064d3c0fa8b",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
@@ -481,8 +481,8 @@
     },
     {
       "path": "site/dist/index.html",
-      "bytes": 14239,
-      "sha256": "3c32c313178d08010e8175546beff233c5c47c255ae280306fb9c0c387e28993",
+      "bytes": 14124,
+      "sha256": "f78718f3be84fbaba63d7986e01ca9d110b5a7749b06926edb5cd24404f760e4",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
@@ -1756,7 +1756,7 @@
     {
       "path": "site/dist/styles.css",
       "bytes": 7538,
-      "sha256": "be965c16eaa54d05f2b8e3b0d63b4a5504b8017a35d672cdab87daa819863c08",
+      "sha256": "895b4772d1a2c92ea7a4cfc5534181a3e5be5481b28846d4490881590965cc7b",
       "licence_scope": "project-code",
       "role": "approved_release_artifact"
     },

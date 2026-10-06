@@ -25,8 +25,8 @@
     },
     {
       "path": "index.html",
-      "bytes": 14239,
-      "sha256": "3c32c313178d08010e8175546beff233c5c47c255ae280306fb9c0c387e28993"
+      "bytes": 14124,
+      "sha256": "f78718f3be84fbaba63d7986e01ca9d110b5a7749b06926edb5cd24404f760e4"
     },
     {
       "path": "reading/files/.gitattributes",
@@ -936,7 +936,7 @@
     {
       "path": "styles.css",
       "bytes": 7538,
-      "sha256": "be965c16eaa54d05f2b8e3b0d63b4a5504b8017a35d672cdab87daa819863c08"
+      "sha256": "895b4772d1a2c92ea7a4cfc5534181a3e5be5481b28846d4490881590965cc7b"
     }
   ]
 }
