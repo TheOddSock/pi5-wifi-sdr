@@ -382,6 +382,8 @@ tools/make_figures.py,project-code,GPL-2.0-or-later,LICENSES/GPL-2.0-or-later.tx
 tools/pi5_radar/README.md,project-documentation,CC-BY-4.0,LICENSES/CC-BY-4.0.txt,LICENSING.md
 tools/pi5_radar/__init__.py,project-code,GPL-2.0-or-later,LICENSES/GPL-2.0-or-later.txt,LICENSING.md
 tools/pi5_radar/csi.py,project-code,GPL-2.0-or-later,LICENSES/GPL-2.0-or-later.txt,LICENSING.md
+tools/pi5_radar/server.py,project-code,GPL-2.0-or-later,LICENSES/GPL-2.0-or-later.txt,LICENSING.md
+tools/pi5_radar/ui.html,project-code,GPL-2.0-or-later,LICENSES/GPL-2.0-or-later.txt,LICENSING.md
 tools/pi5_rtltcp/README.md,project-documentation,CC-BY-4.0,LICENSES/CC-BY-4.0.txt,LICENSING.md
 tools/pi5_rtltcp/__init__.py,project-code,GPL-2.0-or-later,LICENSES/GPL-2.0-or-later.txt,LICENSING.md
 tools/pi5_rtltcp/bridge.py,project-code,GPL-2.0-or-later,LICENSES/GPL-2.0-or-later.txt,LICENSING.md

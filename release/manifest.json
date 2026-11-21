@@ -411,8 +411,8 @@
     },
     {
       "path": "release/approved-config.json",
-      "bytes": 31149,
-      "sha256": "f8bd5002673326cd7a481cf1a7b1437f9e4c934eda8db6ae41dccf8277933eb8",
+      "bytes": 31247,
+      "sha256": "b13eaa2a2d09d0570d98d1cd63e3ea92dac794efcfe0069ac4c9326425bb7b2e",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
@@ -425,8 +425,8 @@
     },
     {
       "path": "release/component-licences.csv",
-      "bytes": 47084,
-      "sha256": "59ed84fb0724934c031fb5841e860ec392ecdfb0ed93fe91292361630c2bec19",
+      "bytes": 47280,
+      "sha256": "43ffff547aabf93713e3f22afacc88ab8f7a9e216e9d4590d945b38d23381150",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
@@ -440,7 +440,7 @@
     {
       "path": "release/owner-approval.json",
       "bytes": 451,
-      "sha256": "ea9de95ff87a282456ce777168f1c3206c71675d60534f6158c885247bfb5890",
+      "sha256": "84f3348f47bc537716b74cd68bff74b4868579efa2917b33c3eb3425a4acb790",
       "licence_scope": "project-documentation",
       "role": "owner_approval_record"
     },
@@ -2637,8 +2637,8 @@
     },
     {
       "path": "tests/test_pi5_radar.py",
-      "bytes": 7483,
-      "sha256": "8840c857be891db0c573519da0df7f06942139f8ac3c1b27ef467903cb387d84",
+      "bytes": 13066,
+      "sha256": "ead6982cd5a78d5b5e90ff480b987e163c790db52b82fa48b0a39f10a6ba2152",
       "licence_scope": "project-code",
       "role": "approved_release_artifact"
     },
@@ -2714,8 +2714,8 @@
     },
     {
       "path": "tools/pi5_radar/README.md",
-      "bytes": 1675,
-      "sha256": "dc71c5c35b9c08cb70cd1219860f7089c7ac9984cf5265fc8dfb578abdc9a219",
+      "bytes": 2281,
+      "sha256": "4a38947bda1a75ba59acb85ebf51a4bec4c7e1f8ed67f8428679cb97954363ba",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
@@ -2730,6 +2730,20 @@
       "path": "tools/pi5_radar/csi.py",
       "bytes": 16358,
       "sha256": "a63db8fe4698af18a2e63c210a25edab9dc55e451c0f93289291470319fa2c61",
+      "licence_scope": "project-code",
+      "role": "approved_release_artifact"
+    },
+    {
+      "path": "tools/pi5_radar/server.py",
+      "bytes": 21783,
+      "sha256": "648ad782073198c45dd1c16c0264363c40871781700dd232cb2c96ff81cf724e",
+      "licence_scope": "project-code",
+      "role": "approved_release_artifact"
+    },
+    {
+      "path": "tools/pi5_radar/ui.html",
+      "bytes": 20871,
+      "sha256": "76d262e854d02e2b3e312395fa07ac2e509006e9bd2d2f40c9bb96b181bdf1c9",
       "licence_scope": "project-code",
       "role": "approved_release_artifact"
     },
@@ -2822,5 +2836,5 @@
   "title": "Sustained Selected Complex Receive Streaming from the BCM43455 on Raspberry Pi 5",
   "prepared_date": "2026-10-06",
   "release_date": "2026-11-21",
-  "approved_config_sha256": "c0af5d9fb193288aa824b7ec4ae117c749194764bcbe283d65c5616b5f061164"
+  "approved_config_sha256": "6231209e7e33b3ec3a8af37e6f6dce03691417c0910f84165779fcddba9ae474"
 }

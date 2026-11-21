@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Pi 5 Wi-Fi SDR — Live Passive Wi-Fi CSI &amp; Micro-Doppler Radar</title>
+<style>
+  :root {
+    --bg: #0b1020; --card: #121a2f; --border: #233052; --text: #e6ecf8;
+    --muted: #93a4c3; --accent: #38bdf8; --green: #34d399; --amber: #fbbf24;
+    --pink: #f472b6; --rose: #fb7185; --violet: #a78bfa;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.45; }
+  .wrap { max-width: 1280px; margin: 0 auto; padding: 20px 20px 44px; }
+  header { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 16px; border-bottom: 1px solid var(--border); padding-bottom: 16px; margin-bottom: 18px; }
+  .badge { display: inline-block; padding: 3px 10px; border-radius: 999px; font-size: 11px; font-weight: 600; background: rgba(56,189,248,.14); color: var(--accent); border: 1px solid rgba(56,189,248,.35); margin-bottom: 8px; }
+  h1 { margin: 0 0 4px; font-size: 24px; letter-spacing: -0.02em; }
+  .sub { color: var(--muted); font-size: 13px; margin: 0; }
+  .status-area { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
+  .pill { font-size: 15px; font-weight: 800; letter-spacing: 0.06em; padding: 8px 18px; border-radius: 999px; border: 1px solid var(--border); background: rgba(147,164,195,.12); color: var(--muted); }
+  .pill.still { background: rgba(52,211,153,.16); color: var(--green); border-color: rgba(52,211,153,.45); }
+  .pill.motion { background: rgba(251,113,133,.18); color: var(--rose); border-color: rgba(251,113,133,.55); box-shadow: 0 0 18px rgba(251,113,133,.25); }
+  .pill.warm { background: rgba(251,191,36,.15); color: var(--amber); border-color: rgba(251,191,36,.45); }
+  .controls { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 10px 16px; margin-bottom: 16px; font-size: 13px; }
+  .ctrl-group { display: flex; align-items: center; gap: 8px; }
+  .controls label { color: var(--muted); display: flex; align-items: center; gap: 6px; cursor: pointer; }
+  .mono { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; color: var(--accent); }
+  button { background: #1a2747; color: var(--text); border: 1px solid var(--border); border-radius: 8px; padding: 6px 12px; font-size: 12px; font-weight: 600; cursor: pointer; }
+  button:hover { border-color: var(--accent); color: var(--accent); }
+  .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; margin-bottom: 16px; }
+  .kpi { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 12px 16px; }
+  .kpi .val { font-size: 20px; font-weight: 700; color: var(--accent); font-family: ui-monospace, SFMono-Regular, Consolas, monospace; }
+  .kpi .lbl { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+  @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } .status-area { align-items: flex-start; } }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 14px 16px; }
+  .card-hdr { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; margin-bottom: 4px; }
+  .card h2 { margin: 0; font-size: 15px; }
+  .card p { margin: 0 0 10px; color: var(--muted); font-size: 12px; }
+  canvas { width: 100%; height: 240px; display: block; background: #080d1a; border-radius: 10px; border: 1px solid #1b2744; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <span class="badge">RECEIVE-ONLY · PHYSICAL PREAMBLES ONLY (L-STF + L-LTF) · BCM43455c0</span>
+      <h1>Passive 20 MHz Wi-Fi CSI &amp; Micro-Doppler Radar</h1>
+      <p class="sub">Real-time 52-subcarrier channel state, CFO clustering, rolling perturbation meter, micro-Doppler FFT &amp; 50 ns CIR.</p>
+    </div>
+    <div class="status-area">
+      <div id="statePill" class="pill warm">WARMING UP</div>
+      <div class="sub">Link: <span id="connState" class="mono">connecting…</span> · Source: <span id="srcLbl" class="mono">--</span> · Phase: <span id="phaseLbl" class="mono">--</span></div>
+    </div>
+  </header>
+
+  <div class="controls">
+    <label><input id="cfoToggle" type="checkbox" checked /> CFO Cluster Filter (±<span id="cfoTolVal">3.0</span> kHz)</label>
+    <div class="ctrl-group">
+      <label for="thrSlider">Motion Threshold:</label>
+      <input id="thrSlider" type="range" min="0.04" max="0.30" step="0.01" value="0.14" />
+      <span id="thrVal" class="mono">0.14</span>
+    </div>
+    <button id="resetBtn" type="button">Reset Window</button>
+    <span class="sub" style="margin-left:auto">Frames: <span id="cntLbl" class="mono">0</span> (Cluster: <span id="cluLbl" class="mono">0</span>)</span>
+  </div>
+
+  <div class="kpis">
+    <div class="kpi"><div class="val" id="kpiCfo">--</div><div class="lbl">Dominant TX CFO Lock</div></div>
+    <div class="kpi"><div class="val" id="kpiFps">--</div><div class="lbl">Cadence / Doppler Nyquist</div></div>
+    <div class="kpi"><div class="val" id="kpiShift">--</div><div class="lbl">Rolling Shift / Frame SNR</div></div>
+    <div class="kpi"><div class="val" id="kpiDop">--</div><div class="lbl">Doppler Peak / Peak SNR</div></div>
+  </div>
+
+  <div class="grid">
+    <section class="card">
+      <div class="card-hdr"><h2>1. 52-Subcarrier CSI Amplitude Heatmap</h2><span id="hmMeta" class="mono" style="font-size:11px">k = -26..-1, +1..+26</span></div>
+      <p>Recent normalized <code>|H(k)|</code> vectors over time (DC gap centered between -1 and +1).</p>
+      <canvas id="cHeat"></canvas>
+    </section>
+
+    <section class="card">
+      <div class="card-hdr"><h2>2. STILL vs MOTION Rolling CSI Shift</h2><span id="tsMeta" class="mono" style="font-size:11px">L2 delta_amp (10-frame avg)</span></div>
+      <p>Rolling L2 amplitude perturbation against the live motion threshold (shaded intervals = MOTION).</p>
+      <canvas id="cShift"></canvas>
+    </section>
+
+    <section class="card">
+      <div class="card-hdr"><h2>3. Micro-Doppler PCA Spectrum</h2><span id="dopMeta" class="mono" style="font-size:11px">0.2–6 Hz</span></div>
+      <p>Hanning-windowed FFT of first temporal principal component bounded by <code>0.5 × cadence</code> Nyquist.</p>
+      <canvas id="cDop"></canvas>
+    </section>
+
+    <section class="card">
+      <div class="card-hdr"><h2>4. Channel Impulse Response (CIR)</h2><span id="cirMeta" class="mono" style="font-size:11px">50 ns / tap</span></div>
+      <p>First 24 multipath delay taps (0.00–1.15 µs) recovered from 64-point IFFT of normalized CSI.</p>
+      <canvas id="cCir"></canvas>
+    </section>
+  </div>
+</div>
+
+<script>
+const MAX_HIST = 120;
+const app = {
+  history: [],
+  latest: null,
+  config: { cfo_filter: true, cfo_tol_khz: 3.0, motion_threshold: 0.14, source: "idle" },
+  dirty: true,
+};
+
+const els = {
+  pill: document.getElementById("statePill"),
+  conn: document.getElementById("connState"),
+  src: document.getElementById("srcLbl"),
+  phase: document.getElementById("phaseLbl"),
+  cfoToggle: document.getElementById("cfoToggle"),
+  cfoTol: document.getElementById("cfoTolVal"),
+  thrSlider: document.getElementById("thrSlider"),
+  thrVal: document.getElementById("thrVal"),
+  resetBtn: document.getElementById("resetBtn"),
+  cnt: document.getElementById("cntLbl"),
+  clu: document.getElementById("cluLbl"),
+  kpiCfo: document.getElementById("kpiCfo"),
+  kpiFps: document.getElementById("kpiFps"),
+  kpiShift: document.getElementById("kpiShift"),
+  kpiDop: document.getElementById("kpiDop"),
+  cHeat: document.getElementById("cHeat"),
+  cShift: document.getElementById("cShift"),
+  cDop: document.getElementById("cDop"),
+  cCir: document.getElementById("cCir"),
+};
+
+function plasmaColor(u) {
+  const x = Math.max(0, Math.min(1, u));
+  const stops = [
+    [13, 18, 48],
+    [76, 29, 149],
+    [190, 48, 130],
+    [245, 130, 49],
+    [252, 238, 108],
+  ];
+  const s = x * (stops.length - 1);
+  const i = Math.min(stops.length - 2, Math.floor(s));
+  const t = s - i;
+  const a = stops[i], b = stops[i + 1];
+  const r = Math.round(a[0] + (b[0] - a[0]) * t);
+  const g = Math.round(a[1] + (b[1] - a[1]) * t);
+  const bl = Math.round(a[2] + (b[2] - a[2]) * t);
+  return `rgb(${r},${g},${bl})`;
+}
+
+function prepCanvas(cv) {
+  const dpr = window.devicePixelRatio || 1;
+  const rect = cv.getBoundingClientRect();
+  const dispW = Math.max(260, Math.round(rect.width || 540));
+  const dispH = Math.max(180, Math.round(rect.height || 240));
+  const bw = Math.round(dispW * dpr), bh = Math.round(dispH * dpr);
+  if (cv.width !== bw || cv.height !== bh) {
+    cv.width = bw;
+    cv.height = bh;
+  }
+  const ctx = cv.getContext("2d");
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  ctx.clearRect(0, 0, dispW, dispH);
+  return { ctx, W: dispW, H: dispH };
+}
+
+function applySnapshot(snap) {
+  if (snap.config) app.config = snap.config;
+  app.history = Array.isArray(snap.history) ? snap.history.slice(-MAX_HIST) : [];
+  app.latest = snap.latest || null;
+  syncControls();
+  updateKpis();
+  app.dirty = true;
+}
+
+function applyFrame(ev) {
+  app.latest = ev;
+  app.config.cfo_filter = Boolean(ev.cfo_filter);
+  app.config.cfo_tol_khz = ev.cfo_tol_khz;
+  app.config.motion_threshold = ev.motion_threshold;
+  app.config.source = ev.source;
+  app.history.push({
+    t_rel_s: ev.t_rel_s,
+    csi_amp_norm: ev.csi_amp_norm,
+    rolling_shift: ev.rolling_shift,
+    state: ev.state,
+    phase_label: ev.phase_label,
+  });
+  if (app.history.length > MAX_HIST) app.history.shift();
+  syncControls();
+  updateKpis();
+  app.dirty = true;
+}
+
+function syncControls() {
+  els.cfoToggle.checked = Boolean(app.config.cfo_filter);
+  els.cfoTol.textContent = Number(app.config.cfo_tol_khz || 3.0).toFixed(1);
+  if (document.activeElement !== els.thrSlider) {
+    els.thrSlider.value = Number(app.config.motion_threshold || 0.14).toFixed(2);
+  }
+  els.thrVal.textContent = Number(app.config.motion_threshold || 0.14).toFixed(2);
+  els.src.textContent = app.config.source || "--";
+}
+
+function updateKpis() {
+  const ev = app.latest;
+  if (!ev) {
+    els.pill.textContent = "WARMING UP";
+    els.pill.className = "pill warm";
+    els.phase.textContent = "--";
+    els.cnt.textContent = "0";
+    els.clu.textContent = "0";
+    els.kpiCfo.textContent = "--";
+    els.kpiFps.textContent = "--";
+    els.kpiShift.textContent = "--";
+    els.kpiDop.textContent = "--";
+    return;
+  }
+  els.pill.textContent = ev.state || "WARMING UP";
+  els.pill.className = "pill " + (ev.state === "MOTION" ? "motion" : (ev.state === "STILL" ? "still" : "warm"));
+  els.phase.textContent = ev.phase_label || "--";
+  els.cnt.textContent = String(ev.total_csi || 0);
+  els.clu.textContent = String(ev.cluster_frames || 0);
+  els.kpiCfo.textContent = ev.dominant_cfo_khz != null ? `${ev.dominant_cfo_khz > 0 ? "+" : ""}${ev.dominant_cfo_khz.toFixed(3)} kHz` : "--";
+  const fpsStr = ev.frame_rate_hz != null ? `${ev.frame_rate_hz.toFixed(2)} Hz` : "--";
+  const nyqStr = ev.doppler_nyquist_hz != null ? `${ev.doppler_nyquist_hz.toFixed(2)} Hz` : "--";
+  els.kpiFps.textContent = `${fpsStr} / ${nyqStr}`;
+  const snrStr = ev.snr_db != null ? `${ev.snr_db.toFixed(1)} dB` : "--";
+  els.kpiShift.textContent = `${Number(ev.rolling_shift || 0).toFixed(4)} / ${snrStr}`;
+  const dHz = ev.doppler_peak_hz != null ? `${ev.doppler_peak_hz.toFixed(2)} Hz` : "--";
+  const dSnr = ev.doppler_peak_snr_db != null ? `+${ev.doppler_peak_snr_db.toFixed(1)} dB` : "--";
+  els.kpiDop.textContent = `${dHz} / ${dSnr}`;
+}
+
+function drawHeatmap() {
+  const { ctx, W, H } = prepCanvas(els.cHeat);
+  const P = { l: 42, r: 14, t: 12, b: 26 };
+  const rows = app.history;
+  if (!rows.length) {
+    ctx.fillStyle = "#93a4c3"; ctx.font = "12px system-ui"; ctx.fillText("Waiting for CSI frames…", 20, H / 2);
+    return;
+  }
+  const nCols = rows.length;
+  const nSub = 52;
+  const cw = (W - P.l - P.r) / Math.max(1, nCols);
+  const ch = (H - P.t - P.b) / nSub;
+  let maxV = 0.05;
+  for (const r of rows) for (const v of r.csi_amp_norm) if (v > maxV) maxV = v;
+  const invMax = 1.0 / maxV;
+  for (let x = 0; x < nCols; x++) {
+    const amps = rows[x].csi_amp_norm;
+    const px = P.l + x * cw;
+    for (let s = 0; s < nSub; s++) {
+      const py = H - P.b - (s + 1) * ch;
+      ctx.fillStyle = plasmaColor(amps[s] * invMax);
+      ctx.fillRect(px, py, Math.ceil(cw), Math.ceil(ch));
+    }
+  }
+  // DC subcarrier centerline separator (between index 25 and 26)
+  const yDc = H - P.b - 26 * ch;
+  ctx.strokeStyle = "rgba(255,255,255,0.45)";
+  ctx.lineWidth = 1;
+  ctx.setLineDash([4, 4]);
+  ctx.beginPath(); ctx.moveTo(P.l, yDc); ctx.lineTo(W - P.r, yDc); ctx.stroke();
+  ctx.setLineDash([]);
+
+  ctx.fillStyle = "#93a4c3"; ctx.font = "11px ui-monospace, monospace";
+  ctx.fillText("+26", 8, P.t + 10);
+  ctx.fillText("DC", 14, yDc + 4);
+  ctx.fillText("-26", 8, H - P.b - 2);
+  ctx.fillText(`t = ${rows[0].t_rel_s.toFixed(1)}s`, P.l, H - 7);
+  ctx.fillText(`${rows[nCols - 1].t_rel_s.toFixed(1)}s`, W - P.r - 44, H - 7);
+}
+
+function drawShiftTimeline() {
+  const { ctx, W, H } = prepCanvas(els.cShift);
+  const P = { l: 46, r: 14, t: 14, b: 26 };
+  const rows = app.history;
+  if (rows.length < 2) {
+    ctx.fillStyle = "#93a4c3"; ctx.font = "12px system-ui"; ctx.fillText("Collecting baseline frames…", 20, H / 2);
+    return;
+  }
+  const thr = Number(app.config.motion_threshold || 0.14);
+  let maxY = Math.max(thr * 1.4, 0.25);
+  for (const r of rows) if (r.rolling_shift > maxY) maxY = r.rolling_shift * 1.15;
+  const xMap = i => P.l + (i / (rows.length - 1)) * (W - P.l - P.r);
+  const yMap = v => H - P.b - (v / maxY) * (H - P.t - P.b);
+
+  // Shaded MOTION spans
+  const stepW = (W - P.l - P.r) / Math.max(1, rows.length - 1);
+  for (let i = 0; i < rows.length; i++) {
+    if (rows[i].state === "MOTION") {
+      ctx.fillStyle = "rgba(251,113,133,0.16)";
+      ctx.fillRect(xMap(i) - stepW * 0.5, P.t, stepW + 0.5, H - P.t - P.b);
+    }
+  }
+  // Horizontal grid
+  ctx.strokeStyle = "#17223c"; ctx.lineWidth = 1; ctx.fillStyle = "#93a4c3"; ctx.font = "11px ui-monospace, monospace";
+  for (let g = 0; g <= 3; g++) {
+    const val = (maxY * g) / 3;
+    const yy = yMap(val);
+    ctx.beginPath(); ctx.moveTo(P.l, yy); ctx.lineTo(W - P.r, yy); ctx.stroke();
+    ctx.fillText(val.toFixed(2), 6, yy + 4);
+  }
+  // Threshold line
+  const yThr = yMap(thr);
+  ctx.strokeStyle = "#fbbf24"; ctx.lineWidth = 1.5; ctx.setLineDash([6, 4]);
+  ctx.beginPath(); ctx.moveTo(P.l, yThr); ctx.lineTo(W - P.r, yThr); ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle = "#fbbf24"; ctx.fillText(`thr=${thr.toFixed(2)}`, W - P.r - 68, Math.max(P.t + 12, yThr - 5));
+
+  // Rolling shift curve
+  ctx.strokeStyle = "#38bdf8"; ctx.lineWidth = 2;
+  ctx.beginPath();
+  for (let i = 0; i < rows.length; i++) {
+    const px = xMap(i), py = yMap(rows[i].rolling_shift || 0);
+    if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+  }
+  ctx.stroke();
+  ctx.fillStyle = "#93a4c3";
+  ctx.fillText(`${rows[0].t_rel_s.toFixed(1)}s`, P.l, H - 7);
+  ctx.fillText(`${rows[rows.length - 1].t_rel_s.toFixed(1)}s`, W - P.r - 44, H - 7);
+}
+
+function drawDoppler() {
+  const { ctx, W, H } = prepCanvas(els.cDop);
+  const P = { l: 46, r: 16, t: 16, b: 26 };
+  const ev = app.latest;
+  const spec = (ev && Array.isArray(ev.doppler_spectrum)) ? ev.doppler_spectrum : [];
+  if (!spec.length) {
+    ctx.fillStyle = "#93a4c3"; ctx.font = "12px system-ui"; ctx.fillText("Need >= 2.0s & >= 12 cluster frames for Doppler FFT…", 20, H / 2);
+    return;
+  }
+  const nyq = ev.doppler_nyquist_hz || 6.0;
+  const fMax = Math.max(6.0, nyq);
+  let pMin = Infinity, pMax = -Infinity;
+  for (const pt of spec) {
+    if (pt.power_db < pMin) pMin = pt.power_db;
+    if (pt.power_db > pMax) pMax = pt.power_db;
+  }
+  if (!Number.isFinite(pMin) || pMax <= pMin) { pMin = -80; pMax = 0; }
+  const pad = Math.max(3, (pMax - pMin) * 0.12);
+  pMin -= pad; pMax += pad;
+  const xMap = f => P.l + (f / fMax) * (W - P.l - P.r);
+  const yMap = db => H - P.b - ((db - pMin) / (pMax - pMin)) * (H - P.t - P.b);
+
+  ctx.strokeStyle = "#17223c"; ctx.lineWidth = 1; ctx.fillStyle = "#93a4c3"; ctx.font = "11px ui-monospace, monospace";
+  for (let g = 0; g <= 3; g++) {
+    const db = pMin + ((pMax - pMin) * g) / 3;
+    const yy = yMap(db);
+    ctx.beginPath(); ctx.moveTo(P.l, yy); ctx.lineTo(W - P.r, yy); ctx.stroke();
+    ctx.fillText(db.toFixed(0), 6, yy + 4);
+  }
+  for (let f = 0; f <= fMax; f += 1) {
+    const xx = xMap(f);
+    if (xx <= W - P.r + 1) ctx.fillText(`${f}Hz`, xx - 8, H - 7);
+  }
+  if (ev.doppler_nyquist_hz != null) {
+    const xNyq = xMap(Math.min(fMax, ev.doppler_nyquist_hz));
+    ctx.strokeStyle = "#a78bfa"; ctx.setLineDash([4, 4]);
+    ctx.beginPath(); ctx.moveTo(xNyq, P.t); ctx.lineTo(xNyq, H - P.b); ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.fillStyle = "#a78bfa"; ctx.fillText(`Nyq ${ev.doppler_nyquist_hz.toFixed(2)}Hz`, Math.max(P.l, xNyq - 72), P.t + 12);
+  }
+
+  ctx.strokeStyle = ev.state === "MOTION" ? "#f472b6" : "#34d399";
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  for (let i = 0; i < spec.length; i++) {
+    const px = xMap(spec[i].freq_hz), py = yMap(spec[i].power_db);
+    if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+  }
+  ctx.stroke();
+
+  if (ev.doppler_peak_hz != null) {
+    let bestPt = spec[0];
+    for (const pt of spec) if (Math.abs(pt.freq_hz - ev.doppler_peak_hz) < Math.abs(bestPt.freq_hz - ev.doppler_peak_hz)) bestPt = pt;
+    const px = xMap(bestPt.freq_hz), py = yMap(bestPt.power_db);
+    ctx.fillStyle = "#fbbf24";
+    ctx.beginPath(); ctx.arc(px, py, 4.5, 0, Math.PI * 2); ctx.fill();
+    ctx.fillText(`pk=${ev.doppler_peak_hz.toFixed(2)}Hz (+${(ev.doppler_peak_snr_db || 0).toFixed(1)}dB)`, Math.min(W - 165, px + 8), Math.max(P.t + 14, py - 6));
+  }
+}
+
+function drawCir() {
+  const { ctx, W, H } = prepCanvas(els.cCir);
+  const P = { l: 42, r: 14, t: 14, b: 26 };
+  const ev = app.latest;
+  const cir = (ev && Array.isArray(ev.cir_mag)) ? ev.cir_mag : [];
+  if (!cir.length) {
+    ctx.fillStyle = "#93a4c3"; ctx.font = "12px system-ui"; ctx.fillText("Waiting for CIR taps…", 20, H / 2);
+    return;
+  }
+  let maxTap = 0.05;
+  for (const v of cir) if (v > maxTap) maxTap = v;
+  const bw = (W - P.l - P.r) / cir.length;
+  ctx.fillStyle = "#93a4c3"; ctx.font = "11px ui-monospace, monospace";
+  ctx.strokeStyle = "#17223c"; ctx.lineWidth = 1;
+  for (let g = 0; g <= 2; g++) {
+    const val = (maxTap * g) / 2;
+    const yy = H - P.b - (val / maxTap) * (H - P.t - P.b);
+    ctx.beginPath(); ctx.moveTo(P.l, yy); ctx.lineTo(W - P.r, yy); ctx.stroke();
+    ctx.fillText(val.toFixed(2), 4, yy + 4);
+  }
+  for (let i = 0; i < cir.length; i++) {
+    const bh = (cir[i] / maxTap) * (H - P.t - P.b);
+    const x = P.l + i * bw + 1;
+    const y = H - P.b - bh;
+    ctx.fillStyle = i === 0 ? "#34d399" : "#38bdf8";
+    ctx.fillRect(x, y, Math.max(2, bw - 3), bh);
+    if (i % 4 === 0) ctx.fillText(`${(i * 0.05).toFixed(2)}`, x, H - 7);
+  }
+  ctx.fillText("µs", W - P.r - 16, H - 7);
+}
+
+function renderAll() {
+  if (app.dirty) {
+    app.dirty = false;
+    drawHeatmap();
+    drawShiftTimeline();
+    drawDoppler();
+    drawCir();
+  }
+  requestAnimationFrame(renderAll);
+}
+
+async function postJson(url, body) {
+  try {
+    const res = await fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body || {}) });
+    return await res.json();
+  } catch (e) { return null; }
+}
+
+els.cfoToggle.addEventListener("change", () => postJson("/api/config", { cfo_filter: els.cfoToggle.checked }));
+els.thrSlider.addEventListener("input", () => { els.thrVal.textContent = Number(els.thrSlider.value).toFixed(2); });
+els.thrSlider.addEventListener("change", () => postJson("/api/config", { motion_threshold: Number(els.thrSlider.value) }));
+els.resetBtn.addEventListener("click", () => postJson("/api/reset", {}));
+
+window.addEventListener("resize", () => { app.dirty = true; });
+
+(async () => {
+  try {
+    const res = await fetch("/api/state");
+    if (res.ok) applySnapshot(await res.json());
+  } catch (e) {}
+
+  const es = new EventSource("/events");
+  es.onopen = () => { els.conn.textContent = "live SSE"; };
+  es.onerror = () => { els.conn.textContent = "reconnecting…"; };
+  es.onmessage = (msg) => {
+    try {
+      const ev = JSON.parse(msg.data);
+      if (ev.type === "snapshot") applySnapshot(ev);
+      else if (ev.type === "radar_frame") applyFrame(ev);
+      else if (ev.type === "config") { app.config = Object.assign(app.config, ev); syncControls(); }
+    } catch (e) {}
+  };
+  requestAnimationFrame(renderAll);
+})();
+</script>
+</body>
+</html>

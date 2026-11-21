@@ -419,6 +419,8 @@
     "tools/pi5_radar/README.md": "project-documentation",
     "tools/pi5_radar/__init__.py": "project-code",
     "tools/pi5_radar/csi.py": "project-code",
+    "tools/pi5_radar/server.py": "project-code",
+    "tools/pi5_radar/ui.html": "project-code",
     "tools/pi5_rtltcp/README.md": "project-documentation",
     "tools/pi5_rtltcp/__init__.py": "project-code",
     "tools/pi5_rtltcp/bridge.py": "project-code",

@@ -10,6 +10,13 @@ Receive-only IEEE 802.11a/g/n/ac/ax Channel State Information (`CSI`) extractor 
   - Validates finite CFO / non-negative `cfo_tol_khz` and clusters frames onto the dominant transmitter's crystal CFO (`±3.0 kHz`) so interfering neighbor APs do not create false motion.
   - Requires explicit timestamps (`t_rel_s`) or explicit `dt_s > 0` before reporting interval-based cadence (`(N-1) / duration_s`) and Nyquist-bounded (`<= 0.5 × frame_rate_hz`) `0.2+ Hz` PCA micro-Doppler spectra; without timestamps, computes amplitude-only perturbation statistics with `frame_rate_hz=None` and `doppler_peak_hz=None`.
 
+## Live Browser Dashboard (`server.py` + `ui.html`)
+- **Synthetic 20 MSPS STILL vs MOTION Demo:**
+  - `python -m tools.pi5_radar.server --demo --port 8766`
+- **Offline Capture Replay (`radar-summary.json`):**
+  - `python -m tools.pi5_radar.server --replay path/to/still-live-a path/to/motion-live-a --speed 1.5 --port 8766`
+- Opens a local HTTP + SSE dashboard at `http://127.0.0.1:8766/` displaying the scrolling 52-subcarrier CSI heatmap, live `STILL` / `MOTION` rolling perturbation timeline, micro-Doppler PCA FFT spectrum, 24-tap CIR profile, live CFO filter toggle, and adjustable motion threshold.
+
 ## Privacy & Receive-Only Compliance
 - **Zero transmission:** Purely passive over ambient Wi-Fi frames.
 - **Physical preambles only:** Extracts CSI strictly from public `L-STF` + `L-LTF` preambles and never decodes MAC addresses or packet payloads.

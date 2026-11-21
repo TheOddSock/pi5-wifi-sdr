@@ -156,6 +156,125 @@ class TestPi5Radar(unittest.TestCase):
         assert motion_stats["doppler_peak_hz"] is not None
         self.assertAlmostEqual(motion_stats["doppler_peak_hz"], 1.5, delta=0.35)
 
+    def test_radar_server_http_sse_and_replay(self) -> None:
+        import http.client
+        import json
+        import tempfile
+        import threading
+        import urllib.error
+        import urllib.request
+        from pathlib import Path
+
+        from tools.pi5_radar.csi import synthesize_wifi_ofdm_burst
+        from tools.pi5_radar.server import RadarEngine, create_server, load_replay_frames, replay_loop
+
+        k = np.concatenate([np.arange(-26, 0), np.arange(1, 27)]).astype(np.float64)
+        engine = RadarEngine(motion_threshold=0.14)
+
+        still_ev = None
+        for i in range(8):
+            h_static = 1.0 + 0.35 * np.exp(-1j * (2.0 * math.pi * k * 3.0 / 64.0))
+            iq = synthesize_wifi_ofdm_burst(h_static, cfo_hz=-5_000.0, snr_db=32.0, seed=700 + i)
+            still_ev = engine.ingest_iq(iq, t_rel_s=round(i * 0.08, 3), phase_label="still")
+            self.assertIsNotNone(still_ev)
+        assert still_ev is not None
+        self.assertEqual(still_ev["state"], "STILL")
+
+        motion_ev = None
+        for j in range(12):
+            t_s = 0.72 + j * 0.08
+            mod_delay = 5.0 + 2.2 * math.sin(2.0 * math.pi * 1.5 * j * 0.08)
+            h_dyn = (
+                1.0
+                + 0.35 * np.exp(-1j * (2.0 * math.pi * k * 3.0 / 64.0))
+                + 0.45 * np.exp(-1j * (2.0 * math.pi * k * mod_delay / 64.0))
+            )
+            iq = synthesize_wifi_ofdm_burst(h_dyn, cfo_hz=-5_000.0, snr_db=32.0, seed=800 + j)
+            motion_ev = engine.ingest_iq(iq, t_rel_s=round(t_s, 3), phase_label="motion")
+            self.assertIsNotNone(motion_ev)
+        assert motion_ev is not None
+        self.assertEqual(motion_ev["state"], "MOTION")
+
+        stop_event = threading.Event()
+        httpd = create_server(engine, host="127.0.0.1", port=0, stop_event=stop_event)
+        port = httpd.server_address[1]
+        srv = threading.Thread(target=httpd.serve_forever, daemon=True)
+        srv.start()
+        try:
+            with urllib.request.urlopen(f"http://127.0.0.1:{port}/", timeout=3.0) as resp:
+                self.assertEqual(resp.status, 200)
+                html = resp.read().decode("utf-8")
+                self.assertIn("Passive 20 MHz Wi-Fi CSI", html)
+
+            with urllib.request.urlopen(f"http://127.0.0.1:{port}/api/state", timeout=3.0) as resp:
+                snap = json.loads(resp.read().decode("utf-8"))
+                self.assertEqual(snap["total_csi"], 20)
+                self.assertEqual(len(snap["history"]), 20)
+
+            req = urllib.request.Request(
+                f"http://127.0.0.1:{port}/api/config",
+                data=json.dumps({"cfo_filter": False, "motion_threshold": 0.22}).encode("utf-8"),
+                headers={"Content-Type": "application/json"},
+                method="POST",
+            )
+            with urllib.request.urlopen(req, timeout=3.0) as resp:
+                cfg_res = json.loads(resp.read().decode("utf-8"))
+                self.assertTrue(cfg_res["ok"])
+                self.assertFalse(cfg_res["config"]["cfo_filter"])
+                self.assertAlmostEqual(cfg_res["config"]["motion_threshold"], 0.22, delta=1e-6)
+
+            bad_req = urllib.request.Request(
+                f"http://127.0.0.1:{port}/api/config",
+                data=json.dumps({"motion_threshold": -0.5}).encode("utf-8"),
+                headers={"Content-Type": "application/json"},
+                method="POST",
+            )
+            with self.assertRaises(urllib.error.HTTPError) as ctx:
+                urllib.request.urlopen(bad_req, timeout=3.0)
+            self.assertEqual(ctx.exception.code, 400)
+
+            conn = http.client.HTTPConnection("127.0.0.1", port, timeout=3.0)
+            try:
+                conn.request("GET", "/events")
+                sse_resp = conn.getresponse()
+                self.assertEqual(sse_resp.status, 200)
+                line = b""
+                for _ in range(10):
+                    raw_line = sse_resp.fp.readline()
+                    if raw_line.startswith(b"data:"):
+                        line = raw_line
+                        break
+                self.assertTrue(line.startswith(b"data:"))
+                sse_snap = json.loads(line[5:].decode("utf-8"))
+                self.assertEqual(sse_snap["type"], "snapshot")
+                self.assertEqual(sse_snap["total_csi"], 20)
+            finally:
+                conn.close()
+
+            reset_req = urllib.request.Request(f"http://127.0.0.1:{port}/api/reset", data=b"{}", method="POST")
+            with urllib.request.urlopen(reset_req, timeout=3.0) as resp:
+                self.assertEqual(resp.status, 200)
+            self.assertEqual(engine.snapshot()["total_csi"], 0)
+        finally:
+            stop_event.set()
+            httpd.shutdown()
+            httpd.server_close()
+
+        with tempfile.TemporaryDirectory() as td:
+            cdir = Path(td) / "still-sample"
+            cdir.mkdir()
+            amp = [round(1.0 / math.sqrt(52.0), 6)] * 52
+            frames = [
+                {"t_rel_s": round(i * 0.08, 3), "cfo_khz": 12.3, "snr_db": 26.0, "csi_amp_norm": amp, "cir_mag": [0.1] * 24}
+                for i in range(12)
+            ]
+            (cdir / "radar-summary.json").write_text(json.dumps({"frames": frames}), encoding="utf-8")
+            loaded = load_replay_frames(cdir)
+            self.assertEqual(len(loaded), 12)
+            self.assertEqual(loaded[0]["phase"], "still-sample")
+            replay_loop(engine, [cdir], speed=500.0, loop=False)
+            self.assertEqual(engine.snapshot()["total_csi"], 12)
+
 
 if __name__ == "__main__":
     unittest.main()
