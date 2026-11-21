@@ -52,8 +52,9 @@
   <div class="grid">
     <div class="card">
       <h2>1. 80.000 MSPS Wideband Snapshots at 5.210 GHz (Ch 42, +15 MHz &amp; +30 MHz Offsets)</h2>
+      <p id="wideband-caption">The blue spike shows the first test signal. We raised its frequency by 15 MHz and recorded it again. The pink spike moved 15 MHz to the left. The distance between the spikes shows that the Pi measured the change we made. This receiver displays higher incoming frequencies farther to the left.</p>
       <p>MAX2871 CW tone stepped from +15.000 MHz (5225 MHz) to +30.000 MHz (5240 MHz — outside both 20 MHz and 40 MHz modes). Peak shifted by exactly −3,072 / 16,384 bins = −15.000000 MHz (0-bin step error, conjugated I/Q). Fixed internal spur visible at +9.985 MHz (~fs/8).</p>
-      <canvas id="c_wb80"></canvas>
+      <canvas id="c_wb80" role="img" aria-label="Two recordings of a test signal" aria-describedby="wideband-caption"></canvas>
       <div class="legend">
         <span><i class="dot" style="background:#38bdf8"></i>5225 MHz (+15 MHz → −15.0293 MHz, +56.0 dB SNR)</span>
         <span><i class="dot" style="background:#f472b6"></i>5240 MHz (+30 MHz → −30.0293 MHz, +50.4 dB SNR)</span>
