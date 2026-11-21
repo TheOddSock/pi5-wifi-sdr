@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
-  "version": "0.4.0",
-  "status": "post_release_documentation",
+  "version": "0.5.0",
+  "status": "approved",
   "licence_selection_status": "selected_by_owner",
   "licence_scopes": {
     "project-code": {
@@ -38,13 +38,11 @@
       "family-names": "Davies"
     }
   ],
-  "publication_approved": false,
+  "publication_approved": true,
   "public_repository_url": "https://github.com/TheOddSock/pi5-wifi-sdr",
   "version_doi": null,
   "concept_doi": null,
-  "release_blockers": [
-    "For the approved v0.4.0 package, use the v0.4.0 Git tag. This checkout includes subsequent reader-facing documentation edits."
-  ],
+  "release_blockers": [],
   "manifest_policy": "Manifest and SHA256SUMS are excluded from their own artifact list; review-bundle manifest binds both externally",
   "artifacts": [
     {
@@ -63,15 +61,15 @@
     },
     {
       "path": "CHANGELOG.md",
-      "bytes": 2983,
-      "sha256": "5939f8f169f789cac88a50ccae3ebf91655a645ce5f014f7e683f2ccb2929ef0",
+      "bytes": 4255,
+      "sha256": "b1120a1566ab43a11e4e69fdb25bcebd1fd874cd3d7e0b084ec87bf1279325a9",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
     {
       "path": "CITATION.cff",
       "bytes": 769,
-      "sha256": "bbed41e721c02ab269f13a4091043163f952a48e3390f90b766a5eb96c812d1e",
+      "sha256": "a6a3decae056d39db1d98d3ce1b849738d4fd2d73f64b16a3628344811899328",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
@@ -112,8 +110,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 8092,
-      "sha256": "76506f983a10427c640b6d1806ba02b89687b3e41b926c6c01f8624d647332c8",
+      "bytes": 9259,
+      "sha256": "c4efdf67cfc5e73f5158a75357a2c7e3f44d6cc903e6f2bc464620969bbdb666",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
@@ -156,6 +154,13 @@
       "path": "docs/rf-characterization-20261121.md",
       "bytes": 5091,
       "sha256": "015395e9027d883bad032516ca5661c7d7eb87e4dc97f04d0116db80d09707ef",
+      "licence_scope": "project-documentation",
+      "role": "approved_release_artifact"
+    },
+    {
+      "path": "docs/tools-specan-rtltcp.md",
+      "bytes": 2155,
+      "sha256": "656fa2bdc45528408c585682823d5b520ad56b125e8a82063305d6814064045d",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
@@ -351,7 +356,7 @@
     {
       "path": "paper/metadata.json",
       "bytes": 909,
-      "sha256": "5fe410147bba86466a4454f22b8f6fcdd687f2c3d5e20e8556e19d1be1fe09cc",
+      "sha256": "3b6ed6b0642de8415fa7587e1ffc5e1452b2124a52eba7c4f8895ae4a33d7564",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
@@ -392,8 +397,8 @@
     },
     {
       "path": "release/approved-config.json",
-      "bytes": 30093,
-      "sha256": "bcc8890b5273bd93ec47d0164195320b68ffc515a49bd5449e27c32f2d293e0f",
+      "bytes": 30730,
+      "sha256": "5f6a9c131c1027ea19bfeab18596b0bd5ba5685a6e41998e2ebf8e1692a85d6b",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
@@ -406,8 +411,8 @@
     },
     {
       "path": "release/component-licences.csv",
-      "bytes": 45572,
-      "sha256": "c976272d3b2da0a3c6571436a37d0c4019d247cd484c2b63277419698886ba50",
+      "bytes": 46767,
+      "sha256": "6730ea8c50ac2a98a5213ee304ae42b8f0230ac4c3e16c0aa8a961c5f6f87097",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
@@ -420,8 +425,8 @@
     },
     {
       "path": "release/owner-approval.json",
-      "bytes": 405,
-      "sha256": "3108c1da01d87b0c0dc798d439be4447212255954354562e4c5b94ead3345c5d",
+      "bytes": 451,
+      "sha256": "8a13c953c99c1157e7b69daebd80a12a8339543d6662664e3b6520de613f2b29",
       "licence_scope": "project-documentation",
       "role": "owner_approval_record"
     },
@@ -441,8 +446,8 @@
     },
     {
       "path": "release/release-notes.md",
-      "bytes": 3905,
-      "sha256": "8b5a3c26a50b8467c2ce0979a338d945bc7977bfd0243f8f59aac2c79b27e4dc",
+      "bytes": 5431,
+      "sha256": "0ec00df3d11d78bf62b35f4df5d419116436a3bad2ffc7c9b798ad14482a2de1",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
@@ -463,7 +468,7 @@
     {
       "path": "site/asset-manifest.json",
       "bytes": 34451,
-      "sha256": "a341c506790e92a50e7787bd368fe2f0ff1966b05536221d9cabac7b9daa01ea",
+      "sha256": "5fd856590282cf8f9f61f8f37d63c9cce3e24308903d9f0979be8712b44cbb4a",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
@@ -504,8 +509,8 @@
     },
     {
       "path": "site/dist/index.html",
-      "bytes": 14623,
-      "sha256": "3949c4f2d6f2b7812a2a5e3952329149f450b51b4a37119e499f886445b305bb",
+      "bytes": 14858,
+      "sha256": "8fb78d5b58af9952aa1e19fe213bd5728463f67dcf7f8082397eb482f200ac95",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
@@ -2610,6 +2615,20 @@
       "role": "approved_release_artifact"
     },
     {
+      "path": "tests/test_pi5_rtltcp.py",
+      "bytes": 3313,
+      "sha256": "9f1ce26d8e604561d8d643f6946252ee3838409d6643dd050207465e37debcb4",
+      "licence_scope": "project-code",
+      "role": "approved_release_artifact"
+    },
+    {
+      "path": "tests/test_pi5_specan.py",
+      "bytes": 5944,
+      "sha256": "9ba6fcf049b0daaebb98b1d3e162d93e581a04c80a147d4dbc4263a52a17a78d",
+      "licence_scope": "project-code",
+      "role": "approved_release_artifact"
+    },
+    {
       "path": "tests/test_protocol.py",
       "bytes": 4868,
       "sha256": "aa6dd5e72cd1acbf6a0d5e3621853641c4ce279f2038489f219f2d87eca71ba1",
@@ -2666,6 +2685,69 @@
       "role": "approved_release_artifact"
     },
     {
+      "path": "tools/pi5_rtltcp/README.md",
+      "bytes": 1550,
+      "sha256": "83379f6e8d2764a2710a5c7e9cdeadecdab2941906d1283f818c943d2d0d4f0d",
+      "licence_scope": "project-documentation",
+      "role": "approved_release_artifact"
+    },
+    {
+      "path": "tools/pi5_rtltcp/__init__.py",
+      "bytes": 131,
+      "sha256": "d6dbb535e35f3ba236efaeaa2242ee7782c8d3db3ce925667281a21d97a64f73",
+      "licence_scope": "project-code",
+      "role": "approved_release_artifact"
+    },
+    {
+      "path": "tools/pi5_rtltcp/bridge.py",
+      "bytes": 14676,
+      "sha256": "0e66b7c283f624ca9bcb7e86e2b4ca7ab6530a04eaa87915ec4562d87fbf671c",
+      "licence_scope": "project-code",
+      "role": "approved_release_artifact"
+    },
+    {
+      "path": "tools/pi5_specan/README.md",
+      "bytes": 2034,
+      "sha256": "3a196da67a6cbca2e83f5cc9d2c552a8f0074d7d140cd1b01f8737ce0b7dd779",
+      "licence_scope": "project-documentation",
+      "role": "approved_release_artifact"
+    },
+    {
+      "path": "tools/pi5_specan/__init__.py",
+      "bytes": 136,
+      "sha256": "efd538415f5a23c8678b5061a73cb590baf70a5ad50a79260bab4338653fdc9d",
+      "licence_scope": "project-code",
+      "role": "approved_release_artifact"
+    },
+    {
+      "path": "tools/pi5_specan/dsp.py",
+      "bytes": 14599,
+      "sha256": "eaf07add96b704f47c59b6af8f0a8bf513d4ddeb1c130065f1ada3080a8f3e80",
+      "licence_scope": "project-code",
+      "role": "approved_release_artifact"
+    },
+    {
+      "path": "tools/pi5_specan/pi_agent.py",
+      "bytes": 11267,
+      "sha256": "2b3eac2f6426564ea189765d1f7ef0ded01149d221af972b01e54548c7513bf6",
+      "licence_scope": "project-code",
+      "role": "approved_release_artifact"
+    },
+    {
+      "path": "tools/pi5_specan/server.py",
+      "bytes": 15682,
+      "sha256": "42de0a646b9893ba9a38f7aa119cc8376f17fae3bce85ae995562e2cfd76b0cd",
+      "licence_scope": "project-code",
+      "role": "approved_release_artifact"
+    },
+    {
+      "path": "tools/pi5_specan/ui.html",
+      "bytes": 16555,
+      "sha256": "7138b3b6c75433fb5e487b3906915a727fc81eee6e5cbcce53f143e5cd87bc82",
+      "licence_scope": "project-code",
+      "role": "approved_release_artifact"
+    },
+    {
       "path": "tools/reproduce_metrics.py",
       "bytes": 4349,
       "sha256": "d1349ed544968dc1de629b2ee472dd3aa4bfe155fe10e7a92d69395d1551cccf",
@@ -2691,5 +2773,5 @@
   "title": "Sustained Selected Complex Receive Streaming from the BCM43455 on Raspberry Pi 5",
   "prepared_date": "2026-10-06",
   "release_date": "2026-11-21",
-  "approved_config_sha256": "b43e84d81bc1e94615bd9f7ab0fd66acaf48ebfd4bce3ad3a0d296bdddc000ae"
+  "approved_config_sha256": "3bef4bf2d7dd83fb27ab09172dae606624b94a9dc2dd5b76590f4019be3f2764"
 }

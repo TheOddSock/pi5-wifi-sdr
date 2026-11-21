@@ -1,5 +1,5 @@
 {
-  "version": "0.4.0",
+  "version": "0.5.0",
   "publication": false,
   "inputs": "Manifest-selected release files, no site recursion or approval/manifest copies",
   "files": [
@@ -25,8 +25,8 @@
     },
     {
       "path": "index.html",
-      "bytes": 14623,
-      "sha256": "3949c4f2d6f2b7812a2a5e3952329149f450b51b4a37119e499f886445b305bb"
+      "bytes": 14858,
+      "sha256": "8fb78d5b58af9952aa1e19fe213bd5728463f67dcf7f8082397eb482f200ac95"
     },
     {
       "path": "reading.css",

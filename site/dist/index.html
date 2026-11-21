@@ -21,7 +21,7 @@
       <h1 id="title">Using the Pi 5’s Wi-Fi chip as an <span>experimental SDR</span></h1>
       <p class="standfirst">Streaming selected radio samples from the onboard Wi-Fi chip.</p>
       <p>Wi-Fi normally delivers decoded packets. Radio samples let us study the signal itself. With custom firmware and a Linux driver, we exported selected complex receive samples from the Pi 5’s BCM43455 chip while its collector stayed active.</p>
-      <p>One checked recording lasted an hour and delivered three billion selected complex samples. In <strong>v0.4.0 (Nov 2026)</strong>, eight new live RF proofs add dual-band 5.2 GHz continuous streaming (+63 dB SNR), true 80 MSPS wideband snapshots up to 5.825 GHz, and a live over-the-air Bluetooth LE CRC-24 decode.</p>
+      <p>One checked recording lasted an hour and delivered three billion selected complex samples. In <strong>v0.4.0 (Nov 2026)</strong>, eight new live RF proofs add dual-band 5.2 GHz continuous streaming (+63 dB SNR), true 80 MSPS wideband snapshots up to 5.825 GHz, and a live over-the-air Bluetooth LE CRC-24 decode. <strong>v0.5.0</strong> adds <code>pi5-specan</code> (zero-kernel-compile 2.4–5.835 GHz web spectrum analyzer &amp; live BLE sniffer) and <code>pi5-rtltcp</code> (standard <code>rtl_tcp</code> bridge for SDR++, Gqrx, and GNU Radio).</p>
       <a class="text-link" href="rf-characterization.html">Open the v0.4.0 interactive RF showcase →</a> &nbsp;·&nbsp; <a class="text-link" href="#longrun">See the hour-long result</a>
     </div>
     <figure class="hero-figure">
@@ -121,6 +121,6 @@
     <p class="reading-bottom"><a href="https://github.com/TheOddSock/pi5-wifi-sdr">GitHub repository</a> <a href="reading/files/src/device-abi37/BUILD.html">ABI37 source and exact build notes</a> <a href="reading/report.pdf">Download the report PDF</a></p>
   </section>
 </main>
-<footer class="wrap"><p>Pi 5 Wi-Fi SDR · TheOddSock</p><p>Version <span data-version>0.4.0</span> · Evidence through 21 November 2026</p><p>Original code: GPL-2.0-or-later. Original report and diagrams: CC BY 4.0. <a href="reading/files/LICENSING.html">Licence grants and retained third-party terms</a>.</p><p>Related work: <a href="https://espargos.net/espsdr/">ESP-SDR</a> and <a href="https://nexmon.org/">Nexmon</a>. See the report for attribution, AI assistance and the bounded prior-art comparison.</p></footer>
+<footer class="wrap"><p>Pi 5 Wi-Fi SDR · TheOddSock</p><p>Version <span data-version>0.5.0</span> · Evidence through 21 November 2026</p><p>Original code: GPL-2.0-or-later. Original report and diagrams: CC BY 4.0. <a href="reading/files/LICENSING.html">Licence grants and retained third-party terms</a>.</p><p>Related work: <a href="https://espargos.net/espsdr/">ESP-SDR</a> and <a href="https://nexmon.org/">Nexmon</a>. See the report for attribution, AI assistance and the bounded prior-art comparison.</p></footer>
 </body>
 </html>

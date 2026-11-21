@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>pi5-specan · Raspberry Pi 5 BCM43455c0 Wideband Spectrum Analyzer</title>
+<style>
+  :root {
+    --bg: #0b0f17;
+    --panel: #121826;
+    --border: #232d42;
+    --text: #e2e8f0;
+    --muted: #8b9bb4;
+    --cyan: #38bdf8;
+    --emerald: #34d399;
+    --amber: #fbbf24;
+    --rose: #fb7185;
+    --violet: #a78bfa;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    font-size: 13px;
+    line-height: 1.4;
+    padding: 14px 18px;
+  }
+  header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 12px;
+  }
+  .brand { display: flex; align-items: center; gap: 10px; }
+  .brand h1 { font-size: 17px; font-weight: 700; letter-spacing: 0.3px; }
+  .pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 3px 9px; border-radius: 999px;
+    font-size: 11px; font-weight: 600;
+    background: #172033; border: 1px solid var(--border); color: var(--muted);
+  }
+  .pill.live { border-color: #065f46; background: #064e3b; color: #6ee7b7; }
+  .dot { width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+  .controls { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+  button {
+    background: #1a2336; color: var(--text); border: 1px solid var(--border);
+    padding: 6px 11px; border-radius: 6px; font-size: 12px; font-weight: 600;
+    cursor: pointer; transition: background 0.15s, border-color 0.15s;
+  }
+  button:hover { background: #24314c; border-color: #3b4c70; }
+  button.active { background: #0369a1; border-color: var(--cyan); color: #fff; }
+  button.warn { border-color: #78350f; color: var(--amber); }
+  .stats-bar {
+    display: flex; flex-wrap: wrap; gap: 16px;
+    font-size: 12px; color: var(--muted);
+    margin-bottom: 12px; padding: 8px 12px;
+    background: var(--panel); border: 1px solid var(--border); border-radius: 8px;
+  }
+  .stats-bar strong { color: var(--text); font-weight: 600; }
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .panel {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 12px;
+  }
+  .panel-hdr {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 6px; font-size: 12px;
+  }
+  .panel-hdr h2 { font-size: 13px; font-weight: 700; color: var(--text); }
+  .readout { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; color: var(--cyan); font-size: 12px; }
+  canvas {
+    display: block; width: 100%; border-radius: 6px;
+    background: #080c14; border: 1px solid #1a2234;
+    cursor: crosshair;
+  }
+  .wf-canvas { margin-top: 6px; }
+  table {
+    width: 100%; border-collapse: collapse; font-size: 12px;
+    font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  }
+  th, td {
+    text-align: left; padding: 6px 8px; border-bottom: 1px solid #1c2538;
+  }
+  th { color: var(--muted); font-weight: 600; font-family: ui-sans-serif, system-ui, sans-serif; }
+  .crc-ok {
+    display: inline-block; padding: 1px 6px; border-radius: 4px;
+    background: #064e3b; color: #6ee7b7; font-weight: 700; font-size: 11px;
+  }
+  .empty-row { color: var(--muted); text-align: center; padding: 16px; font-family: ui-sans-serif, system-ui, sans-serif; }
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">
+    <h1>pi5-specan</h1>
+    <span id="statusPill" class="pill"><span class="dot"></span>Connecting...</span>
+    <span class="pill">BCM43455c0 · Stock brcmfmac.ko · conj(IQ)</span>
+  </div>
+  <div class="controls">
+    <button data-mode="dual" class="mode-btn active">Dual-Band</button>
+    <button data-mode="2g" class="mode-btn">2.4 GHz</button>
+    <button data-mode="5g" class="mode-btn">5 GHz (80 MSPS)</button>
+    <button data-mode="ble" class="mode-btn">BLE Sniffer</button>
+    <button id="btnResetHold" class="warn">Reset Max-Hold</button>
+    <button id="btnSpurMask" class="active">80M Spur Mask: ON</button>
+    <button id="btnPause">Pause</button>
+    <button id="btnExport">Export JSON</button>
+  </div>
+</header>
+
+<div class="stats-bar">
+  <div>Country: <strong id="stCountry">--</strong></div>
+  <div>Mode: <strong id="stMode">--</strong></div>
+  <div>Sweeps: <strong id="stSweeps">0</strong> (<strong id="stRate">0.0</strong>/s)</div>
+  <div>Bursts: <strong id="stBursts">0</strong></div>
+  <div>BLE CRC-24 Hits: <strong id="stBleCount">0</strong></div>
+  <div>2.4G Peak: <strong id="stPeak2g">--</strong></div>
+  <div>5G Peak: <strong id="stPeak5g">--</strong></div>
+</div>
+
+<div class="grid">
+  <div class="panel" id="panel2g">
+    <div class="panel-hdr">
+      <h2>2.4 GHz ISM Band (20 MSPS Stitched · Wi-Fi + BLE Ch 37/38/39)</h2>
+      <span id="readout2g" class="readout">Hover spectrum for MHz / dBFS</span>
+    </div>
+    <canvas id="spec2g" width="1200" height="210"></canvas>
+    <canvas id="wf2g" class="wf-canvas" width="1200" height="120"></canvas>
+  </div>
+
+  <div class="panel" id="panel5g">
+    <div class="panel-hdr">
+      <h2>5 GHz Wideband (80 MSPS Stitched · UNII-1 / 2 / 3 · up to 5.83 GHz)</h2>
+      <span id="readout5g" class="readout">Hover spectrum for MHz / dBFS</span>
+    </div>
+    <canvas id="spec5g" width="1200" height="210"></canvas>
+    <canvas id="wf5g" class="wf-canvas" width="1200" height="120"></canvas>
+  </div>
+
+  <div class="panel">
+    <div class="panel-hdr">
+      <h2>Live Over-the-Air Bluetooth LE Advertising Decoder (Software GFSK + CRC-24)</h2>
+      <span class="readout">MACs redacted by default</span>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Time</th><th>BLE Ch</th><th>Freq</th><th>PDU Type</th><th>TxAdd</th>
+          <th>Len</th><th>CFO</th><th>SNR</th><th>MAC</th><th>AD Summary</th><th>Check</th>
+        </tr>
+      </thead>
+      <tbody id="bleBody">
+        <tr><td colspan="11" class="empty-row">Listening for BLE advertising packets (Ch 38 / 39)...</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+const DB_MIN = -105;
+const DB_MAX = -20;
+
+// Inferno-like 256-entry colormap [R, G, B]
+const CMAP = new Uint8Array(256 * 3);
+(function buildCmap() {
+  const stops = [
+    [0.00, 8, 12, 24],
+    [0.25, 42, 18, 92],
+    [0.50, 148, 38, 103],
+    [0.72, 229, 92, 48],
+    [0.90, 252, 186, 36],
+    [1.00, 252, 255, 190],
+  ];
+  for (let i = 0; i < 256; i++) {
+    const t = i / 255;
+    let s = 0;
+    while (s < stops.length - 2 && t > stops[s + 1][0]) s++;
+    const [t0, r0, g0, b0] = stops[s];
+    const [t1, r1, g1, b1] = stops[s + 1];
+    const u = Math.max(0, Math.min(1, (t - t0) / (t1 - t0)));
+    CMAP[i * 3]     = Math.round(r0 + u * (r1 - r0));
+    CMAP[i * 3 + 1] = Math.round(g0 + u * (g1 - g0));
+    CMAP[i * 3 + 2] = Math.round(b0 + u * (b1 - b0));
+  }
+})();
+
+const state = {
+  paused: false,
+  spurMask: true,
+  mode: "dual",
+  bands: {
+    "2g": { fStart: 2402, fStop: 2482, psd: null, maxHold: null, avg: null, hoverIdx: -1 },
+    "5g": { fStart: 5170, fStop: 5835, psd: null, maxHold: null, avg: null, hoverIdx: -1 },
+  },
+  blePackets: [],
+};
+
+const MARKERS_2G = [
+  { f: 2402, label: "BLE37", color: "#a78bfa" },
+  { f: 2412, label: "Ch1", color: "#475569" },
+  { f: 2426, label: "BLE38", color: "#a78bfa" },
+  { f: 2437, label: "Ch6", color: "#475569" },
+  { f: 2462, label: "Ch11", color: "#475569" },
+  { f: 2480, label: "BLE39", color: "#a78bfa" },
+];
+const MARKERS_5G = [
+  { f: 5210, label: "Ch42", color: "#475569" },
+  { f: 5290, label: "Ch58", color: "#475569" },
+  { f: 5530, label: "Ch106", color: "#475569" },
+  { f: 5610, label: "Ch122", color: "#475569" },
+  { f: 5690, label: "Ch138", color: "#475569" },
+  { f: 5775, label: "Ch155", color: "#34d399" },
+  { f: 5825, label: "Ch165", color: "#34d399" },
+];
+
+function dbToY(db, h) {
+  const norm = (db - DB_MIN) / (DB_MAX - DB_MIN);
+  return h - 18 - Math.max(0, Math.min(1, norm)) * (h - 28);
+}
+
+function drawSpectrum(bandKey, canvasId, lineColor, markers) {
+  const b = state.bands[bandKey];
+  const cv = document.getElementById(canvasId);
+  const ctx = cv.getContext("2d");
+  const w = cv.width, h = cv.height;
+  ctx.clearRect(0, 0, w, h);
+
+  // Grid
+  ctx.strokeStyle = "#182235";
+  ctx.lineWidth = 1;
+  ctx.font = "11px ui-monospace, monospace";
+  ctx.fillStyle = "#64748b";
+  for (let db = -100; db <= -20; db += 20) {
+    const y = dbToY(db, h);
+    ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke();
+    ctx.fillText(db + " dB", 6, y - 3);
+  }
+  for (const m of markers) {
+    if (m.f < b.fStart || m.f > b.fStop) continue;
+    const x = ((m.f - b.fStart) / (b.fStop - b.fStart)) * w;
+    ctx.strokeStyle = m.color + "55";
+    ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h - 18); ctx.stroke();
+    ctx.fillStyle = m.color;
+    ctx.fillText(m.label, Math.min(w - 40, Math.max(4, x + 3)), h - 5);
+  }
+
+  if (!b.psd || b.psd.length === 0) return;
+  const n = b.psd.length;
+
+  const trace = (arr, color, width) => {
+    if (!arr) return;
+    ctx.strokeStyle = color;
+    ctx.lineWidth = width;
+    ctx.beginPath();
+    let started = false;
+    for (let i = 0; i < n; i++) {
+      const v = arr[i];
+      if (v === null || Number.isNaN(v)) { started = false; continue; }
+      const x = (i / (n - 1)) * w;
+      const y = dbToY(v, h);
+      if (!started) { ctx.moveTo(x, y); started = true; } else { ctx.lineTo(x, y); }
+    }
+    ctx.stroke();
+  };
+
+  trace(b.maxHold, "#fbbf2488", 1.2);
+  trace(b.avg, "#a78bfa99", 1.2);
+  trace(b.psd, lineColor, 1.8);
+
+  // Peak marker
+  let pkIdx = -1, pkVal = -999;
+  for (let i = 0; i < n; i++) {
+    if (b.psd[i] !== null && b.psd[i] > pkVal) { pkVal = b.psd[i]; pkIdx = i; }
+  }
+  if (pkIdx >= 0) {
+    const fMhz = b.fStart + (pkIdx / (n - 1)) * (b.fStop - b.fStart);
+    const x = (pkIdx / (n - 1)) * w;
+    const y = dbToY(pkVal, h);
+    ctx.fillStyle = "#fb7185";
+    ctx.beginPath(); ctx.arc(x, y, 3.5, 0, Math.PI * 2); ctx.fill();
+    ctx.fillText(`${fMhz.toFixed(2)} MHz (${pkVal.toFixed(1)} dB)`, Math.min(w - 170, Math.max(48, x + 6)), Math.max(14, y - 6));
+  }
+
+  // Hover crosshair
+  if (b.hoverIdx >= 0 && b.hoverIdx < n && b.psd[b.hoverIdx] !== null) {
+    const x = (b.hoverIdx / (n - 1)) * w;
+    ctx.strokeStyle = "#ffffff44";
+    ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h - 18); ctx.stroke();
+  }
+}
+
+function pushWaterfall(bandKey, canvasId) {
+  const b = state.bands[bandKey];
+  if (!b.psd || b.psd.length === 0) return;
+  const cv = document.getElementById(canvasId);
+  const ctx = cv.getContext("2d");
+  const w = cv.width, h = cv.height;
+  // Scroll down 2px
+  ctx.drawImage(cv, 0, 0, w, h - 2, 0, 2, w, h - 2);
+  const img = ctx.createImageData(w, 2);
+  const n = b.psd.length;
+  for (let x = 0; x < w; x++) {
+    const idx = Math.min(n - 1, Math.floor((x / w) * n));
+    const v = b.psd[idx];
+    let c = 0;
+    if (v !== null && !Number.isNaN(v)) {
+      c = Math.max(0, Math.min(255, Math.round(((v - DB_MIN) / (DB_MAX - DB_MIN)) * 255)));
+    }
+    const r = CMAP[c * 3], g = CMAP[c * 3 + 1], bl = CMAP[c * 3 + 2];
+    for (let row = 0; row < 2; row++) {
+      const p = (row * w + x) * 4;
+      img.data[p] = r; img.data[p + 1] = g; img.data[p + 2] = bl; img.data[p + 3] = 255;
+    }
+  }
+  ctx.putImageData(img, 0, 0);
+}
+
+function renderBleTable() {
+  const tbody = document.getElementById("bleBody");
+  if (state.blePackets.length === 0) return;
+  tbody.innerHTML = state.blePackets.slice(0, 40).map(p => `
+    <tr>
+      <td>${p.time_str || ""}</td>
+      <td>Ch ${p.ble_channel}</td>
+      <td>${p.freq_mhz} MHz</td>
+      <td><strong>${p.pdu_type}</strong></td>
+      <td>${p.tx_add}</td>
+      <td>${p.length}B</td>
+      <td>${p.cfo_khz > 0 ? "+" : ""}${p.cfo_khz} kHz</td>
+      <td>+${p.snr_db} dB</td>
+      <td>${p.mac}</td>
+      <td>${p.ad_summary}</td>
+      <td><span class="crc-ok">CRC-24 PASS</span></td>
+    </tr>`).join("");
+}
+
+function attachHover(bandKey, canvasId, readoutId, lineColor, markers) {
+  const cv = document.getElementById(canvasId);
+  const ro = document.getElementById(readoutId);
+  cv.addEventListener("mousemove", (ev) => {
+    const b = state.bands[bandKey];
+    if (!b.psd) return;
+    const rect = cv.getBoundingClientRect();
+    const frac = Math.max(0, Math.min(1, (ev.clientX - rect.left) / rect.width));
+    const idx = Math.round(frac * (b.psd.length - 1));
+    b.hoverIdx = idx;
+    const fMhz = b.fStart + frac * (b.fStop - b.fStart);
+    const cur = b.psd[idx];
+    const mh = b.maxHold ? b.maxHold[idx] : null;
+    ro.textContent = `${fMhz.toFixed(3)} MHz · Live: ${cur !== null ? cur.toFixed(1) : "--"} dBFS · Max: ${mh !== null ? mh.toFixed(1) : "--"} dBFS`;
+    drawSpectrum(bandKey, canvasId, lineColor, markers);
+  });
+  cv.addEventListener("mouseleave", () => {
+    state.bands[bandKey].hoverIdx = -1;
+    drawSpectrum(bandKey, canvasId, lineColor, markers);
+  });
+}
+attachHover("2g", "spec2g", "readout2g", "#38bdf8", MARKERS_2G);
+attachHover("5g", "spec5g", "readout5g", "#34d399", MARKERS_5G);
+
+// Controls
+document.querySelectorAll(".mode-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const m = btn.dataset.mode;
+    fetch("/api/control", { method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({mode: m}) });
+    document.querySelectorAll(".mode-btn").forEach(b => b.classList.toggle("active", b === btn));
+  });
+});
+document.getElementById("btnResetHold").addEventListener("click", () => {
+  fetch("/api/control", { method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({reset_hold: true}) });
+  for (const k of ["2g", "5g"]) { state.bands[k].maxHold = null; state.bands[k].avg = null; }
+});
+document.getElementById("btnSpurMask").addEventListener("click", (ev) => {
+  state.spurMask = !state.spurMask;
+  ev.target.classList.toggle("active", state.spurMask);
+  ev.target.textContent = `80M Spur Mask: ${state.spurMask ? "ON" : "OFF"}`;
+  fetch("/api/control", { method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({mask_spur: state.spurMask}) });
+});
+document.getElementById("btnPause").addEventListener("click", (ev) => {
+  state.paused = !state.paused;
+  ev.target.textContent = state.paused ? "Resume" : "Pause";
+  ev.target.classList.toggle("active", state.paused);
+});
+document.getElementById("btnExport").addEventListener("click", () => {
+  window.open("/api/snapshot", "_blank");
+});
+
+// SSE Stream
+const es = new EventSource("/events");
+es.onopen = () => {
+  const p = document.getElementById("statusPill");
+  p.className = "pill live";
+  p.innerHTML = '<span class="dot"></span>LIVE';
+};
+es.onerror = () => {
+  const p = document.getElementById("statusPill");
+  p.className = "pill";
+  p.innerHTML = '<span class="dot"></span>Disconnected';
+};
+es.onmessage = (ev) => {
+  if (state.paused) return;
+  const msg = JSON.parse(ev.data);
+  if (msg.type === "status") {
+    document.getElementById("stCountry").textContent = msg.country || "--";
+    document.getElementById("stMode").textContent = msg.mode || "--";
+    document.getElementById("stSweeps").textContent = msg.sweeps ?? 0;
+    document.getElementById("stRate").textContent = (msg.sweeps_per_sec ?? 0).toFixed(2);
+    document.getElementById("stBursts").textContent = msg.bursts ?? 0;
+    document.getElementById("stBleCount").textContent = msg.ble_total ?? 0;
+    return;
+  }
+  if (msg.type === "band") {
+    const b = state.bands[msg.band];
+    if (!b) return;
+    b.fStart = msg.f_start_mhz;
+    b.fStop = msg.f_stop_mhz;
+    b.psd = msg.psd_db;
+    b.maxHold = msg.max_hold_db;
+    b.avg = msg.avg_db;
+    if (msg.band === "2g") {
+      drawSpectrum("2g", "spec2g", "#38bdf8", MARKERS_2G);
+      pushWaterfall("2g", "wf2g");
+      if (msg.peak_mhz) document.getElementById("stPeak2g").textContent = `${msg.peak_mhz.toFixed(2)} MHz (${msg.peak_db.toFixed(1)} dB)`;
+    } else {
+      drawSpectrum("5g", "spec5g", "#34d399", MARKERS_5G);
+      pushWaterfall("5g", "wf5g");
+      if (msg.peak_mhz) document.getElementById("stPeak5g").textContent = `${msg.peak_mhz.toFixed(2)} MHz (${msg.peak_db.toFixed(1)} dB)`;
+    }
+    return;
+  }
+  if (msg.type === "ble") {
+    state.blePackets.unshift(msg.packet);
+    if (state.blePackets.length > 100) state.blePackets.pop();
+    renderBleTable();
+  }
+};
+</script>
+</body>
+</html>

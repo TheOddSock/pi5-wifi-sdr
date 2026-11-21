@@ -1,4 +1,15 @@
-# Version 0.4.0
+# Version 0.5.0
+
+**Zero-kernel-compile `2.4–5.835 GHz` web spectrum analyzer & live BLE sniffer (`pi5-specan`), plus a standard `rtl_tcp` bridge (`pi5-rtltcp`) for SDR++, Gqrx, GNU Radio, and URH.**
+
+Version 0.5.0 (21 November 2026) preserves all v0.4.0 and v0.3.0 evidence, interactive showcase, reports, and source recipes, and adds two ready-to-use receive-only SDR tools ([tools guide](../docs/tools-specan-rtltcp.md)):
+
+- **`pi5-specan` ([`tools/pi5_specan/`](../tools/pi5_specan/README.md)):** Runs on stock Raspberry Pi 5 `brcmfmac.ko` + pristine MFG firmware (`alternative_fw_path`). Sweeps `2.402–2482 MHz` (4 × `20 MHz` hops) and `5170–5835 MHz` (`80 MSPS` Ch 42 & Ch 155 + `20 MSPS` Ch 165 under `country=XZ`), serving a zero-dependency live Canvas 2D spectrum + max-hold + Inferno waterfall + live BLE Ch 38/39 software GFSK/CRC-24 packet table (MACs redacted by default). Verified live on Pi 5 at **`1.57 dual-band sweeps/s`** (`48` sweeps / `330` bursts in `20 s`, `3` live BLE `CRC-24 PASS` packets, clean automatic stock Wi-Fi restoration). Includes offline `--replay` mode.
+- **`pi5-rtltcp` ([`tools/pi5_rtltcp/`](../tools/pi5_rtltcp/README.md)):** Standard `rtl_tcp` TCP server (`RTL0` handshake, `uint8` I/Q or `--format cs16`, automatic `conj(iq)` orientation fix, per-frame DC removal, and live `SET_GAIN` / `SET_GAIN_BY_INDEX` digital scaling) bridging Gear 1 continuous `2.4 GHz` (`833.33 kSPS`) and `5.2 GHz` (`769.23 kSPS`) streams into SDR++, Gqrx, SDR#, GNU Radio, and URH.
+
+---
+
+## Version 0.4.0
 
 **Raspberry Pi 5 onboard Wi-Fi captures 80 MSPS I/Q snapshots, streams continuously on 2.4 and 5.2 GHz, and decodes an over-the-air Bluetooth LE packet.**
 

@@ -6,6 +6,12 @@ The Pi can follow a narrow slice of radio frequencies continuously, or take a br
 
 **[Start here for the illustrated overview](https://theoddsock.github.io/pi5-wifi-sdr/)**
 
+## New in v0.5.0 (2026-11-21): Live Wideband Spectrum Analyzer, BLE Sniffer & `rtl_tcp` Bridge
+
+- **[`pi5-specan`](tools/pi5_specan/README.md)** — Zero-kernel-compile **`2.4–5.835 GHz` stitched wideband spectrum analyzer**, scrolling Inferno waterfall, and live **Bluetooth LE Advertising (Ch 38 & Ch 39) software GFSK + CRC-24 sniffer** running on **stock Raspberry Pi 5 `brcmfmac.ko`** + pristine MFG firmware. Verified live on Pi 5 at **`1.57 dual-band sweeps/s`** (`48` sweeps / `330` bursts in `20 s` under `country=XZ`) with `3` live BLE `CRC-24 PASS` decodes (MACs redacted by default), toggleable 80 MSPS `±9.985 MHz` spur masking, and offline `--replay` mode.
+- **[`pi5-rtltcp`](tools/pi5_rtltcp/README.md)** — Standard **`rtl_tcp`** network server (`RTL0` handshake, `uint8` I/Q or `--format cs16`, automatic `conj(iq)` orientation fix, DC blocker, and live client gain-slider scaling) bridging continuous `2.4 GHz` (`833.33 kSPS`) and `5.2 GHz` (`769.23 kSPS`) streams directly into **SDR++, Gqrx, SDR#, GNU Radio, and URH**.
+- See the [v0.5.0 tools guide](docs/tools-specan-rtltcp.md).
+
 ## New in v0.4.0 (2026-11-21): Dual-Band RF, 80 MSPS Snapshots & Live BLE Decode
 
 | Live Proof | Measured Result | Scope |
@@ -58,11 +64,11 @@ python tools/verify_frames.py examples/synthetic-frames.bin --expected-frames 11
 python tools/verify_release.py
 ```
 
-To check the exact published v0.4.0 package, run these commands in a checkout of the [v0.4.0 tag](https://github.com/TheOddSock/pi5-wifi-sdr/tree/v0.4.0). The default branch also carries later documentation edits.
+To check the exact published v0.5.0 package, run these commands in a checkout of the [v0.5.0 tag](https://github.com/TheOddSock/pi5-wifi-sdr/tree/v0.5.0).
 
-Synthetic fixtures check parser behaviour. Aggregate calculations do not repeat the private historical recording audits. Report rendering additionally requires ReportLab; optional module inspection uses pyelftools. See the [reproduction guide](docs/reproducing.md).
+Synthetic fixtures check parser behaviour. Aggregate calculations do not repeat the private historical recording audits. Report rendering additionally requires ReportLab; optional module inspection uses pyelftools; `pi5-specan` and `pi5-rtltcp` require NumPy. See the [reproduction guide](docs/reproducing.md).
 
-The archived v0.3.0 report is available on [Zenodo, DOI 10.5281/zenodo.23192805](https://doi.org/10.5281/zenodo.23192805). The [v0.3.0](https://github.com/TheOddSock/pi5-wifi-sdr/releases/tag/v0.3.0) and v0.4.0 versioned releases preserve their exact published files.
+The archived v0.3.0 report is available on [Zenodo, DOI 10.5281/zenodo.23192805](https://doi.org/10.5281/zenodo.23192805). The [v0.3.0](https://github.com/TheOddSock/pi5-wifi-sdr/releases/tag/v0.3.0), [v0.4.0](https://github.com/TheOddSock/pi5-wifi-sdr/releases/tag/v0.4.0), and v0.5.0 versioned releases preserve their exact published files.
 
 ## Attribution and versions
 

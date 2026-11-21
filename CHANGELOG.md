@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.5.0
+
+Adds two practical receive-only SDR software tools (`tools/pi5_specan/`, `tools/pi5_rtltcp/`), their offline unit tests (`tests/test_pi5_specan.py`, `tests/test_pi5_rtltcp.py`), and technical guide (`docs/tools-specan-rtltcp.md`):
+
+- **`pi5-specan` (`tools/pi5_specan/`):** Zero-kernel-compile `2.4–5.835 GHz` stitched wideband spectrum analyzer, Canvas 2D scrolling waterfall, max-hold/EMA traces, toggleable 80 MSPS `±9.985 MHz` spur masking, and live Bluetooth LE Advertising (Ch 38 & Ch 39) software GFSK + CRC-24 sniffer (MACs redacted by default). Verified live on Pi 5 at `1.57 dual-band sweeps/s` (`48` sweeps / `330` bursts in `20 s`, `3` live BLE `CRC-24 PASS` hits across Ch 38 and Ch 39, clean stock Wi-Fi restoration). Includes offline `--replay` mode.
+- **`pi5-rtltcp` (`tools/pi5_rtltcp/`):** Standard `rtl_tcp` network bridge (`RTL0` handshake, `uint8` I/Q or `--format cs16`, automatic `conj(iq)` orientation fix, per-frame DC blocker, and live client `SET_GAIN` / `SET_GAIN_BY_INDEX` scaling) for continuous `2.4 GHz` (`833.33 kSPS`) and `5.2 GHz` (`769.23 kSPS`) streams into SDR++, Gqrx, SDR#, GNU Radio, and URH.
+
+All v0.4.0 and v0.3.0 evidence, reports, source recipes, and offline verification checks are preserved unchanged.
+
 ## 0.4.0
 
 Adds eight live over-the-air RF characterizations (21 November 2026) on the Raspberry Pi 5 onboard `BCM43455c0` alongside an interactive real-data showcase (`site/dist/rf-characterization.html`), companion addendum PDF (`pi5-rf-characterization-v0.4.0.pdf`), technical addendum (`docs/rf-characterization-20261121.md`), and machine-readable aggregate evidence (`evidence/rf-characterization-20261121.json`). The archived October 6 v0.3.0 technical report (`pi5-receive-stream.pdf`) is preserved intact as the historical v0.3.0 report.
