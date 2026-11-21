@@ -411,8 +411,8 @@
     },
     {
       "path": "release/approved-config.json",
-      "bytes": 31086,
-      "sha256": "810695e24077ee27385756b19359718cd4d24330110af9d928d588ac2dbc65c5",
+      "bytes": 31149,
+      "sha256": "f8bd5002673326cd7a481cf1a7b1437f9e4c934eda8db6ae41dccf8277933eb8",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
@@ -425,8 +425,8 @@
     },
     {
       "path": "release/component-licences.csv",
-      "bytes": 47381,
-      "sha256": "f2b46b4483382312cff7afba09ddfff322cd4dce971565e109ae417f9fffe131",
+      "bytes": 47084,
+      "sha256": "59ed84fb0724934c031fb5841e860ec392ecdfb0ed93fe91292361630c2bec19",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
@@ -440,7 +440,7 @@
     {
       "path": "release/owner-approval.json",
       "bytes": 451,
-      "sha256": "32f312aa672adbbaf20f33a25688b1eb30ddeaa00b1da6baf9da896cc966acb0",
+      "sha256": "ea9de95ff87a282456ce777168f1c3206c71675d60534f6158c885247bfb5890",
       "licence_scope": "project-documentation",
       "role": "owner_approval_record"
     },
@@ -481,8 +481,8 @@
     },
     {
       "path": "site/asset-manifest.json",
-      "bytes": 34451,
-      "sha256": "eb3f0693d60a09d34bc6a18e324b2560218cfc8161d7ee844b1f25cff11b5c40",
+      "bytes": 34606,
+      "sha256": "f22a5f0ef87112f0cb35edfb0023c366e851a2fac2a58be3902e863c2fff4949",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
@@ -523,8 +523,15 @@
     },
     {
       "path": "site/dist/index.html",
-      "bytes": 15159,
-      "sha256": "4c08982525c106973f2d06f1b0ec6c8d9438cc3acdfec76b08d2ce562f6e3f4a",
+      "bytes": 15282,
+      "sha256": "2ce801c28f00c8727c8f0b991c25775edfdb28716e1802149d18c84cb976cecf",
+      "licence_scope": "project-documentation",
+      "role": "approved_release_artifact"
+    },
+    {
+      "path": "site/dist/part2-showcase.html",
+      "bytes": 33820,
+      "sha256": "739ac804a291f72b388c112b71c38254a9c9bb7cb5b7daa21d6eb463f9208138",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
@@ -2815,5 +2822,5 @@
   "title": "Sustained Selected Complex Receive Streaming from the BCM43455 on Raspberry Pi 5",
   "prepared_date": "2026-10-06",
   "release_date": "2026-11-21",
-  "approved_config_sha256": "05bbcf7be2b94260525c2807bb2ae767075ed7622a22bc2adebcf465922f4113"
+  "approved_config_sha256": "c0af5d9fb193288aa824b7ec4ae117c749194764bcbe283d65c5616b5f061164"
 }

@@ -25,8 +25,13 @@
     },
     {
       "path": "index.html",
-      "bytes": 15159,
-      "sha256": "4c08982525c106973f2d06f1b0ec6c8d9438cc3acdfec76b08d2ce562f6e3f4a"
+      "bytes": 15282,
+      "sha256": "2ce801c28f00c8727c8f0b991c25775edfdb28716e1802149d18c84cb976cecf"
+    },
+    {
+      "path": "part2-showcase.html",
+      "bytes": 33820,
+      "sha256": "739ac804a291f72b388c112b71c38254a9c9bb7cb5b7daa21d6eb463f9208138"
     },
     {
       "path": "reading.css",

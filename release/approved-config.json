@@ -104,6 +104,7 @@
     "site/dist/assets/signal-path.svg": "project-documentation",
     "site/dist/assets/streaming.svg": "project-documentation",
     "site/dist/index.html": "project-documentation",
+    "site/dist/part2-showcase.html": "project-documentation",
     "site/dist/reading.css": "project-code",
     "site/dist/reading/files/.gitattributes": "project-code",
     "site/dist/reading/files/AI_ASSISTANCE.html": "project-documentation",
