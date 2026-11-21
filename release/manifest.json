@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "version": "0.4.0",
-  "status": "approved",
+  "status": "post_release_documentation",
   "licence_selection_status": "selected_by_owner",
   "licence_scopes": {
     "project-code": {
@@ -38,11 +38,13 @@
       "family-names": "Davies"
     }
   ],
-  "publication_approved": true,
+  "publication_approved": false,
   "public_repository_url": "https://github.com/TheOddSock/pi5-wifi-sdr",
   "version_doi": null,
   "concept_doi": null,
-  "release_blockers": [],
+  "release_blockers": [
+    "For the approved v0.4.0 package, use the v0.4.0 Git tag. This checkout includes subsequent reader-facing documentation edits."
+  ],
   "manifest_policy": "Manifest and SHA256SUMS are excluded from their own artifact list; review-bundle manifest binds both externally",
   "artifacts": [
     {
@@ -110,8 +112,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 8033,
-      "sha256": "74302c5eaf4991c4ed6a7bed91a3d66b195b2cbc98cea8fe60b62ab98eb13ca5",
+      "bytes": 8092,
+      "sha256": "76506f983a10427c640b6d1806ba02b89687b3e41b926c6c01f8624d647332c8",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
@@ -461,7 +463,7 @@
     {
       "path": "site/asset-manifest.json",
       "bytes": 34451,
-      "sha256": "92f4b7faa192b6c212b43a69a6dd0a4c46dfcdd4ea4dd823f2c38ef2a0c245be",
+      "sha256": "a341c506790e92a50e7787bd368fe2f0ff1966b05536221d9cabac7b9daa01ea",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
@@ -502,8 +504,8 @@
     },
     {
       "path": "site/dist/index.html",
-      "bytes": 14621,
-      "sha256": "c1698f36f9013b814766f35a14ab4e82fe6879ba85e4a290177318c95ad1e174",
+      "bytes": 14623,
+      "sha256": "3949c4f2d6f2b7812a2a5e3952329149f450b51b4a37119e499f886445b305bb",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
@@ -1776,8 +1778,8 @@
     },
     {
       "path": "site/dist/rf-characterization.html",
-      "bytes": 82173,
-      "sha256": "464c8c326e9ab0f4ef2c05fe6339e03bf51d2f62aa45edc038c82dfafb6791de",
+      "bytes": 82594,
+      "sha256": "e15156757df620e4366fd51926af322870ff3d1cce12f61edf5238baf08eaf65",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
