@@ -1,4 +1,17 @@
-# Version 0.5.0
+# Version 0.6.0
+
+**Hardware-triggered `20 / 80 MSPS` RF oscilloscope & `31×` live BLE sniffer (`pi5-specan`), `2.22–3.00 GHz` + `6 GHz` OOB PLL mapping, `50 ns` RF fingerprinting, and passive `20 MHz` Wi-Fi CSI motion radar (`pi5-radar`).**
+
+Version 0.6.0 (21 November 2026) preserves all v0.5.0, v0.4.0, and v0.3.0 evidence, tools, reports, and source recipes, and adds four verified Part 2 receive-only SDR capabilities ([technical addendum](../docs/part2-rf-capabilities-20261121.md), [aggregate JSON](../evidence/part2-rf-capabilities-20261121.json)):
+
+- **Hardware-Triggered RF Oscilloscope (`tools/pi5_specan/`):** Disassembled `sample_collect` trigger wraparound bugs (`0x1cfa02` & `[sc, #284]`), verified an in-memory 46-byte Thumb-2 fix (`7ae16780...`, `0/16,000` bad words across `38/38` captures, `±0.1 µs` edge jitter) enforced at startup by `verify_wraparound_fix()`, added `"scope"` waveform mode (`20 MSPS` & `80 MSPS` `5g_ch42_80M`, `compute_envelope_trace`, `#scopeCanvas`), and decoded **`93` live ambient BLE `CRC-24 PASS` packets in a `20 s` `--mode ble --hw-trigger` run** (`2`-hop BLE plan; `31×` the `3` packets in our `20 s` blind 7-hop dual-band run, MACs redacted).
+- **Direct Fractional-N PLL Map (`2220–3001 MHz` Spot Span + `5955.5 MHz` 6 GHz):** Overriding `chan_info_20691` (`37.4 MHz` XTAL) proved **`781 MHz` spot-tested S-band lock span** (`2220–3001 MHz`, `10.8×` stock 2.4 GHz width; sub-MHz gaps not swept), bounded both VCO limits (`~6,612 MHz` lower rail, `9,003–9,300 MHz` upper break), and verified **`+50.03..+51.93 dB` SNR receive-only reception at `5955.5 MHz` (`6 GHz` Wi-Fi 6E Ch 1)**.
+- **Physical-Layer RF Fingerprinting:** Extracted PA turn-on transients (`74 ns` rise-time std on `BLE-Dev-3`) across `80/80` triggered ambient bursts with `7/7` (`100.0%`) leave-one-out accuracy on anonymous transmitters (`BLE-Dev-1..5`).
+- **Passive `20 MHz` Wi-Fi CSI & Motion Radar (`tools/pi5_radar/`):** Purely passive `L-STF + L-LTF` 52-subcarrier `H(k)` + 64-tap `CIR` extractor (`extract_wifi_csi`, `analyze_motion_sequence`, zero MAC/payload decoding), using `(N-1)/dur` cadence and Nyquist-bounded Doppler analysis. Matched 12 s ambient Ch 1 STILL vs hand-wave MOTION run showed `1.49×` reference shift (`1.63×` p75), `+35%` phase std, and `+6.72 dB` common-band (`0.2–2.80 Hz`) micro-Doppler SNR gain.
+
+---
+
+## Version 0.5.0
 
 **Zero-kernel-compile `2.4–5.835 GHz` web spectrum analyzer & live BLE sniffer (`pi5-specan`), plus a standard `rtl_tcp` bridge (`pi5-rtltcp`) for SDR++, Gqrx, GNU Radio, and URH.**
 

@@ -3,7 +3,7 @@
   "message": "Please cite the technical report in preferred-citation and its exact version.",
   "title": "Sustained Selected Complex Receive Streaming from the BCM43455 on Raspberry Pi 5",
   "type": "software",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "url": "https://github.com/TheOddSock/pi5-wifi-sdr",
   "authors": [
     {
@@ -14,7 +14,7 @@
   "preferred-citation": {
     "type": "report",
     "title": "Sustained Selected Complex Receive Streaming from the BCM43455 on Raspberry Pi 5",
-    "version": "0.5.0",
+    "version": "0.6.0",
     "url": "https://github.com/TheOddSock/pi5-wifi-sdr",
     "authors": [
       {

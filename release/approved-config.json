@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "source_candidate_manifest_sha256": "8da9b7ba64cd2f9d1c39d39539093ca9d9f6b0e552f82e5e67485a2f7e2d9c42",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "title": "Sustained Selected Complex Receive Streaming from the BCM43455 on Raspberry Pi 5",
   "creators": [
     {
@@ -50,6 +50,7 @@
     "docs/current-findings.md": "project-documentation",
     "docs/finalising.md": "project-documentation",
     "docs/limitations.md": "project-documentation",
+    "docs/part2-rf-capabilities-20261121.md": "project-documentation",
     "docs/reproducing.md": "project-documentation",
     "docs/rf-characterization-20261121.md": "project-documentation",
     "docs/tools-specan-rtltcp.md": "project-documentation",
@@ -62,6 +63,7 @@
     "evidence/followup-findings.json": "project-documentation",
     "evidence/known-signal-findings.json": "project-documentation",
     "evidence/longrun-findings.json": "project-documentation",
+    "evidence/part2-rf-capabilities-20261121.json": "project-documentation",
     "evidence/preparation-checks.json": "project-documentation",
     "evidence/prior-art-comparison.csv": "project-documentation",
     "evidence/rf-characterization-20261121.json": "project-documentation",
@@ -402,6 +404,7 @@
     "tests/test_metrics.py": "project-code",
     "tests/test_module_compare.py": "project-code",
     "tests/test_native_contract.py": "project-code",
+    "tests/test_pi5_radar.py": "project-code",
     "tests/test_pi5_rtltcp.py": "project-code",
     "tests/test_pi5_specan.py": "project-code",
     "tests/test_protocol.py": "project-code",
@@ -412,6 +415,9 @@
     "tools/finalise_release.py": "project-code",
     "tools/frame_protocol.py": "project-code",
     "tools/make_figures.py": "project-code",
+    "tools/pi5_radar/README.md": "project-documentation",
+    "tools/pi5_radar/__init__.py": "project-code",
+    "tools/pi5_radar/csi.py": "project-code",
     "tools/pi5_rtltcp/README.md": "project-documentation",
     "tools/pi5_rtltcp/__init__.py": "project-code",
     "tools/pi5_rtltcp/bridge.py": "project-code",

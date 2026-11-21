@@ -6,6 +6,14 @@ The Pi can follow a narrow slice of radio frequencies continuously, or take a br
 
 **[Start here for the illustrated overview](https://theoddsock.github.io/pi5-wifi-sdr/)**
 
+## New in v0.6.0 (2026-11-21): Hardware-Triggered Oscilloscope, `2.22–3.00 GHz` + `6 GHz` OOB PLL, RF Fingerprinting & Passive Wi-Fi CSI Radar
+
+- **Hardware-Triggered `20 / 80 MSPS` RF Oscilloscope ([`tools/pi5_specan/`](tools/pi5_specan/README.md)):** Unlocked firmware `trigger=1` (CRS rising-edge) captures via a runtime-verified 46-byte Thumb-2 circular-wraparound fix (`0/16,000` bad words across `38/38` captures, `±0.1 µs` edge repeatability), added `compute_envelope_trace` + a `20 / 80 MSPS` (`5g_ch42_80M`) time-domain **RF Scope** mode (`#scopeCanvas`), and decoded **`93` live ambient BLE `CRC-24 PASS` packets in a `20 s` `--mode ble --hw-trigger` run** (`2`-hop BLE plan; `31×` the `3` packets in our `20 s` blind 7-hop dual-band run, MACs redacted).
+- **Direct Fractional-N PLL Map (`2220–3001 MHz` Spot Span + `5955.5 MHz` 6 GHz):** Mapping the `chan_info_20691` table (`37.4 MHz` XTAL) proved `0`-bin-jitter closed-loop lock across tested S-band spot pairs spanning **`2220 → 3001 MHz`** (**`781 MHz` span — `10.8×` stock 2.4 GHz width**; sub-MHz gaps between spot pairs were not swept), bounded the lower (`~2203.9 MHz` / `6.61 GHz` VCO) and upper (`3001–3100 MHz` / `9.00–9.30 GHz` VCO) limits, and demonstrated **`+50.03..+51.93 dB` SNR receive-only reception at `5955.5 MHz` (`6 GHz` Wi-Fi 6E Ch 1)**.
+- **Physical-Layer RF Fingerprinting:** Extracted `50 ns`-resolution PA turn-on rise times (`74 ns` std on `BLE-Dev-3`), overshoot, and CFO from `80/80` triggered bursts with zero generator, achieving **`7/7` (`100.0%`) leave-one-out classification** across multi-sample anonymous BLE devices (`BLE-Dev-1..5`).
+- **Passive `20 MHz` Wi-Fi CSI & Motion Radar ([`tools/pi5_radar/`](tools/pi5_radar/README.md)):** Extracts 52-subcarrier `H(k)` and 64-tap `CIR` strictly from public `L-STF + L-LTF` preambles (zero TX, zero MAC/payload decoding), using interval cadence `(N-1)/duration` and Nyquist-bounded Doppler analysis (`<= 0.5 × fps`). A matched 12 s ambient Ch 1 **STILL vs hand-wave MOTION** test showed **`1.49×`** CSI reference shift (`1.63×` p75), **`+35%`** phase std dev, and **`+6.72 dB`** common-band (`0.2–2.80 Hz`) micro-Doppler SNR gain.
+- See the [v0.6.0 technical addendum](docs/part2-rf-capabilities-20261121.md) and [aggregate evidence JSON](evidence/part2-rf-capabilities-20261121.json).
+
 ## New in v0.5.0 (2026-11-21): Live Wideband Spectrum Analyzer, BLE Sniffer & `rtl_tcp` Bridge
 
 - **[`pi5-specan`](tools/pi5_specan/README.md)** — Zero-kernel-compile **`2.4–5.835 GHz` stitched wideband spectrum analyzer**, scrolling Inferno waterfall, and live **Bluetooth LE Advertising (Ch 38 & Ch 39) software GFSK + CRC-24 sniffer** running on **stock Raspberry Pi 5 `brcmfmac.ko`** + pristine MFG firmware. Verified live on Pi 5 at **`1.57 dual-band sweeps/s`** (`48` sweeps / `330` bursts in `20 s` under `country=XZ`) with `3` live BLE `CRC-24 PASS` decodes (MACs redacted by default), toggleable 80 MSPS `±9.985 MHz` spur masking, and offline `--replay` mode.
@@ -64,11 +72,11 @@ python tools/verify_frames.py examples/synthetic-frames.bin --expected-frames 11
 python tools/verify_release.py
 ```
 
-To check the exact published v0.5.0 package, run these commands in a checkout of the [v0.5.0 tag](https://github.com/TheOddSock/pi5-wifi-sdr/tree/v0.5.0).
+To check the exact published v0.6.0 package, run these commands in a checkout of the [v0.6.0 tag](https://github.com/TheOddSock/pi5-wifi-sdr/tree/v0.6.0).
 
-Synthetic fixtures check parser behaviour. Aggregate calculations do not repeat the private historical recording audits. Report rendering additionally requires ReportLab; optional module inspection uses pyelftools; `pi5-specan` and `pi5-rtltcp` require NumPy. See the [reproduction guide](docs/reproducing.md).
+Synthetic fixtures check parser behaviour. Aggregate calculations do not repeat the private historical recording audits. Report rendering additionally requires ReportLab; optional module inspection uses pyelftools; `pi5-specan`, `pi5-rtltcp`, and `pi5-radar` require NumPy. See the [reproduction guide](docs/reproducing.md).
 
-The archived v0.3.0 report is available on [Zenodo, DOI 10.5281/zenodo.23192805](https://doi.org/10.5281/zenodo.23192805). The [v0.3.0](https://github.com/TheOddSock/pi5-wifi-sdr/releases/tag/v0.3.0), [v0.4.0](https://github.com/TheOddSock/pi5-wifi-sdr/releases/tag/v0.4.0), and v0.5.0 versioned releases preserve their exact published files.
+The archived v0.3.0 report is available on [Zenodo, DOI 10.5281/zenodo.23192805](https://doi.org/10.5281/zenodo.23192805). The [v0.3.0](https://github.com/TheOddSock/pi5-wifi-sdr/releases/tag/v0.3.0), [v0.4.0](https://github.com/TheOddSock/pi5-wifi-sdr/releases/tag/v0.4.0), [v0.5.0](https://github.com/TheOddSock/pi5-wifi-sdr/releases/tag/v0.5.0), and v0.6.0 versioned releases preserve their exact published files.
 
 ## Attribution and versions
 

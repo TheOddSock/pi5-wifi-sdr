@@ -9,7 +9,14 @@ A zero-kernel-compile spectrum analyzer, scrolling waterfall, and live Bluetooth
   - **5 GHz (`5170–5250` & `5735–5835 MHz`):** `80 MSPS` (`pre/post=100/100`) hops on `Ch 42 (5210 MHz)`, `Ch 155 (5775 MHz)`, plus `Ch 165 (5825 MHz, 20 MHz)`.
 - **Automatic RF corrections:** Applies `conj(iq)` (`I - jQ`) so positive baseband matches RF above LO, masks DC spike, and includes a UI toggle to notch the known 80 MSPS `±9.985 MHz` (`~fs/8`) internal spur.
 - **Live BLE Advertising Decoder:** Demodulates BLE Ch 38 (`2426 MHz`) and Ch 39 (`2480 MHz`) with 7-bit LFSR dewhitening and full 24-bit `CRC-24` verification in software. Advertiser MAC addresses are redacted (`XX:XX:XX:XX:XX:XX`) by default.
-- **Zero-dependency Web UI (`ui.html`):** Canvas 2D live trace, max-hold, EMA average, Inferno waterfall, hover frequency/dBFS crosshair, and JSON snapshot export.
+- **Hardware-Triggered RF Oscilloscope (`scope` mode & `hw_trigger=1`):** When paired with the circular-wraparound fix (runtime-verified in `verify_wraparound_fix()` from `alternative_fw_path` before arming triggered capture; refused cleanly if unverified), `trigger=1` (CRS rising edge) freezes `pre`/`post` samples around live `20 MSPS` (`2g_ch1`, `ble_ch38`) and `80 MSPS` (`5g_ch42_80M`, `pre/post=30/170 µs`) bursts, renders time-domain dBFS power envelopes (`compute_envelope_trace`, `#scopeCanvas`) with rising-edge timing markers, and decoded **`93` live ambient BLE `CRC-24 PASS` packets in a `20 s` `--mode ble --hw-trigger` run** (`2`-hop BLE plan, `31×` the `3` packets found in our `20 s` blind 7-hop dual-band `v0.5.0` run).
+- **Zero-dependency Web UI (`ui.html`):** Canvas 2D live trace, max-hold, EMA average, Inferno waterfall, time-domain RF oscilloscope, hover frequency/dBFS crosshair, and JSON snapshot export.
+
+## Agent Arguments (`pi_agent.py`)
+```bash
+python3 -B -u pi_agent.py [mode] [max_sweeps] [settle_s] [hw_trigger]
+# mode: dual | 2g | 5g | ble | scope   |   hw_trigger: 0 (immediate) | 1 (CRS in ble/scope)
+```
 
 ## Offline Replay Mode (No Pi 5 Required)
 ```bash

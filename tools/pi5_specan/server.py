@@ -19,7 +19,7 @@ import time
 from typing import Any, Callable
 import numpy as np
 
-from .dsp import compute_psd_db, decode_ble_burst, stitch_band_psd, unpack_iq_words
+from .dsp import compute_envelope_trace, compute_psd_db, decode_ble_burst, stitch_band_psd, unpack_iq_words
 
 UI_HTML_PATH = Path(__file__).resolve().parent / "ui.html"
 
@@ -44,6 +44,7 @@ class SpecAnEngine:
         self.on_mode_change = on_mode_change
         self.mask_80mhz_spur = True
         self.mode = "dual"
+        self.hw_trigger = False
         self.country = "--"
         self.firmware_version = ""
         self.plans: dict[str, list[str]] = {}
@@ -53,6 +54,7 @@ class SpecAnEngine:
         self.last_sweep_id = 0
         self.ble_total = 0
         self.ble_log: deque[dict[str, Any]] = deque(maxlen=200)
+        self.last_scope: dict[str, Any] | None = None
 
         # Latest hop PSDs keyed by (band, hop_name)
         self.hop_cache: dict[str, dict[str, dict[str, Any]]] = {"2g": {}, "5g": {}}
@@ -91,21 +93,27 @@ class SpecAnEngine:
 
     def set_ready(self, header: dict[str, Any]) -> None:
         with self.lock:
+            self.started_at = time.monotonic()
             self.firmware_version = str(header.get("firmware_version", ""))
             c = header.get("country") or {}
             if isinstance(c, dict) and c.get("abbrev"):
                 self.country = f"{c['abbrev']} (rev {c.get('rev', '?')})"
             self.mode = str(header.get("mode", self.mode))
+            if "hw_trigger" in header:
+                self.hw_trigger = bool(header["hw_trigger"])
             self.plans = header.get("plans") or {}
             self._broadcast(self._status_payload_locked())
 
     def _status_payload_locked(self) -> dict[str, Any]:
         elapsed = max(0.001, time.monotonic() - self.started_at)
+        trig_active = bool(self.hw_trigger and self.mode in ("ble", "scope"))
         return {
             "type": "status",
             "country": self.country,
             "firmware_version": self.firmware_version,
             "mode": self.mode,
+            "hw_trigger": self.hw_trigger,
+            "trigger_active": trig_active,
             "sweeps": self.sweep_count,
             "sweeps_per_sec": round(self.sweep_count / elapsed, 2),
             "bursts": self.burst_count,
@@ -121,7 +129,7 @@ class SpecAnEngine:
                     self.band_state[k]["avg"] = None
             if "mask_spur" in body:
                 self.mask_80mhz_spur = bool(body["mask_spur"])
-            if "mode" in body and body["mode"] in ("2g", "5g", "dual", "ble"):
+            if "mode" in body and body["mode"] in ("2g", "5g", "dual", "ble", "scope"):
                 self.mode = body["mode"]
                 if self.on_mode_change is not None:
                     self.on_mode_change(self.mode)
@@ -139,11 +147,24 @@ class SpecAnEngine:
         raw_band = str(header.get("band", "2g"))
         band_key = "5g" if raw_band == "5g" or center_mhz > 4000.0 else "2g"
         hop_name = str(header.get("hop_name", f"{band_key}_{int(center_mhz)}"))
+        trig = int(header.get("trigger", 0))
 
         with self.lock:
             mask_spur = self.mask_80mhz_spur
+            cur_mode = str(header.get("mode", self.mode))
 
         freqs_hz, psd_db = compute_psd_db(iq, fs_hz, nfft=2048, mask_dc_bins=3, mask_80mhz_spur=mask_spur)
+        scope_payload: dict[str, Any] | None = None
+        if cur_mode in ("scope", "ble") or trig != 0:
+            env = compute_envelope_trace(iq, fs_hz, num_points=400)
+            scope_payload = {
+                "hop_name": hop_name,
+                "center_mhz": center_mhz,
+                "bw_mhz": bw_mhz,
+                "trigger": trig,
+                "ts": header.get("ts", round(time.time(), 4)),
+                **env,
+            }
 
         # Decode BLE advertising packets if this hop covers a BLE advertising channel
         ble_hits: list[dict[str, Any]] = []
@@ -224,6 +245,10 @@ class SpecAnEngine:
                 self.ble_log.appendleft(pkt)
                 self._broadcast({"type": "ble", "packet": pkt})
 
+            if scope_payload is not None:
+                self.last_scope = scope_payload
+                self._broadcast({"type": "scope", "scope": scope_payload})
+
             self._broadcast(self._status_payload_locked())
 
     def snapshot(self) -> dict[str, Any]:
@@ -232,6 +257,7 @@ class SpecAnEngine:
                 "status": self._status_payload_locked(),
                 "bands": {},
                 "ble_packets": list(self.ble_log),
+                "scope": self.last_scope,
             }
             for k, cfg in BAND_CONFIG.items():
                 bs = self.band_state[k]

@@ -13,6 +13,7 @@ THIRD_PARTY_NOTICES.md,project-documentation,CC-BY-4.0,LICENSES/CC-BY-4.0.txt,LI
 docs/current-findings.md,project-documentation,CC-BY-4.0,LICENSES/CC-BY-4.0.txt,LICENSING.md
 docs/finalising.md,project-documentation,CC-BY-4.0,LICENSES/CC-BY-4.0.txt,LICENSING.md
 docs/limitations.md,project-documentation,CC-BY-4.0,LICENSES/CC-BY-4.0.txt,LICENSING.md
+docs/part2-rf-capabilities-20261121.md,project-documentation,CC-BY-4.0,LICENSES/CC-BY-4.0.txt,LICENSING.md
 docs/reproducing.md,project-documentation,CC-BY-4.0,LICENSES/CC-BY-4.0.txt,LICENSING.md
 docs/rf-characterization-20261121.md,project-documentation,CC-BY-4.0,LICENSES/CC-BY-4.0.txt,LICENSING.md
 docs/tools-specan-rtltcp.md,project-documentation,CC-BY-4.0,LICENSES/CC-BY-4.0.txt,LICENSING.md
@@ -25,6 +26,7 @@ evidence/derived/sixstream-c-delivery.json,project-documentation,CC-BY-4.0,LICEN
 evidence/followup-findings.json,project-documentation,CC-BY-4.0,LICENSES/CC-BY-4.0.txt,LICENSING.md
 evidence/known-signal-findings.json,project-documentation,CC-BY-4.0,LICENSES/CC-BY-4.0.txt,LICENSING.md
 evidence/longrun-findings.json,project-documentation,CC-BY-4.0,LICENSES/CC-BY-4.0.txt,LICENSING.md
+evidence/part2-rf-capabilities-20261121.json,project-documentation,CC-BY-4.0,LICENSES/CC-BY-4.0.txt,LICENSING.md
 evidence/preparation-checks.json,project-documentation,CC-BY-4.0,LICENSES/CC-BY-4.0.txt,LICENSING.md
 evidence/prior-art-comparison.csv,project-documentation,CC-BY-4.0,LICENSES/CC-BY-4.0.txt,LICENSING.md
 evidence/rf-characterization-20261121.json,project-documentation,CC-BY-4.0,LICENSES/CC-BY-4.0.txt,LICENSING.md
@@ -365,6 +367,7 @@ tests/test_finalise.py,project-code,GPL-2.0-or-later,LICENSES/GPL-2.0-or-later.t
 tests/test_metrics.py,project-code,GPL-2.0-or-later,LICENSES/GPL-2.0-or-later.txt,LICENSING.md
 tests/test_module_compare.py,project-code,GPL-2.0-or-later,LICENSES/GPL-2.0-or-later.txt,LICENSING.md
 tests/test_native_contract.py,project-code,GPL-2.0-or-later,LICENSES/GPL-2.0-or-later.txt,LICENSING.md
+tests/test_pi5_radar.py,project-code,GPL-2.0-or-later,LICENSES/GPL-2.0-or-later.txt,LICENSING.md
 tests/test_pi5_rtltcp.py,project-code,GPL-2.0-or-later,LICENSES/GPL-2.0-or-later.txt,LICENSING.md
 tests/test_pi5_specan.py,project-code,GPL-2.0-or-later,LICENSES/GPL-2.0-or-later.txt,LICENSING.md
 tests/test_protocol.py,project-code,GPL-2.0-or-later,LICENSES/GPL-2.0-or-later.txt,LICENSING.md
@@ -375,6 +378,9 @@ tools/build_report.py,project-code,GPL-2.0-or-later,LICENSES/GPL-2.0-or-later.tx
 tools/finalise_release.py,project-code,GPL-2.0-or-later,LICENSES/GPL-2.0-or-later.txt,LICENSING.md
 tools/frame_protocol.py,project-code,GPL-2.0-or-later,LICENSES/GPL-2.0-or-later.txt,LICENSING.md
 tools/make_figures.py,project-code,GPL-2.0-or-later,LICENSES/GPL-2.0-or-later.txt,LICENSING.md
+tools/pi5_radar/README.md,project-documentation,CC-BY-4.0,LICENSES/CC-BY-4.0.txt,LICENSING.md
+tools/pi5_radar/__init__.py,project-code,GPL-2.0-or-later,LICENSES/GPL-2.0-or-later.txt,LICENSING.md
+tools/pi5_radar/csi.py,project-code,GPL-2.0-or-later,LICENSES/GPL-2.0-or-later.txt,LICENSING.md
 tools/pi5_rtltcp/README.md,project-documentation,CC-BY-4.0,LICENSES/CC-BY-4.0.txt,LICENSING.md
 tools/pi5_rtltcp/__init__.py,project-code,GPL-2.0-or-later,LICENSES/GPL-2.0-or-later.txt,LICENSING.md
 tools/pi5_rtltcp/bridge.py,project-code,GPL-2.0-or-later,LICENSES/GPL-2.0-or-later.txt,LICENSING.md

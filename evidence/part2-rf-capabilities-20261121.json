@@ -1,0 +1,111 @@
+{
+  "schema_version": "1.0",
+  "date": "2026-11-21",
+  "version": "0.6.0",
+  "driver_path": "stock_brcmfmac_alternative_fw_path",
+  "restoration_verified_fwid": "01-b677b91b",
+  "hardware_triggered_oscilloscope": {
+    "wraparound_fix_sha256": "7ae16780633adf5278fb88cd4799217e69ebaef4d6d9734cef4e94a796f841ce",
+    "probe_c_captures": 38,
+    "bad_prefix_words": 0,
+    "ble_ch38_trig1_hits": "10/10",
+    "ble_ch38_burst_jump_db_range": [27.69, 39.14],
+    "ble_ch38_edge_jitter_us": 0.1,
+    "pi5_specan_20s_hwtrig_ble": {
+      "hop_plan": "ble_only_2_hops_ch38_ch39",
+      "active_duration_s": 20.0,
+      "engine_wall_time_s_including_staging": 27.89,
+      "packet_span_s": 19.14,
+      "sweeps": 70,
+      "sweeps_per_sec_from_engine_init": 2.51,
+      "bursts": 558,
+      "ble_crc24_pass": 93,
+      "baseline_v050_dual_7hop_ble_crc24_pass": 3,
+      "packet_count_ratio_vs_v050_dual": 31.0,
+      "mac_redacted_pct": 100
+    }
+  },
+  "out_of_band_pll_map": {
+    "xtal_mhz": 37.4,
+    "lower_vco_rail_mhz": 6612.0,
+    "lower_lo_rail_mhz": 2203.9,
+    "tested_2g_div3_spot_span_mhz": [2220.0, 3001.0],
+    "tested_2g_div3_span_width_mhz": 781.0,
+    "continuous_untested_gap_note": "Spot pairs tested at 2220, 2300, 2600, 2700, 2900, and 3000 MHz (up to 299 MHz unmeasured gaps); finer sub-MHz continuous sweep not performed.",
+    "upper_closed_loop_break_mhz": [3001.0, 3100.0],
+    "upper_vco_break_mhz": [9003.0, 9300.0],
+    "wifi_6e_test": {
+      "tone_mhz": 5955.5,
+      "lo_a_b_mhz": [5955.0, 5956.0],
+      "vco_mhz": [7940.0, 7941.33],
+      "snr_db_range": [50.03, 51.93],
+      "bin_spread": 0,
+      "measured_step_mhz": -0.9986
+    },
+    "measurements": [
+      {"tone_mhz": 2200.5, "lo_mhz": [2200.0, 2201.0], "vco_mhz": [6600.0, 6603.0], "step_mhz": -0.4102, "snr_db_range": [35.44, 42.89], "locked": false},
+      {"tone_mhz": 2220.5, "lo_mhz": [2220.0, 2221.0], "vco_mhz": [6660.0, 6663.0], "step_mhz": -1.0876, "snr_db_range": [35.28, 37.50], "locked": true},
+      {"tone_mhz": 2300.5, "lo_mhz": [2300.0, 2301.0], "vco_mhz": [6900.0, 6903.0], "step_mhz": -1.0498, "snr_db_range": [58.87, 62.12], "locked": true},
+      {"tone_mhz": 2600.5, "lo_mhz": [2600.0, 2601.0], "vco_mhz": [7800.0, 7803.0], "step_mhz": -0.9985, "snr_db_range": [62.03, 63.26], "locked": true},
+      {"tone_mhz": 2700.5, "lo_mhz": [2700.0, 2701.0], "vco_mhz": [8100.0, 8103.0], "step_mhz": -0.9998, "snr_db_range": [61.71, 63.50], "locked": true},
+      {"tone_mhz": 2900.5, "lo_mhz": [2900.0, 2901.0], "vco_mhz": [8700.0, 8703.0], "step_mhz": -0.9998, "snr_db_range": [53.23, 55.38], "locked": true},
+      {"tone_mhz": 3000.5, "lo_mhz": [3000.0, 3001.0], "vco_mhz": [9000.0, 9003.0], "step_mhz": -0.9985, "snr_db_range": [45.70, 48.97], "locked": true},
+      {"tone_mhz": 3100.5, "lo_mhz": [3100.0, 3101.0], "vco_mhz": [9300.0, 9303.0], "step_mhz": -0.0019, "snr_db_range": [25.48, 28.95], "locked": false},
+      {"tone_mhz": 3200.5, "lo_mhz": [3200.0, 3201.0], "vco_mhz": [9600.0, 9603.0], "step_mhz": 0.0396, "snr_db_range": [30.98, 35.70], "locked": false},
+      {"tone_mhz": 5955.5, "lo_mhz": [5955.0, 5956.0], "vco_mhz": [7940.0, 7941.33], "step_mhz": -0.9986, "snr_db_range": [50.03, 51.93], "locked": true}
+    ]
+  },
+  "rf_fingerprinting": {
+    "captures_total": 80,
+    "ble_crc24_packets": 10,
+    "anonymous_devices": 5,
+    "loo_accuracy_pct": 100.0,
+    "loo_correct": "7/7",
+    "ble_dev_1": {"count": 4, "t_rise_us_mean": 3.850, "t_rise_us_std": 0.737, "overshoot_db_mean": 3.10, "cfo_khz_mean": -11.45},
+    "ble_dev_3": {"count": 3, "t_rise_us_mean": 2.189, "t_rise_us_std": 0.074, "overshoot_db_mean": 1.03, "cfo_khz_mean": 30.33}
+  },
+  "passive_wifi_csi_radar": {
+    "channel_mhz": 2412.0,
+    "still_12s": {
+      "bursts": 513,
+      "ofdm_csi_frames": 189,
+      "dominant_cfo_frames": 174,
+      "interval_rate_hz": 14.70,
+      "nyquist_hz": 7.35,
+      "mean_motion": 0.11022,
+      "p95_motion": 0.22247,
+      "ref_dist_mean": 0.07633,
+      "ref_dist_p50": 0.0587,
+      "ref_dist_p75": 0.0672,
+      "phase_cal_std_rad": 0.0811,
+      "cir_tap4_mean": 0.0136,
+      "cir_tap4_std": 0.0054,
+      "doppler_own_band_snr_db": 7.50,
+      "doppler_common_2p8hz_snr_db": 5.95
+    },
+    "motion_12s": {
+      "bursts": 521,
+      "ofdm_csi_frames": 87,
+      "matched_cfo_frames": 70,
+      "interval_rate_hz": 5.86,
+      "nyquist_hz": 2.93,
+      "mean_motion": 0.146,
+      "p95_motion": 0.28888,
+      "ref_dist_mean": 0.114,
+      "ref_dist_p50": 0.0859,
+      "ref_dist_p75": 0.1097,
+      "phase_cal_std_rad": 0.1095,
+      "cir_tap4_mean": 0.0181,
+      "cir_tap4_std": 0.0086,
+      "doppler_own_band_snr_db": 12.60,
+      "doppler_common_2p8hz_snr_db": 12.67
+    },
+    "contrast": {
+      "ref_dist_mean_ratio": 1.494,
+      "ref_dist_p75_ratio": 1.632,
+      "phase_std_ratio": 1.35,
+      "doppler_common_2p8hz_snr_gain_db": 6.72,
+      "doppler_own_band_snr_gain_db": 5.10
+    }
+  }
+}

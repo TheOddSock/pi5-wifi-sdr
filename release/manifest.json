@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "status": "approved",
   "licence_selection_status": "selected_by_owner",
   "licence_scopes": {
@@ -29,7 +29,7 @@
     "pi5-receive-stream-draft.pdf": "project-documentation",
     "paper/review.html": "project-documentation"
   },
-  "evidence_cutoff": "Preserves all v0.3.0 evidence through 6 October 2026 and adds eight live over-the-air dual-band RF, 80 MSPS wideband, 5.8 GHz unlock, continuous 5.2 GHz (769.23 kSPS) streaming, and ambient BLE CRC-24 decode proofs from 21 November 2026 in evidence/rf-characterization-20261121.json",
+  "evidence_cutoff": "Preserves all v0.5.0, v0.4.0, and v0.3.0 evidence and adds Part 2 live RF oscilloscope, OOB PLL (2.22-3.00 GHz + 5955.5 MHz 6 GHz), 20 MSPS RF fingerprinting, and passive Wi-Fi CSI radar proofs from 21 November 2026 in evidence/part2-rf-capabilities-20261121.json",
   "public_release_time_utc": null,
   "approved_creators": [
     {
@@ -61,15 +61,15 @@
     },
     {
       "path": "CHANGELOG.md",
-      "bytes": 4255,
-      "sha256": "b1120a1566ab43a11e4e69fdb25bcebd1fd874cd3d7e0b084ec87bf1279325a9",
+      "bytes": 6522,
+      "sha256": "b06fbf471f63007ab3a8fd05fab1fa9c87e36b9dd564b5bfc59bee296e78ace1",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
     {
       "path": "CITATION.cff",
       "bytes": 769,
-      "sha256": "a6a3decae056d39db1d98d3ce1b849738d4fd2d73f64b16a3628344811899328",
+      "sha256": "7a48209e7f4a663d24067996d9cd276083ee62af6d673f6738e2c14ed68839e6",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
@@ -110,8 +110,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 9259,
-      "sha256": "c4efdf67cfc5e73f5158a75357a2c7e3f44d6cc903e6f2bc464620969bbdb666",
+      "bytes": 11698,
+      "sha256": "fe82d52f800c5ee28c1f8e40476dae80f5c6b4fe3540950c3075e83d3841f55c",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
@@ -140,6 +140,13 @@
       "path": "docs/limitations.md",
       "bytes": 4369,
       "sha256": "9a721d2c800adc5820e0ec20db6699ddcfe006fbf366f3fb88210f55192d2829",
+      "licence_scope": "project-documentation",
+      "role": "approved_release_artifact"
+    },
+    {
+      "path": "docs/part2-rf-capabilities-20261121.md",
+      "bytes": 8345,
+      "sha256": "da4c1eb20484a0d66755f16fdb50c8dd5edba4c502d5eaba788a4051a2ea399d",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
@@ -224,6 +231,13 @@
       "path": "evidence/longrun-findings.json",
       "bytes": 3834,
       "sha256": "c33b3027bd8c776c43a7fe916e39a6509b6f27088108d9aa6400d72db6a45192",
+      "licence_scope": "project-documentation",
+      "role": "approved_release_artifact"
+    },
+    {
+      "path": "evidence/part2-rf-capabilities-20261121.json",
+      "bytes": 4939,
+      "sha256": "d5deea225f7f66775f4fac88c9a47557df38be8e73c2ea0e441f17aaa02dcebf",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
@@ -356,7 +370,7 @@
     {
       "path": "paper/metadata.json",
       "bytes": 909,
-      "sha256": "3b6ed6b0642de8415fa7587e1ffc5e1452b2124a52eba7c4f8895ae4a33d7564",
+      "sha256": "59ffe35e4dd84244771b5ecae9dfa6db6a506df7af1955128bf46dd93c250d66",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
@@ -397,8 +411,8 @@
     },
     {
       "path": "release/approved-config.json",
-      "bytes": 30730,
-      "sha256": "5f6a9c131c1027ea19bfeab18596b0bd5ba5685a6e41998e2ebf8e1692a85d6b",
+      "bytes": 31086,
+      "sha256": "810695e24077ee27385756b19359718cd4d24330110af9d928d588ac2dbc65c5",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
@@ -411,8 +425,8 @@
     },
     {
       "path": "release/component-licences.csv",
-      "bytes": 46767,
-      "sha256": "6730ea8c50ac2a98a5213ee304ae42b8f0230ac4c3e16c0aa8a961c5f6f87097",
+      "bytes": 47381,
+      "sha256": "f2b46b4483382312cff7afba09ddfff322cd4dce971565e109ae417f9fffe131",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
@@ -426,7 +440,7 @@
     {
       "path": "release/owner-approval.json",
       "bytes": 451,
-      "sha256": "8a13c953c99c1157e7b69daebd80a12a8339543d6662664e3b6520de613f2b29",
+      "sha256": "32f312aa672adbbaf20f33a25688b1eb30ddeaa00b1da6baf9da896cc966acb0",
       "licence_scope": "project-documentation",
       "role": "owner_approval_record"
     },
@@ -446,8 +460,8 @@
     },
     {
       "path": "release/release-notes.md",
-      "bytes": 5431,
-      "sha256": "0ec00df3d11d78bf62b35f4df5d419116436a3bad2ffc7c9b798ad14482a2de1",
+      "bytes": 7814,
+      "sha256": "bf2d6ce87227a5010e52b444a11b06d0f4fcc0f0286ab9b572d8af4cb55e830e",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
@@ -468,7 +482,7 @@
     {
       "path": "site/asset-manifest.json",
       "bytes": 34451,
-      "sha256": "5fd856590282cf8f9f61f8f37d63c9cce3e24308903d9f0979be8712b44cbb4a",
+      "sha256": "eb3f0693d60a09d34bc6a18e324b2560218cfc8161d7ee844b1f25cff11b5c40",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
@@ -509,8 +523,8 @@
     },
     {
       "path": "site/dist/index.html",
-      "bytes": 14858,
-      "sha256": "8fb78d5b58af9952aa1e19fe213bd5728463f67dcf7f8082397eb482f200ac95",
+      "bytes": 15159,
+      "sha256": "4c08982525c106973f2d06f1b0ec6c8d9438cc3acdfec76b08d2ce562f6e3f4a",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
@@ -2615,6 +2629,13 @@
       "role": "approved_release_artifact"
     },
     {
+      "path": "tests/test_pi5_radar.py",
+      "bytes": 7483,
+      "sha256": "8840c857be891db0c573519da0df7f06942139f8ac3c1b27ef467903cb387d84",
+      "licence_scope": "project-code",
+      "role": "approved_release_artifact"
+    },
+    {
       "path": "tests/test_pi5_rtltcp.py",
       "bytes": 3313,
       "sha256": "9f1ce26d8e604561d8d643f6946252ee3838409d6643dd050207465e37debcb4",
@@ -2623,8 +2644,8 @@
     },
     {
       "path": "tests/test_pi5_specan.py",
-      "bytes": 5944,
-      "sha256": "9ba6fcf049b0daaebb98b1d3e162d93e581a04c80a147d4dbc4263a52a17a78d",
+      "bytes": 12044,
+      "sha256": "6a194138a84ce8cd3ba949f956d21ed21191f3cfd9b2a97793041c4c57a79e74",
       "licence_scope": "project-code",
       "role": "approved_release_artifact"
     },
@@ -2685,6 +2706,27 @@
       "role": "approved_release_artifact"
     },
     {
+      "path": "tools/pi5_radar/README.md",
+      "bytes": 1675,
+      "sha256": "dc71c5c35b9c08cb70cd1219860f7089c7ac9984cf5265fc8dfb578abdc9a219",
+      "licence_scope": "project-documentation",
+      "role": "approved_release_artifact"
+    },
+    {
+      "path": "tools/pi5_radar/__init__.py",
+      "bytes": 89,
+      "sha256": "b8d3dc2456df692fc1cd36e1f43726ffde1ca44a5ddb811eb76bf10779510df1",
+      "licence_scope": "project-code",
+      "role": "approved_release_artifact"
+    },
+    {
+      "path": "tools/pi5_radar/csi.py",
+      "bytes": 16358,
+      "sha256": "a63db8fe4698af18a2e63c210a25edab9dc55e451c0f93289291470319fa2c61",
+      "licence_scope": "project-code",
+      "role": "approved_release_artifact"
+    },
+    {
       "path": "tools/pi5_rtltcp/README.md",
       "bytes": 1550,
       "sha256": "83379f6e8d2764a2710a5c7e9cdeadecdab2941906d1283f818c943d2d0d4f0d",
@@ -2707,8 +2749,8 @@
     },
     {
       "path": "tools/pi5_specan/README.md",
-      "bytes": 2034,
-      "sha256": "3a196da67a6cbca2e83f5cc9d2c552a8f0074d7d140cd1b01f8737ce0b7dd779",
+      "bytes": 3014,
+      "sha256": "beb72b24142f92445bf99e9115ad7c0e3241d7f14112383f6895a86f69cbaf04",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
@@ -2721,29 +2763,29 @@
     },
     {
       "path": "tools/pi5_specan/dsp.py",
-      "bytes": 14599,
-      "sha256": "eaf07add96b704f47c59b6af8f0a8bf513d4ddeb1c130065f1ada3080a8f3e80",
+      "bytes": 16352,
+      "sha256": "44ac276c011dc9052f28a4afbee4b5abeb02c95723cb44b6606c7e49f4d7dd78",
       "licence_scope": "project-code",
       "role": "approved_release_artifact"
     },
     {
       "path": "tools/pi5_specan/pi_agent.py",
-      "bytes": 11267,
-      "sha256": "2b3eac2f6426564ea189765d1f7ef0ded01149d221af972b01e54548c7513bf6",
+      "bytes": 16568,
+      "sha256": "6bcd5dbf37dd2160b8baac45ec7a85384c793cda6bb2c366f3e826f89c7ec42c",
       "licence_scope": "project-code",
       "role": "approved_release_artifact"
     },
     {
       "path": "tools/pi5_specan/server.py",
-      "bytes": 15682,
-      "sha256": "42de0a646b9893ba9a38f7aa119cc8376f17fae3bce85ae995562e2cfd76b0cd",
+      "bytes": 16874,
+      "sha256": "dce23f06c6a0c2ce2dce6379a5e2f4e33545d05829750db16bb3be4ef083d5df",
       "licence_scope": "project-code",
       "role": "approved_release_artifact"
     },
     {
       "path": "tools/pi5_specan/ui.html",
-      "bytes": 16555,
-      "sha256": "7138b3b6c75433fb5e487b3906915a727fc81eee6e5cbcce53f143e5cd87bc82",
+      "bytes": 20033,
+      "sha256": "36cba30f341c83693cb85fbc9ae26bc91267445de752d72f27beb9b561dfe18f",
       "licence_scope": "project-code",
       "role": "approved_release_artifact"
     },
@@ -2773,5 +2815,5 @@
   "title": "Sustained Selected Complex Receive Streaming from the BCM43455 on Raspberry Pi 5",
   "prepared_date": "2026-10-06",
   "release_date": "2026-11-21",
-  "approved_config_sha256": "3bef4bf2d7dd83fb27ab09172dae606624b94a9dc2dd5b76590f4019be3f2764"
+  "approved_config_sha256": "05bbcf7be2b94260525c2807bb2ae767075ed7622a22bc2adebcf465922f4113"
 }

@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.6.0
+
+Adds four newly characterized Part 2 RF capabilities (`docs/part2-rf-capabilities-20261121.md`, `evidence/part2-rf-capabilities-20261121.json`), upgrades `tools/pi5_specan/` with hardware triggering and time-domain oscilloscope visualization, and adds `tools/pi5_radar/` (`tests/test_pi5_radar.py`):
+
+- **Hardware-Triggered `20 / 80 MSPS` RF Oscilloscope (`tools/pi5_specan/`):** Pairs firmware `trigger=1` (CRS rising-edge) with a runtime-verified 46-byte Thumb-2 circular-wraparound fix (`0/16,000` bad words across `38/38` captures, `±0.1 µs` edge repeatability), adds `compute_envelope_trace` + Web UI `"scope"` mode (`20 MSPS` & `80 MSPS` `5g_ch42_80M`, `#scopeCanvas`), and raises `pi5-specan --mode ble --hw-trigger` yield in a `20 s` acquisition window (`2`-hop BLE plan) to **`93` BLE `CRC-24 PASS` packets** (`31×` the `3` hits in our `20 s` blind 7-hop dual-band run, 100% MACs redacted).
+- **Direct Fractional-N PLL Tuning (`2220–3001 MHz` Spot Span + `5955.5 MHz` 6 GHz):** Maps `chan_info_20691` (`37.4 MHz` XTAL) across `6,660–9,003 MHz` VCO (`781 MHz` tested S-band spot span, `10.8×` stock 2.4 GHz width; sub-MHz gaps not swept), bounds the lower rail (`~2203.9 MHz` / `6.61 GHz` VCO) and upper closed-loop unlock (`3001–3100 MHz` / `9.00–9.30 GHz` VCO), and verifies receive-only **`5955.5 MHz` (`6 GHz` Wi-Fi 6E Ch 1)** signal acquisition at `+50.03..+51.93 dB` SNR.
+- **Physical-Layer RF Fingerprinting:** Captures `80/80` triggered `20 MSPS` ambient bursts (`74 ns` PA turn-on rise-time std on `BLE-Dev-3`) with `7/7` (`100.0%`) leave-one-out classification across multi-sample anonymous BLE transmitters (`BLE-Dev-1..5`).
+- **Passive `20 MHz` Wi-Fi CSI & Motion Radar (`tools/pi5_radar/`):** Extracts 52-subcarrier `H(k)` and 64-tap `CIR` strictly from public `L-STF + L-LTF` preambles (zero TX, zero MAC/payload decoding), using `(N-1)/dur` cadence and Nyquist-bounded Doppler analysis. Live 12 s ambient Ch 1 **STILL vs hand-wave MOTION** test achieves `1.49×` reference shift (`1.63×` p75), `+35%` phase std dev, and `+6.72 dB` common-band (`0.2–2.80 Hz`) micro-Doppler SNR gain.
+
+All v0.5.0, v0.4.0, and v0.3.0 evidence, reports, source recipes, and offline verification checks are preserved unchanged.
+
 ## 0.5.0
 
 Adds two practical receive-only SDR software tools (`tools/pi5_specan/`, `tools/pi5_rtltcp/`), their offline unit tests (`tests/test_pi5_specan.py`, `tests/test_pi5_rtltcp.py`), and technical guide (`docs/tools-specan-rtltcp.md`):

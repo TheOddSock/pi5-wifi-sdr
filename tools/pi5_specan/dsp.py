@@ -378,3 +378,50 @@ def decode_ble_burst(
                 }
             )
     return found
+
+
+def compute_envelope_trace(iq: np.ndarray, fs_hz: float, num_points: int = 400) -> dict[str, Any]:
+    """Compute a downsampled time-domain power envelope in dBFS for oscilloscope display."""
+    n = len(iq)
+    if n == 0 or fs_hz <= 0:
+        return {
+            "t_us": [],
+            "env_db": [],
+            "peak_db": -120.0,
+            "floor_db": -120.0,
+            "jump_db": 0.0,
+            "t_edge_us": None,
+            "duration_us": 0.0,
+        }
+
+    duration_us = (n / float(fs_hz)) * 1e6
+    n_pts = min(max(1, int(num_points)), n)
+    abs2 = (np.abs(iq.astype(np.complex128)) ** 2)
+    edges = np.linspace(0, n, n_pts + 1, dtype=np.int64)
+    cs = np.concatenate([[0.0], np.cumsum(abs2)])
+    counts = np.maximum(1, edges[1:] - edges[:-1])
+    trimmed_pwr = (cs[edges[1:]] - cs[edges[:-1]]) / counts
+    env_db_arr = 10.0 * np.log10(np.maximum(trimmed_pwr, 1e-12))
+    t_us_arr = ((0.5 * (edges[:-1] + edges[1:])) / float(fs_hz)) * 1e6
+
+    floor_db = float(np.percentile(env_db_arr, 10))
+    peak_db = float(np.max(env_db_arr))
+    jump_db = float(max(0.0, peak_db - floor_db))
+
+    t_edge_us: float | None = None
+    if jump_db >= 6.0 and n_pts >= 2:
+        thresh = floor_db + max(4.0, 0.4 * jump_db)
+        above = env_db_arr >= thresh
+        rising = np.where((~above[:-1]) & above[1:])[0]
+        if len(rising) > 0:
+            t_edge_us = round(float(t_us_arr[int(rising[0]) + 1]), 2)
+
+    return {
+        "t_us": [round(float(x), 2) for x in t_us_arr],
+        "env_db": [round(float(x), 2) for x in env_db_arr],
+        "peak_db": round(peak_db, 2),
+        "floor_db": round(floor_db, 2),
+        "jump_db": round(jump_db, 2),
+        "t_edge_us": t_edge_us,
+        "duration_us": round(duration_us, 2),
+    }
