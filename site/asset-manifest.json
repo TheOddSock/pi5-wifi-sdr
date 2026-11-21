@@ -1,5 +1,5 @@
 {
-  "version": "0.3.0",
+  "version": "0.4.0",
   "publication": false,
   "inputs": "Manifest-selected release files, no site recursion or approval/manifest copies",
   "files": [
@@ -25,8 +25,8 @@
     },
     {
       "path": "index.html",
-      "bytes": 14302,
-      "sha256": "e842f9d1ec954ddfc48cff7e57ab2c66dc0360b8f2004ed1d0698dda4410dc09"
+      "bytes": 14621,
+      "sha256": "c1698f36f9013b814766f35a14ab4e82fe6879ba85e4a290177318c95ad1e174"
     },
     {
       "path": "reading.css",
@@ -932,6 +932,11 @@
       "path": "reading/report.pdf",
       "bytes": 196868,
       "sha256": "c9a2ad97554be03f4b8087529ca1a93876fb29192a3f689bf898d307156dfeb5"
+    },
+    {
+      "path": "rf-characterization.html",
+      "bytes": 82173,
+      "sha256": "464c8c326e9ab0f4ef2c05fe6339e03bf51d2f62aa45edc038c82dfafb6791de"
     },
     {
       "path": "styles.css",

@@ -14,6 +14,7 @@ docs/current-findings.md,project-documentation,CC-BY-4.0,LICENSES/CC-BY-4.0.txt,
 docs/finalising.md,project-documentation,CC-BY-4.0,LICENSES/CC-BY-4.0.txt,LICENSING.md
 docs/limitations.md,project-documentation,CC-BY-4.0,LICENSES/CC-BY-4.0.txt,LICENSING.md
 docs/reproducing.md,project-documentation,CC-BY-4.0,LICENSES/CC-BY-4.0.txt,LICENSING.md
+docs/rf-characterization-20261121.md,project-documentation,CC-BY-4.0,LICENSES/CC-BY-4.0.txt,LICENSING.md
 docs/updating.md,project-documentation,CC-BY-4.0,LICENSES/CC-BY-4.0.txt,LICENSING.md
 evidence/README.md,project-documentation,CC-BY-4.0,LICENSES/CC-BY-4.0.txt,LICENSING.md
 evidence/audit-summary.json,project-documentation,CC-BY-4.0,LICENSES/CC-BY-4.0.txt,LICENSING.md
@@ -25,6 +26,7 @@ evidence/known-signal-findings.json,project-documentation,CC-BY-4.0,LICENSES/CC-
 evidence/longrun-findings.json,project-documentation,CC-BY-4.0,LICENSES/CC-BY-4.0.txt,LICENSING.md
 evidence/preparation-checks.json,project-documentation,CC-BY-4.0,LICENSES/CC-BY-4.0.txt,LICENSING.md
 evidence/prior-art-comparison.csv,project-documentation,CC-BY-4.0,LICENSES/CC-BY-4.0.txt,LICENSING.md
+evidence/rf-characterization-20261121.json,project-documentation,CC-BY-4.0,LICENSES/CC-BY-4.0.txt,LICENSING.md
 evidence/rf-findings.json,project-documentation,CC-BY-4.0,LICENSES/CC-BY-4.0.txt,LICENSING.md
 evidence/rf-step0/decision-result.json,project-documentation,CC-BY-4.0,LICENSES/CC-BY-4.0.txt,LICENSING.md
 evidence/rf-step0/fitted-values.json,project-documentation,CC-BY-4.0,LICENSES/CC-BY-4.0.txt,LICENSING.md
@@ -45,6 +47,7 @@ paper/references.bib,project-documentation,CC-BY-4.0,LICENSES/CC-BY-4.0.txt,LICE
 paper/release.html,project-documentation,CC-BY-4.0,LICENSES/CC-BY-4.0.txt,LICENSING.md
 paper/report.md,project-documentation,CC-BY-4.0,LICENSES/CC-BY-4.0.txt,LICENSING.md
 pi5-receive-stream.pdf,project-documentation,CC-BY-4.0,LICENSES/CC-BY-4.0.txt,LICENSING.md
+pi5-rf-characterization-v0.4.0.pdf,project-documentation,CC-BY-4.0,LICENSES/CC-BY-4.0.txt,LICENSING.md
 release/approved-config.json,project-documentation,CC-BY-4.0,LICENSES/CC-BY-4.0.txt,LICENSING.md
 release/archive-metadata.md,project-documentation,CC-BY-4.0,LICENSES/CC-BY-4.0.txt,LICENSING.md
 release/component-licences.csv,project-documentation,CC-BY-4.0,LICENSES/CC-BY-4.0.txt,LICENSING.md
@@ -242,6 +245,7 @@ site/dist/reading/files/tools/verify_frames.py,project-code,GPL-2.0-or-later,LIC
 site/dist/reading/files/tools/verify_release.py,project-code,GPL-2.0-or-later,LICENSES/GPL-2.0-or-later.txt,LICENSING.md
 site/dist/reading/report.html,project-documentation,CC-BY-4.0,LICENSES/CC-BY-4.0.txt,LICENSING.md
 site/dist/reading/report.pdf,project-documentation,CC-BY-4.0,LICENSES/CC-BY-4.0.txt,LICENSING.md
+site/dist/rf-characterization.html,project-documentation,CC-BY-4.0,LICENSES/CC-BY-4.0.txt,LICENSING.md
 site/dist/styles.css,project-code,GPL-2.0-or-later,LICENSES/GPL-2.0-or-later.txt,LICENSING.md
 site/generate_figures.py,project-code,GPL-2.0-or-later,LICENSES/GPL-2.0-or-later.txt,LICENSING.md
 site/verify.py,project-code,GPL-2.0-or-later,LICENSES/GPL-2.0-or-later.txt,LICENSING.md
