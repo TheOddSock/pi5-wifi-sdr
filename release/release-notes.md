@@ -1,4 +1,8 @@
-# Version 0.6.0
+# Version 0.7.0
+
+Seven of eleven tested LO pairs tracked a fixed RF source. Passing endpoints were 4,748 and 6,474 MHz, separated by 1,726 MHz. Continuous coverage between them remains unverified. The radar now releases a locked baseline when the dominant transmitter cluster changes. [Sweep table and aggregate data](../docs/lo-pair-sweep-20261122.md).
+
+## Version 0.6.0
 
 **Hardware-triggered `20 / 80 MSPS` RF oscilloscope & `31×` live BLE sniffer (`pi5-specan`), `2.22–3.00 GHz` + `6 GHz` OOB PLL mapping, `50 ns` RF fingerprinting, and passive `20 MHz` Wi-Fi CSI motion radar (`pi5-radar`).**
 

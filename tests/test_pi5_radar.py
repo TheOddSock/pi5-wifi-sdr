@@ -13,6 +13,25 @@ except ImportError:
 
 @unittest.skipIf(np is None, "numpy not installed")
 class TestPi5Radar(unittest.TestCase):
+    def test_stationary_transmitter_turnover_releases_baseline(self) -> None:
+        from tools.pi5_radar.server import RadarEngine
+
+        engine = RadarEngine(window_frames=12)
+        def ingest(cfo, lane):
+            amp = [0.0] * 52
+            amp[lane] = 1.0
+            return engine.ingest_csi({"cfo_khz": cfo, "csi_amp_norm": amp})
+
+        for _ in range(12):
+            ingest(10, 0)
+        self.assertTrue(engine.lock_baseline()["ok"])
+        for _ in range(12):
+            event = ingest(40, 1)
+            self.assertEqual(event["baseline_locked"], event["dominant_cfo_khz"] == 10)
+            self.assertEqual(event["rolling_shift"], 0)
+            self.assertEqual(event["csi_delta"], [0.0] * 52 if event["dominant_cfo_khz"] == 40 else None)
+        self.assertEqual(event["state"], "STILL")
+
     def test_synthetic_csi_and_cfo_recovery(self) -> None:
         from tools.pi5_radar.csi import extract_wifi_csi, synthesize_wifi_ofdm_burst
 

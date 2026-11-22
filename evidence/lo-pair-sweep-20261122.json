@@ -1,0 +1,185 @@
+{
+  "date": "2026-11-22",
+  "bursts_per_setting": 8,
+  "complex_samples_per_burst": 16000,
+  "nominal_sample_rate_hz": 20000000,
+  "fft_length": 16384,
+  "pairs": [
+    {
+      "lo_mhz": [
+        4598,
+        4599
+      ],
+      "peak_if_mhz": [
+        8.4534,
+        8.4973
+      ],
+      "peak_above_median_db": [
+        39.86,
+        41.52
+      ],
+      "shift_mhz": 0.0439,
+      "tracked": false
+    },
+    {
+      "lo_mhz": [
+        4698,
+        4699
+      ],
+      "peak_if_mhz": [
+        8.4961,
+        8.5376
+      ],
+      "peak_above_median_db": [
+        41.49,
+        44.47
+      ],
+      "shift_mhz": 0.0415,
+      "tracked": false
+    },
+    {
+      "lo_mhz": [
+        4748,
+        4749
+      ],
+      "peak_if_mhz": [
+        -2.2083,
+        -1.1206
+      ],
+      "peak_above_median_db": [
+        55.0,
+        52.7
+      ],
+      "shift_mhz": 1.0877,
+      "tracked": true
+    },
+    {
+      "lo_mhz": [
+        4798,
+        4799
+      ],
+      "peak_if_mhz": [
+        -2.1851,
+        -1.1096
+      ],
+      "peak_above_median_db": [
+        54.53,
+        53.6
+      ],
+      "shift_mhz": 1.0755,
+      "tracked": true
+    },
+    {
+      "lo_mhz": [
+        4898,
+        4899
+      ],
+      "peak_if_mhz": [
+        -2.1399,
+        -1.0864
+      ],
+      "peak_above_median_db": [
+        64.64,
+        64.37
+      ],
+      "shift_mhz": 1.0535,
+      "tracked": true
+    },
+    {
+      "lo_mhz": [
+        4998,
+        4999
+      ],
+      "peak_if_mhz": [
+        -2.0996,
+        -1.0669
+      ],
+      "peak_above_median_db": [
+        61.83,
+        61.78
+      ],
+      "shift_mhz": 1.0327,
+      "tracked": true
+    },
+    {
+      "lo_mhz": [
+        5998,
+        5999
+      ],
+      "peak_if_mhz": [
+        -2.0276,
+        -1.0291
+      ],
+      "peak_above_median_db": [
+        48.93,
+        49.06
+      ],
+      "shift_mhz": 0.9985,
+      "tracked": true
+    },
+    {
+      "lo_mhz": [
+        6398,
+        6399
+      ],
+      "peak_if_mhz": [
+        -2.03,
+        -1.0315
+      ],
+      "peak_above_median_db": [
+        36.85,
+        36.14
+      ],
+      "shift_mhz": 0.9985,
+      "tracked": true
+    },
+    {
+      "lo_mhz": [
+        6473,
+        6474
+      ],
+      "peak_if_mhz": [
+        -2.03,
+        -1.0315
+      ],
+      "peak_above_median_db": [
+        38.33,
+        38.33
+      ],
+      "shift_mhz": 0.9985,
+      "tracked": true
+    },
+    {
+      "lo_mhz": [
+        6548,
+        6549
+      ],
+      "peak_if_mhz": [
+        -0.4395,
+        -0.4492
+      ],
+      "peak_above_median_db": [
+        20.96,
+        19.32
+      ],
+      "shift_mhz": -0.0097,
+      "tracked": false
+    },
+    {
+      "lo_mhz": [
+        6698,
+        6699
+      ],
+      "peak_if_mhz": [
+        2.0508,
+        2.0618
+      ],
+      "peak_above_median_db": [
+        8.99,
+        11.24
+      ],
+      "shift_mhz": 0.011,
+      "tracked": false
+    }
+  ]
+}

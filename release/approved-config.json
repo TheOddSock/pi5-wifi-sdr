@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
-  "source_candidate_manifest_sha256": "8da9b7ba64cd2f9d1c39d39539093ca9d9f6b0e552f82e5e67485a2f7e2d9c42",
-  "version": "0.6.0",
+  "source_candidate_manifest_sha256": "b0cf78ed173799660e5194d654cbbd4e5b14a6d1c667e1e82ad7dd86eadce120",
+  "version": "0.7.0",
   "title": "Sustained Selected Complex Receive Streaming from the BCM43455 on Raspberry Pi 5",
   "creators": [
     {
@@ -12,7 +12,7 @@
   ],
   "contributions": "TheOddSock: project direction and editorial review. Implementation, investigation, analysis and report preparation used extensive AI assistance, described in AI_ASSISTANCE.md. This statement does not claim unaided invention, independent manual code review or external hardware replication.",
   "public_source_url": "https://github.com/TheOddSock/pi5-wifi-sdr",
-  "release_date": "2026-11-21",
+  "release_date": "2026-11-22",
   "licence_scopes": {
     "project-code": {
       "spdx_id": "GPL-2.0-or-later",
@@ -432,7 +432,11 @@
     "tools/pi5_specan/ui.html": "project-code",
     "tools/reproduce_metrics.py": "project-code",
     "tools/verify_frames.py": "project-code",
-    "tools/verify_release.py": "project-code"
+    "tools/verify_release.py": "project-code",
+    "docs/lo-pair-sweep-20261122.md": "project-documentation",
+    "evidence/lo-pair-sweep-20261122.json": "project-documentation",
+    "site/dist/reading/files/docs/lo-pair-sweep-20261122.html": "project-documentation",
+    "site/dist/reading/files/evidence/lo-pair-sweep-20261122.json": "project-documentation"
   },
   "approval_licence_scope": "project-documentation"
 }

@@ -265,6 +265,7 @@ function drawHeatmap() {
   }
   const invMax = 1.0 / maxV;
   for (let x = 0; x < nCols; x++) {
+    if (useDelta && rows[x].csi_delta === null) continue;
     const amps = (useDelta && Array.isArray(rows[x].csi_delta) && rows[x].csi_delta.length === nSub)
       ? rows[x].csi_delta
       : rows[x].csi_amp_norm;

@@ -6,6 +6,10 @@ The Pi can follow a narrow slice of radio frequencies continuously, or take a br
 
 **[Start here for the illustrated overview](https://theoddsock.github.io/pi5-wifi-sdr/)**
 
+## New in v0.7.0 (2026-11-22)
+
+Seven of eleven tested LO pairs tracked a fixed RF source. Passing endpoints were 4,748 and 6,474 MHz, separated by 1,726 MHz. Continuous coverage between them remains unverified. The radar now releases a locked baseline when the dominant transmitter cluster changes. [Measurements and method](docs/lo-pair-sweep-20261122.md).
+
 ## New in v0.6.0 (2026-11-21): Hardware-Triggered Oscilloscope, `2.22–3.00 GHz` + `6 GHz` OOB PLL, RF Fingerprinting & Passive Wi-Fi CSI Radar
 
 - **Hardware-Triggered `20 / 80 MSPS` RF Oscilloscope ([`tools/pi5_specan/`](tools/pi5_specan/README.md)):** Unlocked firmware `trigger=1` (CRS rising-edge) captures via a runtime-verified 46-byte Thumb-2 circular-wraparound fix (`0/16,000` bad words across `38/38` captures, `±0.1 µs` edge repeatability), added `compute_envelope_trace` + a `20 / 80 MSPS` (`5g_ch42_80M`) time-domain **RF Scope** mode (`#scopeCanvas`), and decoded **`93` live ambient BLE `CRC-24 PASS` packets in a `20 s` `--mode ble --hw-trigger` run** (`2`-hop BLE plan; `31×` the `3` packets in our `20 s` blind 7-hop dual-band run, MACs redacted).
@@ -72,7 +76,7 @@ python tools/verify_frames.py examples/synthetic-frames.bin --expected-frames 11
 python tools/verify_release.py
 ```
 
-To check the exact published v0.6.0 package, run these commands in a checkout of the [v0.6.0 tag](https://github.com/TheOddSock/pi5-wifi-sdr/tree/v0.6.0).
+To check the exact published v0.7.0 package, run these commands in a checkout of the [v0.7.0 tag](https://github.com/TheOddSock/pi5-wifi-sdr/tree/v0.7.0).
 
 Synthetic fixtures check parser behaviour. Aggregate calculations do not repeat the private historical recording audits. Report rendering additionally requires ReportLab; optional module inspection uses pyelftools; `pi5-specan`, `pi5-rtltcp`, and `pi5-radar` require NumPy. See the [reproduction guide](docs/reproducing.md).
 

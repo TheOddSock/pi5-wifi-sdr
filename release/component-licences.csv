@@ -13,6 +13,7 @@ THIRD_PARTY_NOTICES.md,project-documentation,CC-BY-4.0,LICENSES/CC-BY-4.0.txt,LI
 docs/current-findings.md,project-documentation,CC-BY-4.0,LICENSES/CC-BY-4.0.txt,LICENSING.md
 docs/finalising.md,project-documentation,CC-BY-4.0,LICENSES/CC-BY-4.0.txt,LICENSING.md
 docs/limitations.md,project-documentation,CC-BY-4.0,LICENSES/CC-BY-4.0.txt,LICENSING.md
+docs/lo-pair-sweep-20261122.md,project-documentation,CC-BY-4.0,LICENSES/CC-BY-4.0.txt,LICENSING.md
 docs/part2-rf-capabilities-20261121.md,project-documentation,CC-BY-4.0,LICENSES/CC-BY-4.0.txt,LICENSING.md
 docs/reproducing.md,project-documentation,CC-BY-4.0,LICENSES/CC-BY-4.0.txt,LICENSING.md
 docs/rf-characterization-20261121.md,project-documentation,CC-BY-4.0,LICENSES/CC-BY-4.0.txt,LICENSING.md
@@ -25,6 +26,7 @@ evidence/data-availability.md,project-documentation,CC-BY-4.0,LICENSES/CC-BY-4.0
 evidence/derived/sixstream-c-delivery.json,project-documentation,CC-BY-4.0,LICENSES/CC-BY-4.0.txt,LICENSING.md
 evidence/followup-findings.json,project-documentation,CC-BY-4.0,LICENSES/CC-BY-4.0.txt,LICENSING.md
 evidence/known-signal-findings.json,project-documentation,CC-BY-4.0,LICENSES/CC-BY-4.0.txt,LICENSING.md
+evidence/lo-pair-sweep-20261122.json,project-documentation,CC-BY-4.0,LICENSES/CC-BY-4.0.txt,LICENSING.md
 evidence/longrun-findings.json,project-documentation,CC-BY-4.0,LICENSES/CC-BY-4.0.txt,LICENSING.md
 evidence/part2-rf-capabilities-20261121.json,project-documentation,CC-BY-4.0,LICENSES/CC-BY-4.0.txt,LICENSING.md
 evidence/preparation-checks.json,project-documentation,CC-BY-4.0,LICENSES/CC-BY-4.0.txt,LICENSING.md
@@ -83,6 +85,7 @@ site/dist/reading/files/THIRD_PARTY_NOTICES.html,project-documentation,CC-BY-4.0
 site/dist/reading/files/docs/current-findings.html,project-documentation,CC-BY-4.0,LICENSES/CC-BY-4.0.txt,LICENSING.md
 site/dist/reading/files/docs/finalising.html,project-documentation,CC-BY-4.0,LICENSES/CC-BY-4.0.txt,LICENSING.md
 site/dist/reading/files/docs/limitations.html,project-documentation,CC-BY-4.0,LICENSES/CC-BY-4.0.txt,LICENSING.md
+site/dist/reading/files/docs/lo-pair-sweep-20261122.html,project-documentation,CC-BY-4.0,LICENSES/CC-BY-4.0.txt,LICENSING.md
 site/dist/reading/files/docs/reproducing.html,project-documentation,CC-BY-4.0,LICENSES/CC-BY-4.0.txt,LICENSING.md
 site/dist/reading/files/docs/updating.html,project-documentation,CC-BY-4.0,LICENSES/CC-BY-4.0.txt,LICENSING.md
 site/dist/reading/files/evidence/README.html,project-documentation,CC-BY-4.0,LICENSES/CC-BY-4.0.txt,LICENSING.md
@@ -92,6 +95,7 @@ site/dist/reading/files/evidence/data-availability.html,project-documentation,CC
 site/dist/reading/files/evidence/derived/sixstream-c-delivery.json,project-documentation,CC-BY-4.0,LICENSES/CC-BY-4.0.txt,LICENSING.md
 site/dist/reading/files/evidence/followup-findings.json,project-documentation,CC-BY-4.0,LICENSES/CC-BY-4.0.txt,LICENSING.md
 site/dist/reading/files/evidence/known-signal-findings.json,project-documentation,CC-BY-4.0,LICENSES/CC-BY-4.0.txt,LICENSING.md
+site/dist/reading/files/evidence/lo-pair-sweep-20261122.json,project-documentation,CC-BY-4.0,LICENSES/CC-BY-4.0.txt,LICENSING.md
 site/dist/reading/files/evidence/longrun-findings.json,project-documentation,CC-BY-4.0,LICENSES/CC-BY-4.0.txt,LICENSING.md
 site/dist/reading/files/evidence/preparation-checks.json,project-documentation,CC-BY-4.0,LICENSES/CC-BY-4.0.txt,LICENSING.md
 site/dist/reading/files/evidence/prior-art-comparison.csv,project-documentation,CC-BY-4.0,LICENSES/CC-BY-4.0.txt,LICENSING.md

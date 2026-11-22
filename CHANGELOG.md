@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.7.0
+
+Seven of eleven tested LO pairs tracked a fixed RF source. Passing endpoints were 4,748 and 6,474 MHz, separated by 1,726 MHz. Continuous coverage between them remains unverified. The radar now releases a locked baseline when the dominant transmitter cluster changes. [Sweep table](docs/lo-pair-sweep-20261122.md).
+
 ## 0.6.0
 
 Adds four newly characterized Part 2 RF capabilities (`docs/part2-rf-capabilities-20261121.md`, `evidence/part2-rf-capabilities-20261121.json`), upgrades `tools/pi5_specan/` with hardware triggering and time-domain oscilloscope visualization, and adds `tools/pi5_radar/` (`tests/test_pi5_radar.py`):

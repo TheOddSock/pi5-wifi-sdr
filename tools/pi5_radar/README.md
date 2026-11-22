@@ -20,3 +20,5 @@ Receive-only IEEE 802.11a/g/n/ac/ax Channel State Information (`CSI`) extractor 
 ## Privacy & Receive-Only Compliance
 - **Zero transmission:** Purely passive over ambient Wi-Fi frames.
 - **Physical preambles only:** Extracts CSI strictly from public `L-STF` + `L-LTF` preambles and never decodes MAC addresses or packet payloads.
+
+With CFO filtering enabled, a locked baseline applies to the dominant transmitter cluster at lock time. A dominant center outside the configured tolerance releases the lock and resumes the rolling baseline. Changing clustering settings also releases the lock. Frames outside the selected cluster appear blank in the delta view.

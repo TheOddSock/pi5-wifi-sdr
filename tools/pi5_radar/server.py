@@ -65,6 +65,7 @@ class RadarEngine:
         self.total_csi = 0
         self.last_event: dict[str, Any] | None = None
         self.locked_bg: np.ndarray | None = None
+        self.baseline_cfo_khz: float | None = None
         self._subscribers: list[queue.Queue[str]] = []
 
     def subscribe(self) -> queue.Queue[str]:
@@ -175,10 +176,17 @@ class RadarEngine:
             dom_cfo = stats["dominant_cfo_khz"]
             clu_frames = self._cluster_frames_locked(dom_cfo)
 
+            if self.baseline_cfo_khz is not None and (
+                dom_cfo is None or abs(dom_cfo - self.baseline_cfo_khz) > self.cfo_tol_khz
+            ):
+                self._clear_baseline_locked()
             if clu_frames:
                 clu_amps = np.array([f["csi_amp_norm"] for f in clu_frames], dtype=np.float64)
                 bg = self.locked_bg if self.locked_bg is not None else np.median(clu_amps[-45:], axis=0)
-                csi_delta = [round(float(x), 5) for x in np.abs(np.array(amp_vec, dtype=np.float64) - bg)]
+                csi_delta = (
+                    [round(float(x), 5) for x in np.abs(clu_amps[-1] - bg)]
+                    if clu_frames[-1] is work_frame else None
+                )
                 if len(clu_amps) >= 2:
                     dists = np.linalg.norm(clu_amps[-5:] - bg, axis=1)
                     rolling_shift = round(float(np.median(dists)), 5)
@@ -274,11 +282,15 @@ class RadarEngine:
             if "cfo_filter" in cfg:
                 if not isinstance(cfg["cfo_filter"], bool):
                     raise ValueError("cfo_filter must be a boolean")
+                if self.cfo_filter != cfg["cfo_filter"]:
+                    self._clear_baseline_locked()
                 self.cfo_filter = cfg["cfo_filter"]
             if "cfo_tol_khz" in cfg:
                 tol = cfg["cfo_tol_khz"]
                 if not _is_finite_number(tol) or float(tol) < 0.0:
                     raise ValueError(f"cfo_tol_khz must be finite and >= 0, got {tol!r}")
+                if self.cfo_tol_khz != float(tol):
+                    self._clear_baseline_locked()
                 self.cfo_tol_khz = float(tol)
             if "motion_threshold" in cfg:
                 thr = cfg["motion_threshold"]
@@ -292,19 +304,27 @@ class RadarEngine:
     def lock_baseline(self) -> dict[str, Any]:
         """Freeze background vector from up to the last 45 cluster frames."""
         with self.lock:
-            clu = self._cluster_frames_locked()
+            center = analyze_motion_sequence(
+                list(self.frames), cfo_filter=self.cfo_filter, cfo_tol_khz=self.cfo_tol_khz
+            )["dominant_cfo_khz"]
+            clu = self._cluster_frames_locked(center)
             if len(clu) < 2:
                 return {"ok": False, "error": "Need at least 2 frames", "config": self._config_dict_locked()}
             amps = np.array([f["csi_amp_norm"] for f in clu[-45:]], dtype=np.float64)
+            self.baseline_cfo_khz = center if self.cfo_filter else None
             self.locked_bg = np.median(amps, axis=0)
             conf = self._config_dict_locked()
             self._broadcast_locked({"type": "config", **conf})
             return {"ok": True, "config": conf}
 
+    def _clear_baseline_locked(self) -> None:
+        self.locked_bg = None
+        self.baseline_cfo_khz = None
+
     def unlock_baseline(self) -> dict[str, Any]:
         """Unfreeze locked background and return to rolling adaptive baseline."""
         with self.lock:
-            self.locked_bg = None
+            self._clear_baseline_locked()
             conf = self._config_dict_locked()
             self._broadcast_locked({"type": "config", **conf})
             return {"ok": True, "config": conf}
@@ -313,7 +333,7 @@ class RadarEngine:
         with self.lock:
             self.frames.clear()
             self.history.clear()
-            self.locked_bg = None
+            self._clear_baseline_locked()
             self.started_at = time.monotonic()
             self.total_bursts = 0
             self.total_csi = 0

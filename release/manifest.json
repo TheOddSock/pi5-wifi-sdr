@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "status": "approved",
   "licence_selection_status": "selected_by_owner",
   "licence_scopes": {
@@ -61,15 +61,15 @@
     },
     {
       "path": "CHANGELOG.md",
-      "bytes": 6522,
-      "sha256": "b06fbf471f63007ab3a8fd05fab1fa9c87e36b9dd564b5bfc59bee296e78ace1",
+      "bytes": 6804,
+      "sha256": "6bd8ed14f53a2901bc3418ce6c7426b238ce1b01e5eb992926299f934ff25a19",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
     {
       "path": "CITATION.cff",
-      "bytes": 769,
-      "sha256": "7a48209e7f4a663d24067996d9cd276083ee62af6d673f6738e2c14ed68839e6",
+      "bytes": 677,
+      "sha256": "6c3f498b439049638d190bc602f7da0304d8c9e005257dcafa667013c64e6bc2",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
@@ -110,8 +110,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 11698,
-      "sha256": "fe82d52f800c5ee28c1f8e40476dae80f5c6b4fe3540950c3075e83d3841f55c",
+      "bytes": 12057,
+      "sha256": "56356979c8b4a9a04ae4da8e1a2555a71e97bf04eb9d89b91d61d7569119f51d",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
@@ -140,6 +140,13 @@
       "path": "docs/limitations.md",
       "bytes": 4369,
       "sha256": "9a721d2c800adc5820e0ec20db6699ddcfe006fbf366f3fb88210f55192d2829",
+      "licence_scope": "project-documentation",
+      "role": "approved_release_artifact"
+    },
+    {
+      "path": "docs/lo-pair-sweep-20261122.md",
+      "bytes": 2189,
+      "sha256": "c46f886807e266246ecbb7aeb6b0ef72ee6807c0a91fa6f0eb6308c55b19443d",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
@@ -224,6 +231,13 @@
       "path": "evidence/known-signal-findings.json",
       "bytes": 3450,
       "sha256": "0e3322a847b8fda04a8346b42ce69ebe8eaddb6d62fd4966069ae256e7d57d18",
+      "licence_scope": "project-documentation",
+      "role": "approved_release_artifact"
+    },
+    {
+      "path": "evidence/lo-pair-sweep-20261122.json",
+      "bytes": 2921,
+      "sha256": "099eeb920f3569f05177b2688c2da9deecbaa3fe5e76dcca9dd1f0d33307bc80",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
@@ -369,8 +383,8 @@
     },
     {
       "path": "paper/metadata.json",
-      "bytes": 909,
-      "sha256": "59ffe35e4dd84244771b5ecae9dfa6db6a506df7af1955128bf46dd93c250d66",
+      "bytes": 843,
+      "sha256": "62795fd24546f8ccda7c9426b0e8bc49ba42471082ecc0d79c80246b5523e0e1",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
@@ -411,8 +425,8 @@
     },
     {
       "path": "release/approved-config.json",
-      "bytes": 31247,
-      "sha256": "b13eaa2a2d09d0570d98d1cd63e3ea92dac794efcfe0069ac4c9326425bb7b2e",
+      "bytes": 31565,
+      "sha256": "bb392deb5aba63d69189f26ff3f57391381887aad9971918aefb8525a2e42ee8",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
@@ -425,8 +439,8 @@
     },
     {
       "path": "release/component-licences.csv",
-      "bytes": 47280,
-      "sha256": "43ffff547aabf93713e3f22afacc88ab8f7a9e216e9d4590d945b38d23381150",
+      "bytes": 48140,
+      "sha256": "b090510c1931201223eff9e98e843988c8863e9aa169d94764bc3eca312adb38",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
@@ -439,8 +453,8 @@
     },
     {
       "path": "release/owner-approval.json",
-      "bytes": 451,
-      "sha256": "bd7ce6e86f8116252f5902bbefa5f5b049c1e4cdd3f33b1dc943378d373ebc33",
+      "bytes": 405,
+      "sha256": "df8c13bce40619e99d6f5cbb1c51397f5572893e31b71a81e84757818cf931ac",
       "licence_scope": "project-documentation",
       "role": "owner_approval_record"
     },
@@ -460,8 +474,8 @@
     },
     {
       "path": "release/release-notes.md",
-      "bytes": 7814,
-      "sha256": "bf2d6ce87227a5010e52b444a11b06d0f4fcc0f0286ab9b572d8af4cb55e830e",
+      "bytes": 8118,
+      "sha256": "5af7a15ac547f1ac186e10482d9cfb5df1ce01921ef8d0f6630ae6a3e859ab2a",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
@@ -481,8 +495,8 @@
     },
     {
       "path": "site/asset-manifest.json",
-      "bytes": 34606,
-      "sha256": "f22a5f0ef87112f0cb35edfb0023c366e851a2fac2a58be3902e863c2fff4949",
+      "bytes": 34972,
+      "sha256": "4e179df5c6de0ed7220206c59808178fe55fceee9ab00af78abbf784c77e225a",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
@@ -523,8 +537,8 @@
     },
     {
       "path": "site/dist/index.html",
-      "bytes": 15282,
-      "sha256": "2ce801c28f00c8727c8f0b991c25775edfdb28716e1802149d18c84cb976cecf",
+      "bytes": 15405,
+      "sha256": "7eb58a57ebc2de4754cb7faf8f82f346c9e92ea3b9ec1566efb1948f0d344a54",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
@@ -558,15 +572,15 @@
     },
     {
       "path": "site/dist/reading/files/CHANGELOG.html",
-      "bytes": 1274,
-      "sha256": "931230c77b51efce5947b522229fa95ccc0a227c407bea514d6b3c75ef03b4fb",
+      "bytes": 1655,
+      "sha256": "ad4eee1bc4993ca0846cd1e85b3b142d02e4cd1ab528091917a89fd8ed6f7789",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
     {
       "path": "site/dist/reading/files/CITATION.cff",
-      "bytes": 769,
-      "sha256": "908d1eacd36a19b0bdcaf74e0ff0c67b9477792b3b71ac00ff3b75f488f8b1b2",
+      "bytes": 677,
+      "sha256": "6c3f498b439049638d190bc602f7da0304d8c9e005257dcafa667013c64e6bc2",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
@@ -607,8 +621,8 @@
     },
     {
       "path": "site/dist/reading/files/README.html",
-      "bytes": 6228,
-      "sha256": "8a46f1800307b24d21f110d7ccffcf3ca3e26f13d38a88d512f7b32d0f387195",
+      "bytes": 6590,
+      "sha256": "979d9527cd3f62c2e9ecef8532cbe1160212abe4a51c7cae735d22c8dd67fd36",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
@@ -637,6 +651,13 @@
       "path": "site/dist/reading/files/docs/limitations.html",
       "bytes": 3815,
       "sha256": "29a89603b45c1c477d8efafd251a1263b08a405b66d335309b0c93274bef59fc",
+      "licence_scope": "project-documentation",
+      "role": "approved_release_artifact"
+    },
+    {
+      "path": "site/dist/reading/files/docs/lo-pair-sweep-20261122.html",
+      "bytes": 3088,
+      "sha256": "63c991ef36cfcd1f5294af41eec7e294ba0acdba7bdc1178470ab90949b43437",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
@@ -700,6 +721,13 @@
       "path": "site/dist/reading/files/evidence/known-signal-findings.json",
       "bytes": 3450,
       "sha256": "0e3322a847b8fda04a8346b42ce69ebe8eaddb6d62fd4966069ae256e7d57d18",
+      "licence_scope": "project-documentation",
+      "role": "approved_release_artifact"
+    },
+    {
+      "path": "site/dist/reading/files/evidence/lo-pair-sweep-20261122.json",
+      "bytes": 2921,
+      "sha256": "099eeb920f3569f05177b2688c2da9deecbaa3fe5e76dcca9dd1f0d33307bc80",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
@@ -831,8 +859,8 @@
     },
     {
       "path": "site/dist/reading/files/paper/metadata.json",
-      "bytes": 909,
-      "sha256": "3015ef151ba848c544a30d71d807234d638f955e3b19cd2d9575882f5c1b4da8",
+      "bytes": 843,
+      "sha256": "62795fd24546f8ccda7c9426b0e8bc49ba42471082ecc0d79c80246b5523e0e1",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
@@ -852,8 +880,8 @@
     },
     {
       "path": "site/dist/reading/files/release/approved-config.json",
-      "bytes": 29811,
-      "sha256": "3a1b00090b3124becda4cd65cd6e014b30fa90c8e3044a7370ba3a4df9963eea",
+      "bytes": 31565,
+      "sha256": "bb392deb5aba63d69189f26ff3f57391381887aad9971918aefb8525a2e42ee8",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
@@ -866,8 +894,8 @@
     },
     {
       "path": "site/dist/reading/files/release/component-licences.csv",
-      "bytes": 45146,
-      "sha256": "9a721b296dc770e6ce90f8f2f7a7bd577365687dbc89a8c15a0e49e5d31f325f",
+      "bytes": 48140,
+      "sha256": "b090510c1931201223eff9e98e843988c8863e9aa169d94764bc3eca312adb38",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
@@ -894,8 +922,8 @@
     },
     {
       "path": "site/dist/reading/files/release/release-notes.html",
-      "bytes": 2256,
-      "sha256": "f1d457efd6287c23feb843a799e493eb187499147f243a74c4d68c6541d23127",
+      "bytes": 2638,
+      "sha256": "a76b93c41b91c8835d04e5906af9aefb562ad18c1fa1de5326f818d0d1e8e284",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
@@ -2637,8 +2665,8 @@
     },
     {
       "path": "tests/test_pi5_radar.py",
-      "bytes": 14158,
-      "sha256": "fadf01e9f77fc3bc5e64356c5b4ec39d15f2413047ff2d66fd3405c65a02323b",
+      "bytes": 14975,
+      "sha256": "b6f522c64ab88aa5e843c1cc931723fa4e09b2dc5b9880867ca23c2b5ca9bc0e",
       "licence_scope": "project-code",
       "role": "approved_release_artifact"
     },
@@ -2714,8 +2742,8 @@
     },
     {
       "path": "tools/pi5_radar/README.md",
-      "bytes": 2281,
-      "sha256": "4a38947bda1a75ba59acb85ebf51a4bec4c7e1f8ed67f8428679cb97954363ba",
+      "bytes": 2610,
+      "sha256": "ae7f1012ea16b3eed4fd9cbe6dda7541630cf9cad4b14bd1c2439a6864661ac6",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
@@ -2735,15 +2763,15 @@
     },
     {
       "path": "tools/pi5_radar/server.py",
-      "bytes": 25136,
-      "sha256": "f174bc31b01c9712f354394eede1c019d56e8009f954b9d6eae8a0361a4337ac",
+      "bytes": 26061,
+      "sha256": "e388961b42013d154361a63c547bd585fa5b803ff15dff649e0a040b465d4a66",
       "licence_scope": "project-code",
       "role": "approved_release_artifact"
     },
     {
       "path": "tools/pi5_radar/ui.html",
-      "bytes": 22244,
-      "sha256": "0dd3a7002b9db2d7816521aee25133142e81b73f6f831ecf4eb35aecd30c5cd3",
+      "bytes": 22302,
+      "sha256": "38d27269e4a124ea10b6b902598cdfcd48a19c8306f8422266d5c79eeee25469",
       "licence_scope": "project-code",
       "role": "approved_release_artifact"
     },
@@ -2832,9 +2860,9 @@
       "role": "approved_release_artifact"
     }
   ],
-  "source_candidate_manifest_sha256": "8da9b7ba64cd2f9d1c39d39539093ca9d9f6b0e552f82e5e67485a2f7e2d9c42",
+  "source_candidate_manifest_sha256": "b0cf78ed173799660e5194d654cbbd4e5b14a6d1c667e1e82ad7dd86eadce120",
   "title": "Sustained Selected Complex Receive Streaming from the BCM43455 on Raspberry Pi 5",
-  "prepared_date": "2026-10-06",
-  "release_date": "2026-11-21",
-  "approved_config_sha256": "6231209e7e33b3ec3a8af37e6f6dce03691417c0910f84165779fcddba9ae474"
+  "prepared_date": "2026-11-22",
+  "release_date": "2026-11-22",
+  "approved_config_sha256": "352a8e4ebcf9fc4f1688d68150e762a2b259d67e0ca3f5831ee717c0ce74cb79"
 }
