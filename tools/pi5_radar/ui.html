@@ -28,6 +28,7 @@
   .mono { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; color: var(--accent); }
   button { background: #1a2747; color: var(--text); border: 1px solid var(--border); border-radius: 8px; padding: 6px 12px; font-size: 12px; font-weight: 600; cursor: pointer; }
   button:hover { border-color: var(--accent); color: var(--accent); }
+  button.locked { background: rgba(251,191,36,.18); color: var(--amber); border-color: rgba(251,191,36,.55); }
   .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; margin-bottom: 16px; }
   .kpi { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 12px 16px; }
   .kpi .val { font-size: 20px; font-weight: 700; color: var(--accent); font-family: ui-monospace, SFMono-Regular, Consolas, monospace; }
@@ -62,6 +63,7 @@
       <input id="thrSlider" type="range" min="0.03" max="0.18" step="0.005" value="0.065" />
       <span id="thrVal" class="mono">0.065</span>
     </div>
+    <button id="lockBtn" type="button">Lock Still Baseline</button>
     <button id="resetBtn" type="button">Reset Window</button>
     <span class="sub" style="margin-left:auto">Frames: <span id="cntLbl" class="mono">0</span> (Cluster: <span id="cluLbl" class="mono">0</span>)</span>
   </div>
@@ -84,8 +86,8 @@
     </section>
 
     <section class="card">
-      <div class="card-hdr"><h2>2. STILL vs MOTION Rolling CSI Shift</h2><span id="tsMeta" class="mono" style="font-size:11px">Median ||H - bg|| (12-frame robust)</span></div>
-      <p>Outlier-resistant 12-frame median <code>||H - bg||</code> against the motion threshold (shaded intervals = MOTION).</p>
+      <div class="card-hdr"><h2>2. STILL vs MOTION Rolling CSI Shift</h2><span id="tsMeta" class="mono" style="font-size:11px">Median ||H - bg|| (5-frame fast)</span></div>
+      <p>Outlier-resistant 5-frame median <code>||H - bg||</code> against the motion threshold (shaded intervals = MOTION).</p>
       <canvas id="cShift"></canvas>
     </section>
 
@@ -108,7 +110,7 @@ const MAX_HIST = 120;
 const app = {
   history: [],
   latest: null,
-  config: { cfo_filter: true, cfo_tol_khz: 3.0, motion_threshold: 0.065, source: "idle" },
+  config: { cfo_filter: true, cfo_tol_khz: 3.0, motion_threshold: 0.065, baseline_locked: false, source: "idle" },
   dirty: true,
 };
 
@@ -122,6 +124,7 @@ const els = {
   thrSlider: document.getElementById("thrSlider"),
   thrVal: document.getElementById("thrVal"),
   deltaToggle: document.getElementById("deltaToggle"),
+  lockBtn: document.getElementById("lockBtn"),
   resetBtn: document.getElementById("resetBtn"),
   cnt: document.getElementById("cntLbl"),
   clu: document.getElementById("cluLbl"),
@@ -184,6 +187,7 @@ function applyFrame(ev) {
   app.config.cfo_filter = Boolean(ev.cfo_filter);
   app.config.cfo_tol_khz = ev.cfo_tol_khz;
   app.config.motion_threshold = ev.motion_threshold;
+  app.config.baseline_locked = Boolean(ev.baseline_locked);
   app.config.source = ev.source;
   app.history.push({
     t_rel_s: ev.t_rel_s,
@@ -207,6 +211,9 @@ function syncControls() {
   }
   els.thrVal.textContent = Number(app.config.motion_threshold || 0.065).toFixed(3);
   els.src.textContent = app.config.source || "--";
+  const locked = Boolean(app.config.baseline_locked);
+  els.lockBtn.textContent = locked ? "Unlock Baseline" : "Lock Still Baseline";
+  els.lockBtn.classList.toggle("locked", locked);
 }
 
 function updateKpis() {
@@ -447,6 +454,11 @@ els.cfoToggle.addEventListener("change", () => postJson("/api/config", { cfo_fil
 els.thrSlider.addEventListener("input", () => { els.thrVal.textContent = Number(els.thrSlider.value).toFixed(3); });
 els.thrSlider.addEventListener("change", () => postJson("/api/config", { motion_threshold: Number(els.thrSlider.value) }));
 if (els.deltaToggle) els.deltaToggle.addEventListener("change", () => { app.dirty = true; });
+els.lockBtn.addEventListener("click", async () => {
+  const action = app.config.baseline_locked ? "unlock" : "lock";
+  const res = await postJson("/api/baseline", { action });
+  if (res && res.config) { app.config = res.config; syncControls(); app.dirty = true; }
+});
 els.resetBtn.addEventListener("click", () => postJson("/api/reset", {}));
 
 window.addEventListener("resize", () => { app.dirty = true; });

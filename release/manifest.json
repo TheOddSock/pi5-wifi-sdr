@@ -440,7 +440,7 @@
     {
       "path": "release/owner-approval.json",
       "bytes": 451,
-      "sha256": "8c87b353074d44b9d888e591cf91c961167d243ae57708f649ee86dc48d01272",
+      "sha256": "bd7ce6e86f8116252f5902bbefa5f5b049c1e4cdd3f33b1dc943378d373ebc33",
       "licence_scope": "project-documentation",
       "role": "owner_approval_record"
     },
@@ -2637,8 +2637,8 @@
     },
     {
       "path": "tests/test_pi5_radar.py",
-      "bytes": 13067,
-      "sha256": "346edb0c793cd979f171db2ad06fb481c0444d36664c320847091fac74a49f23",
+      "bytes": 14158,
+      "sha256": "fadf01e9f77fc3bc5e64356c5b4ec39d15f2413047ff2d66fd3405c65a02323b",
       "licence_scope": "project-code",
       "role": "approved_release_artifact"
     },
@@ -2735,15 +2735,15 @@
     },
     {
       "path": "tools/pi5_radar/server.py",
-      "bytes": 22569,
-      "sha256": "50b685808eaaea22ec3212b03fd6089e6ac979af544fae50647bffef4d282f72",
+      "bytes": 25136,
+      "sha256": "f174bc31b01c9712f354394eede1c019d56e8009f954b9d6eae8a0361a4337ac",
       "licence_scope": "project-code",
       "role": "approved_release_artifact"
     },
     {
       "path": "tools/pi5_radar/ui.html",
-      "bytes": 21486,
-      "sha256": "532d06b8990236bfaa9fb6b4c9757edc7d4f6de237f25accbbf66d21766c0ee8",
+      "bytes": 22244,
+      "sha256": "0dd3a7002b9db2d7816521aee25133142e81b73f6f831ecf4eb35aecd30c5cd3",
       "licence_scope": "project-code",
       "role": "approved_release_artifact"
     },

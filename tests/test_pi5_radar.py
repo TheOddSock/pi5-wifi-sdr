@@ -233,6 +233,28 @@ class TestPi5Radar(unittest.TestCase):
                 urllib.request.urlopen(bad_req, timeout=3.0)
             self.assertEqual(ctx.exception.code, 400)
 
+            lock_req = urllib.request.Request(
+                f"http://127.0.0.1:{port}/api/baseline",
+                data=json.dumps({"action": "lock"}).encode("utf-8"),
+                headers={"Content-Type": "application/json"},
+                method="POST",
+            )
+            with urllib.request.urlopen(lock_req, timeout=3.0) as resp:
+                lock_res = json.loads(resp.read().decode("utf-8"))
+                self.assertTrue(lock_res["ok"])
+                self.assertTrue(lock_res["config"]["baseline_locked"])
+
+            unlock_req = urllib.request.Request(
+                f"http://127.0.0.1:{port}/api/baseline",
+                data=json.dumps({"action": "unlock"}).encode("utf-8"),
+                headers={"Content-Type": "application/json"},
+                method="POST",
+            )
+            with urllib.request.urlopen(unlock_req, timeout=3.0) as resp:
+                unlock_res = json.loads(resp.read().decode("utf-8"))
+                self.assertTrue(unlock_res["ok"])
+                self.assertFalse(unlock_res["config"]["baseline_locked"])
+
             conn = http.client.HTTPConnection("127.0.0.1", port, timeout=3.0)
             try:
                 conn.request("GET", "/events")

@@ -64,6 +64,7 @@ class RadarEngine:
         self.total_bursts = 0
         self.total_csi = 0
         self.last_event: dict[str, Any] | None = None
+        self.locked_bg: np.ndarray | None = None
         self._subscribers: list[queue.Queue[str]] = []
 
     def subscribe(self) -> queue.Queue[str]:
@@ -99,7 +100,26 @@ class RadarEngine:
             "cfo_tol_khz": self.cfo_tol_khz,
             "motion_threshold": self.motion_threshold,
             "source": self.source_label,
+            "baseline_locked": self.locked_bg is not None,
         }
+
+    def _cluster_frames_locked(self, dom_cfo: float | None = None) -> list[dict[str, Any]]:
+        if not self.cfo_filter:
+            return list(self.frames)
+        if dom_cfo is None and self.frames:
+            stats = analyze_motion_sequence(
+                list(self.frames),
+                cfo_filter=True,
+                cfo_tol_khz=self.cfo_tol_khz,
+                max_doppler_hz=6.0,
+            )
+            dom_cfo = stats["dominant_cfo_khz"]
+        if dom_cfo is None:
+            return list(self.frames)
+        return [
+            f for f in self.frames
+            if abs(float(f["cfo_khz"]) - float(dom_cfo)) <= self.cfo_tol_khz
+        ]
 
     def set_source(self, source_label: str) -> None:
         with self.lock:
@@ -153,21 +173,14 @@ class RadarEngine:
             cluster_frames = int(stats["cluster_frames"])
             doppler_peak_snr_db = stats["doppler_peak_snr_db"]
             dom_cfo = stats["dominant_cfo_khz"]
-
-            if self.cfo_filter and dom_cfo is not None:
-                clu_frames = [
-                    f for f in self.frames
-                    if abs(float(f["cfo_khz"]) - float(dom_cfo)) <= self.cfo_tol_khz
-                ]
-            else:
-                clu_frames = list(self.frames)
+            clu_frames = self._cluster_frames_locked(dom_cfo)
 
             if clu_frames:
                 clu_amps = np.array([f["csi_amp_norm"] for f in clu_frames], dtype=np.float64)
-                bg = np.median(clu_amps[-45:], axis=0)
+                bg = self.locked_bg if self.locked_bg is not None else np.median(clu_amps[-45:], axis=0)
                 csi_delta = [round(float(x), 5) for x in np.abs(np.array(amp_vec, dtype=np.float64) - bg)]
                 if len(clu_amps) >= 2:
-                    dists = np.linalg.norm(clu_amps[-12:] - bg, axis=1)
+                    dists = np.linalg.norm(clu_amps[-5:] - bg, axis=1)
                     rolling_shift = round(float(np.median(dists)), 5)
                 else:
                     rolling_shift = 0.0
@@ -196,6 +209,7 @@ class RadarEngine:
                 "motion_threshold": self.motion_threshold,
                 "cfo_filter": self.cfo_filter,
                 "cfo_tol_khz": self.cfo_tol_khz,
+                "baseline_locked": self.locked_bg is not None,
                 "source": self.source_label,
                 "total_bursts": self.total_bursts,
                 "total_csi": self.total_csi,
@@ -275,10 +289,31 @@ class RadarEngine:
             self._broadcast_locked({"type": "config", **conf})
             return {"ok": True, "config": conf}
 
+    def lock_baseline(self) -> dict[str, Any]:
+        """Freeze background vector from up to the last 45 cluster frames."""
+        with self.lock:
+            clu = self._cluster_frames_locked()
+            if len(clu) < 2:
+                return {"ok": False, "error": "Need at least 2 frames", "config": self._config_dict_locked()}
+            amps = np.array([f["csi_amp_norm"] for f in clu[-45:]], dtype=np.float64)
+            self.locked_bg = np.median(amps, axis=0)
+            conf = self._config_dict_locked()
+            self._broadcast_locked({"type": "config", **conf})
+            return {"ok": True, "config": conf}
+
+    def unlock_baseline(self) -> dict[str, Any]:
+        """Unfreeze locked background and return to rolling adaptive baseline."""
+        with self.lock:
+            self.locked_bg = None
+            conf = self._config_dict_locked()
+            self._broadcast_locked({"type": "config", **conf})
+            return {"ok": True, "config": conf}
+
     def reset(self) -> dict[str, Any]:
         with self.lock:
             self.frames.clear()
             self.history.clear()
+            self.locked_bg = None
             self.started_at = time.monotonic()
             self.total_bursts = 0
             self.total_csi = 0
@@ -507,19 +542,42 @@ def create_server(
             self.send_response(404)
             self.end_headers()
 
+        def _read_json_obj(self) -> dict[str, Any]:
+            length = int(self.headers.get("Content-Length", "0"))
+            raw = self.rfile.read(length) if length > 0 else b"{}"
+            req = json.loads(raw.decode("utf-8"))
+            if not isinstance(req, dict):
+                raise ValueError("JSON object required")
+            return req
+
         def do_POST(self) -> None:
             path = self.path.split("?", 1)[0]
             if path == "/api/reset":
                 self._send_json(200, engine.reset())
                 return
 
-            if path == "/api/config":
-                length = int(self.headers.get("Content-Length", "0"))
-                raw = self.rfile.read(length) if length > 0 else b"{}"
+            if path == "/api/baseline":
                 try:
-                    req = json.loads(raw.decode("utf-8"))
-                    if not isinstance(req, dict):
-                        raise ValueError("JSON object required")
+                    req = self._read_json_obj()
+                    action = req.get("action")
+                    if action == "lock":
+                        res = engine.lock_baseline()
+                    elif action == "unlock":
+                        res = engine.unlock_baseline()
+                    else:
+                        raise ValueError("action must be 'lock' or 'unlock'")
+                except ValueError as exc:
+                    self._send_json(400, {"ok": False, "error": str(exc)})
+                    return
+                except Exception:
+                    self._send_json(400, {"ok": False, "error": "Invalid JSON body"})
+                    return
+                self._send_json(200, res)
+                return
+
+            if path == "/api/config":
+                try:
+                    req = self._read_json_obj()
                     res = engine.update_config(req)
                 except ValueError as exc:
                     self._send_json(400, {"ok": False, "error": str(exc)})
