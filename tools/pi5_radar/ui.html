@@ -59,8 +59,8 @@
     <label><input id="cfoToggle" type="checkbox" checked /> CFO Cluster Filter (±<span id="cfoTolVal">3.0</span> kHz)</label>
     <div class="ctrl-group">
       <label for="thrSlider">Motion Threshold:</label>
-      <input id="thrSlider" type="range" min="0.04" max="0.30" step="0.01" value="0.14" />
-      <span id="thrVal" class="mono">0.14</span>
+      <input id="thrSlider" type="range" min="0.03" max="0.18" step="0.005" value="0.065" />
+      <span id="thrVal" class="mono">0.065</span>
     </div>
     <button id="resetBtn" type="button">Reset Window</button>
     <span class="sub" style="margin-left:auto">Frames: <span id="cntLbl" class="mono">0</span> (Cluster: <span id="cluLbl" class="mono">0</span>)</span>
@@ -69,20 +69,23 @@
   <div class="kpis">
     <div class="kpi"><div class="val" id="kpiCfo">--</div><div class="lbl">Dominant TX CFO Lock</div></div>
     <div class="kpi"><div class="val" id="kpiFps">--</div><div class="lbl">Cadence / Doppler Nyquist</div></div>
-    <div class="kpi"><div class="val" id="kpiShift">--</div><div class="lbl">Rolling Shift / Frame SNR</div></div>
+    <div class="kpi"><div class="val" id="kpiShift">--</div><div class="lbl">Median Shift ||H-bg|| / SNR</div></div>
     <div class="kpi"><div class="val" id="kpiDop">--</div><div class="lbl">Doppler Peak / Peak SNR</div></div>
   </div>
 
   <div class="grid">
     <section class="card">
-      <div class="card-hdr"><h2>1. 52-Subcarrier CSI Amplitude Heatmap</h2><span id="hmMeta" class="mono" style="font-size:11px">k = -26..-1, +1..+26</span></div>
-      <p>Recent normalized <code>|H(k)|</code> vectors over time (DC gap centered between -1 and +1).</p>
+      <div class="card-hdr">
+        <h2>1. 52-Subcarrier CSI Amplitude Heatmap</h2>
+        <label style="font-size:11px;color:var(--accent);display:flex;align-items:center;gap:5px;cursor:pointer"><input id="deltaToggle" type="checkbox" checked /> Delta-CSI (|H - bg|)</label>
+      </div>
+      <p id="hmDesc">Background-subtracted <code>|H(k) - median_bg|</code> over time so motionless baselines stay dark and hand motion pops.</p>
       <canvas id="cHeat"></canvas>
     </section>
 
     <section class="card">
-      <div class="card-hdr"><h2>2. STILL vs MOTION Rolling CSI Shift</h2><span id="tsMeta" class="mono" style="font-size:11px">L2 delta_amp (10-frame avg)</span></div>
-      <p>Rolling L2 amplitude perturbation against the live motion threshold (shaded intervals = MOTION).</p>
+      <div class="card-hdr"><h2>2. STILL vs MOTION Rolling CSI Shift</h2><span id="tsMeta" class="mono" style="font-size:11px">Median ||H - bg|| (12-frame robust)</span></div>
+      <p>Outlier-resistant 12-frame median <code>||H - bg||</code> against the motion threshold (shaded intervals = MOTION).</p>
       <canvas id="cShift"></canvas>
     </section>
 
@@ -105,7 +108,7 @@ const MAX_HIST = 120;
 const app = {
   history: [],
   latest: null,
-  config: { cfo_filter: true, cfo_tol_khz: 3.0, motion_threshold: 0.14, source: "idle" },
+  config: { cfo_filter: true, cfo_tol_khz: 3.0, motion_threshold: 0.065, source: "idle" },
   dirty: true,
 };
 
@@ -118,6 +121,7 @@ const els = {
   cfoTol: document.getElementById("cfoTolVal"),
   thrSlider: document.getElementById("thrSlider"),
   thrVal: document.getElementById("thrVal"),
+  deltaToggle: document.getElementById("deltaToggle"),
   resetBtn: document.getElementById("resetBtn"),
   cnt: document.getElementById("cntLbl"),
   clu: document.getElementById("cluLbl"),
@@ -184,6 +188,7 @@ function applyFrame(ev) {
   app.history.push({
     t_rel_s: ev.t_rel_s,
     csi_amp_norm: ev.csi_amp_norm,
+    csi_delta: ev.csi_delta,
     rolling_shift: ev.rolling_shift,
     state: ev.state,
     phase_label: ev.phase_label,
@@ -198,9 +203,9 @@ function syncControls() {
   els.cfoToggle.checked = Boolean(app.config.cfo_filter);
   els.cfoTol.textContent = Number(app.config.cfo_tol_khz || 3.0).toFixed(1);
   if (document.activeElement !== els.thrSlider) {
-    els.thrSlider.value = Number(app.config.motion_threshold || 0.14).toFixed(2);
+    els.thrSlider.value = Number(app.config.motion_threshold || 0.065).toFixed(3);
   }
-  els.thrVal.textContent = Number(app.config.motion_threshold || 0.14).toFixed(2);
+  els.thrVal.textContent = Number(app.config.motion_threshold || 0.065).toFixed(3);
   els.src.textContent = app.config.source || "--";
 }
 
@@ -246,11 +251,16 @@ function drawHeatmap() {
   const nSub = 52;
   const cw = (W - P.l - P.r) / Math.max(1, nCols);
   const ch = (H - P.t - P.b) / nSub;
-  let maxV = 0.05;
-  for (const r of rows) for (const v of r.csi_amp_norm) if (v > maxV) maxV = v;
+  const useDelta = Boolean(els.deltaToggle && els.deltaToggle.checked);
+  let maxV = useDelta ? 0.035 : 0.05;
+  if (!useDelta) {
+    for (const r of rows) for (const v of r.csi_amp_norm) if (v > maxV) maxV = v;
+  }
   const invMax = 1.0 / maxV;
   for (let x = 0; x < nCols; x++) {
-    const amps = rows[x].csi_amp_norm;
+    const amps = (useDelta && Array.isArray(rows[x].csi_delta) && rows[x].csi_delta.length === nSub)
+      ? rows[x].csi_delta
+      : rows[x].csi_amp_norm;
     const px = P.l + x * cw;
     for (let s = 0; s < nSub; s++) {
       const py = H - P.b - (s + 1) * ch;
@@ -282,8 +292,8 @@ function drawShiftTimeline() {
     ctx.fillStyle = "#93a4c3"; ctx.font = "12px system-ui"; ctx.fillText("Collecting baseline frames…", 20, H / 2);
     return;
   }
-  const thr = Number(app.config.motion_threshold || 0.14);
-  let maxY = Math.max(thr * 1.4, 0.25);
+  const thr = Number(app.config.motion_threshold || 0.065);
+  let maxY = Math.max(thr * 1.8, 0.14);
   for (const r of rows) if (r.rolling_shift > maxY) maxY = r.rolling_shift * 1.15;
   const xMap = i => P.l + (i / (rows.length - 1)) * (W - P.l - P.r);
   const yMap = v => H - P.b - (v / maxY) * (H - P.t - P.b);
@@ -302,14 +312,14 @@ function drawShiftTimeline() {
     const val = (maxY * g) / 3;
     const yy = yMap(val);
     ctx.beginPath(); ctx.moveTo(P.l, yy); ctx.lineTo(W - P.r, yy); ctx.stroke();
-    ctx.fillText(val.toFixed(2), 6, yy + 4);
+    ctx.fillText(val.toFixed(3), 4, yy + 4);
   }
   // Threshold line
   const yThr = yMap(thr);
   ctx.strokeStyle = "#fbbf24"; ctx.lineWidth = 1.5; ctx.setLineDash([6, 4]);
   ctx.beginPath(); ctx.moveTo(P.l, yThr); ctx.lineTo(W - P.r, yThr); ctx.stroke();
   ctx.setLineDash([]);
-  ctx.fillStyle = "#fbbf24"; ctx.fillText(`thr=${thr.toFixed(2)}`, W - P.r - 68, Math.max(P.t + 12, yThr - 5));
+  ctx.fillStyle = "#fbbf24"; ctx.fillText(`thr=${thr.toFixed(3)}`, W - P.r - 76, Math.max(P.t + 12, yThr - 5));
 
   // Rolling shift curve
   ctx.strokeStyle = "#38bdf8"; ctx.lineWidth = 2;
@@ -434,8 +444,9 @@ async function postJson(url, body) {
 }
 
 els.cfoToggle.addEventListener("change", () => postJson("/api/config", { cfo_filter: els.cfoToggle.checked }));
-els.thrSlider.addEventListener("input", () => { els.thrVal.textContent = Number(els.thrSlider.value).toFixed(2); });
+els.thrSlider.addEventListener("input", () => { els.thrVal.textContent = Number(els.thrSlider.value).toFixed(3); });
 els.thrSlider.addEventListener("change", () => postJson("/api/config", { motion_threshold: Number(els.thrSlider.value) }));
+if (els.deltaToggle) els.deltaToggle.addEventListener("change", () => { app.dirty = true; });
 els.resetBtn.addEventListener("click", () => postJson("/api/reset", {}));
 
 window.addEventListener("resize", () => { app.dirty = true; });

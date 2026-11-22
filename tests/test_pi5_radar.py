@@ -169,7 +169,7 @@ class TestPi5Radar(unittest.TestCase):
         from tools.pi5_radar.server import RadarEngine, create_server, load_replay_frames, replay_loop
 
         k = np.concatenate([np.arange(-26, 0), np.arange(1, 27)]).astype(np.float64)
-        engine = RadarEngine(motion_threshold=0.14)
+        engine = RadarEngine(motion_threshold=0.065)
 
         still_ev = None
         for i in range(8):

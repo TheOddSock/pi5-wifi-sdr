@@ -39,7 +39,7 @@ class RadarEngine:
         history_size: int = 120,
         cfo_filter: bool = True,
         cfo_tol_khz: float = 3.0,
-        motion_threshold: float = 0.14,
+        motion_threshold: float = 0.065,
         source_label: str = "idle",
     ) -> None:
         if window_frames < 2:
@@ -150,17 +150,34 @@ class RadarEngine:
                 cfo_tol_khz=self.cfo_tol_khz,
                 max_doppler_hz=6.0,
             )
-            delta_amp: list[float] = stats["delta_amp"]
-            tail = delta_amp[-10:]
-            rolling_shift = round(sum(tail) / len(tail), 5) if tail else 0.0
             cluster_frames = int(stats["cluster_frames"])
             doppler_peak_snr_db = stats["doppler_peak_snr_db"]
+            dom_cfo = stats["dominant_cfo_khz"]
+
+            if self.cfo_filter and dom_cfo is not None:
+                clu_frames = [
+                    f for f in self.frames
+                    if abs(float(f["cfo_khz"]) - float(dom_cfo)) <= self.cfo_tol_khz
+                ]
+            else:
+                clu_frames = list(self.frames)
+
+            if clu_frames:
+                clu_amps = np.array([f["csi_amp_norm"] for f in clu_frames], dtype=np.float64)
+                bg = np.median(clu_amps[-45:], axis=0)
+                csi_delta = [round(float(x), 5) for x in np.abs(np.array(amp_vec, dtype=np.float64) - bg)]
+                if len(clu_amps) >= 2:
+                    dists = np.linalg.norm(clu_amps[-12:] - bg, axis=1)
+                    rolling_shift = round(float(np.median(dists)), 5)
+                else:
+                    rolling_shift = 0.0
+            else:
+                csi_delta = [0.0] * 52
+                rolling_shift = 0.0
 
             if cluster_frames < 6:
                 state = "WARMING UP"
-            elif rolling_shift >= self.motion_threshold or (
-                doppler_peak_snr_db is not None and doppler_peak_snr_db >= 10.5
-            ):
+            elif rolling_shift >= self.motion_threshold:
                 state = "MOTION"
             else:
                 state = "STILL"
@@ -172,6 +189,7 @@ class RadarEngine:
                 "cfo_khz": cfo_val,
                 "snr_db": snr_val,
                 "csi_amp_norm": amp_vec,
+                "csi_delta": csi_delta,
                 "cir_mag": cir_vec,
                 "state": state,
                 "rolling_shift": rolling_shift,
@@ -196,6 +214,7 @@ class RadarEngine:
                 {
                     "t_rel_s": t_val,
                     "csi_amp_norm": amp_vec,
+                    "csi_delta": csi_delta,
                     "rolling_shift": rolling_shift,
                     "state": state,
                     "phase_label": phase_label,
