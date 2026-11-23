@@ -355,14 +355,8 @@ def start_http_server(engine: SpecAnEngine, host: str = "127.0.0.1", port: int =
 
 def replay_directory(engine: SpecAnEngine, replay_dir: Path, loop: bool = True, delay_s: float = 0.08) -> None:
     """Replay saved capture directories (such as ambient-a) through the live SpecAnEngine."""
-    engine.set_ready(
-        {
-            "firmware_version": "REPLAY-MODE",
-            "country": {"abbrev": "REPLAY", "rev": 0},
-            "mode": "dual",
-            "plans": {"2g": ["replay"], "5g": ["replay"]},
-        }
-    )
+    if not replay_dir.is_dir():
+        raise FileNotFoundError(f"Replay directory does not exist: {replay_dir}")
     sets = []
     for meta_path in sorted(replay_dir.rglob("capture-result.json")):
         meta = json.loads(meta_path.read_text(encoding="utf-8"))
@@ -375,6 +369,20 @@ def replay_directory(engine: SpecAnEngine, replay_dir: Path, loop: bool = True, 
                 ble_chs = [38] if abs(freq - 2426.0) <= 6.0 else ([39] if abs(freq - 2480.0) <= 9.0 else [])
                 sets.append((cdir.name, f, freq, bw, ble_chs))
 
+    if not sets:
+        raise ValueError(
+            f"No valid capture-result.json recording files found under {replay_dir}. "
+            "Use --demo for a built-in synthetic demo without saved captures."
+        )
+
+    engine.set_ready(
+        {
+            "firmware_version": "REPLAY-MODE",
+            "country": {"abbrev": "REPLAY", "rev": 0},
+            "mode": "dual",
+            "plans": {"2g": ["replay"], "5g": ["replay"]},
+        }
+    )
     sweep_id = 0
     while True:
         sweep_id += 1
@@ -397,19 +405,115 @@ def replay_directory(engine: SpecAnEngine, replay_dir: Path, loop: bool = True, 
             break
 
 
+def run_synthetic_demo(engine: SpecAnEngine, loop: bool = True, delay_s: float = 0.12) -> None:
+    """Stream synthetic 2.4 GHz (with valid GFSK BLE Ch 38 packets) and 5 GHz bursts for offline evaluation."""
+    from .dsp import BLE_ACCESS_ADDRESS, BLE_CHANNEL_FREQ_MHZ, _ble_crc24, _ble_dewhiten
+
+    engine.set_ready(
+        {
+            "firmware_version": "SYNTHETIC-DEMO",
+            "country": {"abbrev": "DEMO", "rev": 0},
+            "mode": "dual",
+            "plans": {"2g": ["2g_ch1", "2g_ch4_ble38", "2g_ch9"], "5g": ["5g_ch42_80M", "5g_ch155_80M"]},
+        }
+    )
+
+    def make_ble_raw_bytes(seed: int) -> bytes:
+        pdu = bytes([0x42, 10, 0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x03, 0x01, 0x06, seed & 0xFF])
+        crc_bytes = _ble_crc24(pdu).to_bytes(3, "little")
+        whitened = _ble_dewhiten(pdu + crc_bytes, 38)
+        bits: list[int] = [0, 1, 0, 1, 0, 1, 0, 1]
+        for i in range(32):
+            bits.append((BLE_ACCESS_ADDRESS >> i) & 1)
+        for b in whitened:
+            for k in range(8):
+                bits.append((b >> k) & 1)
+        fs_hz = 20e6
+        sps = 20
+        pad = 4000
+        n_sig = len(bits) * sps
+        total = 16000
+        sym_freq = np.repeat(np.where(np.array(bits) > 0, 250_000.0, -250_000.0), sps)
+        phase = np.cumsum(2.0 * np.pi * sym_freq / fs_hz)
+        burst = np.zeros(total, dtype=np.complex128)
+        burst[pad : pad + n_sig] = 0.30 * np.exp(1j * phase)
+        offset_hz = (BLE_CHANNEL_FREQ_MHZ[38] - 2427.0) * 1e6
+        n = np.arange(total, dtype=np.float64)
+        rng = np.random.default_rng(seed)
+        noise = rng.normal(0, 0.004, total) + 1j * rng.normal(0, 0.004, total)
+        conj_iq = (burst * np.exp(2j * np.pi * offset_hz * n / fs_hz) + noise).astype(np.complex64)
+        i16 = np.empty((total, 2), dtype="<i2")
+        i16[:, 0] = np.clip(np.round(conj_iq.real * 2048), -32768, 32767).astype("<i2")
+        i16[:, 1] = np.clip(np.round(-conj_iq.imag * 2048), -32768, 32767).astype("<i2")
+        return i16.tobytes()
+
+    def make_cw_raw_bytes(fs_hz: float, tone_offset_hz: float, seed: int) -> bytes:
+        total = 16000
+        t = np.arange(total, dtype=np.float64) / fs_hz
+        rng = np.random.default_rng(seed)
+        conj_iq = 0.22 * np.exp(2j * np.pi * tone_offset_hz * t) + (
+            rng.normal(0, 0.005, total) + 1j * rng.normal(0, 0.005, total)
+        )
+        i16 = np.empty((total, 2), dtype="<i2")
+        i16[:, 0] = np.clip(np.round(conj_iq.real * 2048), -32768, 32767).astype("<i2")
+        i16[:, 1] = np.clip(np.round(-conj_iq.imag * 2048), -32768, 32767).astype("<i2")
+        return i16.tobytes()
+
+    sweep_id = 0
+    while True:
+        sweep_id += 1
+        hops = [
+            ("2g", "2g_ch1", 2412.0, 20.0, [], make_cw_raw_bytes(20e6, 2.0e6, sweep_id * 10 + 1)),
+            ("2g", "2g_ch4_ble38", 2427.0, 20.0, [38], make_ble_raw_bytes(sweep_id)),
+            ("2g", "2g_ch9", 2452.0, 20.0, [], make_cw_raw_bytes(20e6, -3.5e6, sweep_id * 10 + 2)),
+            ("5g", "5g_ch42_80M", 5210.0, 80.0, [], make_cw_raw_bytes(80e6, 15.0e6, sweep_id * 10 + 3)),
+            ("5g", "5g_ch155_80M", 5775.0, 80.0, [], make_cw_raw_bytes(80e6, 30.0e6, sweep_id * 10 + 4)),
+        ]
+        for band, hop_name, freq, bw, ble_chs, raw_bytes in hops:
+            engine.ingest_burst(
+                {
+                    "band": band,
+                    "hop_name": hop_name,
+                    "center_mhz": freq,
+                    "bw_mhz": bw,
+                    "fs_hz": bw * 1e6,
+                    "ble_channels": ble_chs,
+                    "sweep_id": sweep_id,
+                    "ts": round(time.time(), 4),
+                },
+                raw_bytes,
+            )
+            time.sleep(delay_s)
+        if not loop:
+            break
+
+
 def main() -> None:
-    parser = argparse.ArgumentParser(description="pi5-specan offline replay server")
-    parser.add_argument("--replay", type=Path, required=True, help="Directory with saved capture-result.json sets")
+    parser = argparse.ArgumentParser(description="pi5-specan offline replay and synthetic demo server")
+    group = parser.add_mutually_exclusive_group(required=True)
+    group.add_argument("--replay", type=Path, help="Directory with saved capture-result.json sets")
+    group.add_argument("--demo", action="store_true", help="Run built-in synthetic 2.4/5 GHz + BLE Ch 38 demo")
     parser.add_argument("--host", default="127.0.0.1")
     parser.add_argument("--port", type=int, default=8055)
     parser.add_argument("--show-mac", action="store_true", help="Disable BLE MAC redaction (local debug only)")
     args = parser.parse_args()
 
     engine = SpecAnEngine(redact_mac=not args.show_mac)
+    if args.replay is not None:
+        # Validate replay directory before starting HTTP server so empty directories fail fast
+        if not args.replay.is_dir() or not list(args.replay.rglob("capture-result.json")):
+            raise SystemExit(
+                f"Error: no capture-result.json files found in {args.replay}. "
+                "Use --demo to run the built-in synthetic spectrum and BLE demo."
+            )
     httpd = start_http_server(engine, host=args.host, port=args.port)
-    print(f"pi5-specan REPLAY UI listening on http://{args.host}:{args.port} (Ctrl-C to stop)", flush=True)
+    mode_label = "SYNTHETIC DEMO" if args.demo else "REPLAY"
+    print(f"pi5-specan {mode_label} UI listening on http://{args.host}:{args.port} (Ctrl-C to stop)", flush=True)
     try:
-        replay_directory(engine, args.replay, loop=True, delay_s=0.1)
+        if args.demo:
+            run_synthetic_demo(engine, loop=True, delay_s=0.12)
+        else:
+            replay_directory(engine, args.replay, loop=True, delay_s=0.1)
     except KeyboardInterrupt:
         pass
     finally:

@@ -30,8 +30,8 @@
     },
     {
       "path": "part2-showcase.html",
-      "bytes": 33820,
-      "sha256": "739ac804a291f72b388c112b71c38254a9c9bb7cb5b7daa21d6eb463f9208138"
+      "bytes": 33901,
+      "sha256": "c1556c124f55454c9df0f01f75890ed43f3f542b932398619804aed5b8978b88"
     },
     {
       "path": "reading.css",
@@ -60,8 +60,8 @@
     },
     {
       "path": "reading/files/CONTRIBUTIONS.html",
-      "bytes": 819,
-      "sha256": "9c1d3b86fb332360b3122e202e89f7242c37496f78447aa99718baf312326259"
+      "bytes": 816,
+      "sha256": "f8f25b1d74206ae6614a904c5a8d94474330e3835f037b2f20c423a78f6f5888"
     },
     {
       "path": "reading/files/LICENSE.html",
@@ -110,8 +110,8 @@
     },
     {
       "path": "reading/files/docs/lo-pair-sweep-20261122.html",
-      "bytes": 3088,
-      "sha256": "63c991ef36cfcd1f5294af41eec7e294ba0acdba7bdc1178470ab90949b43437"
+      "bytes": 3122,
+      "sha256": "b1f63995b9814bba406cb6eb7eaa0f827c74656e2e01f9ddd183c52120aa7563"
     },
     {
       "path": "reading/files/docs/reproducing.html",
@@ -255,8 +255,8 @@
     },
     {
       "path": "reading/files/paper/metadata.json",
-      "bytes": 843,
-      "sha256": "62795fd24546f8ccda7c9426b0e8bc49ba42471082ecc0d79c80246b5523e0e1"
+      "bytes": 814,
+      "sha256": "d20aed91d1b178c7958da92c49bf0793a8c6b76fb0d65663ad3a2dda4f21edce"
     },
     {
       "path": "reading/files/paper/references.bib",
@@ -265,18 +265,18 @@
     },
     {
       "path": "reading/files/paper/report.html",
-      "bytes": 39298,
-      "sha256": "9b84a3a2ca81eb5f8f6e5d3ec93ff6a76c9434a6f133b0e7e5b62a51a930b5d6"
+      "bytes": 39195,
+      "sha256": "998a31c8f5f74d41e2fb66ac529080b9bcd9b044c1679d6ee4de05332f32f8cb"
     },
     {
       "path": "reading/files/release/approved-config.json",
-      "bytes": 31565,
-      "sha256": "bb392deb5aba63d69189f26ff3f57391381887aad9971918aefb8525a2e42ee8"
+      "bytes": 31062,
+      "sha256": "a9bafbf8591fa29a56b2c8eb0e04424cde0f30caeec3fd77041b4f62a31dde64"
     },
     {
       "path": "reading/files/release/archive-metadata.html",
-      "bytes": 2176,
-      "sha256": "8fea64f3ce3a8f613661ed187353548839257b561fa7d053a6a14f4e540ee396"
+      "bytes": 2167,
+      "sha256": "33f10bcc5dc38a0730d1bad6ed947023a0a2d0be57bd7bc73129a3c982be5a3a"
     },
     {
       "path": "reading/files/release/component-licences.csv",
@@ -940,8 +940,8 @@
     },
     {
       "path": "reading/report.html",
-      "bytes": 280630,
-      "sha256": "1522d51c3f635d8486c97aee66ecdcc363fbd940d19e1bcf8ebcf5853a16d0f0"
+      "bytes": 280199,
+      "sha256": "330bda4307350e9261d4770d1354511acc9e3f3de555fdc535e41717d8053f52"
     },
     {
       "path": "reading/report.pdf",
@@ -950,8 +950,8 @@
     },
     {
       "path": "rf-characterization.html",
-      "bytes": 82594,
-      "sha256": "e15156757df620e4366fd51926af322870ff3d1cce12f61edf5238baf08eaf65"
+      "bytes": 82619,
+      "sha256": "6523a9e55cac78d5da2fbb55ef7a2cb70871553d5af1ce7148e4019bac050a7c"
     },
     {
       "path": "styles.css",

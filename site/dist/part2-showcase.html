@@ -51,9 +51,9 @@
 
   <section class="kpis">
     <div class="kpi"><div class="val" style="color:var(--accent)">2220–3001 MHz + 6 GHz</div><div class="lbl">781 MHz S-band spot span (10.8× stock 2.4G width) + +51.9 dB SNR at 5955.5 MHz (Wi-Fi 6E Ch 1)</div></div>
-    <div class="kpi"><div class="val" style="color:var(--green)">93 BLE Hits / 20 s</div><div class="lbl">pi5-specan --mode ble --hw-trigger (trigger=1 CRS, 31× v0.5.0 blind dual-band count)</div></div>
-    <div class="kpi"><div class="val" style="color:var(--amber)">74 ns Rise-Time Std</div><div class="lbl">BLE-Dev-3 PA ramp repeatability; 7/7 (100%) LOO classification on the 2 multi-sample devices (BLE-Dev-1 vs BLE-Dev-3; 5 devices seen)</div></div>
-    <div class="kpi"><div class="val" style="color:var(--pink)">1.49× Shift · +6.72 dB</div><div class="lbl">Passive Ch 1 Wi-Fi CSI motion contrast (0.2–2.80 Hz common Nyquist band, zero TX)</div></div>
+    <div class="kpi"><div class="val" style="color:var(--green)">93 BLE Hits / 20 s</div><div class="lbl">pi5-specan --mode ble --hw-trigger (2-hop BLE plan vs 3 hits in v0.5.0 7-hop dual-band scan)</div></div>
+    <div class="kpi"><div class="val" style="color:var(--amber)">74 ns Rise-Time Std</div><div class="lbl">BLE-Dev-3 PA ramp repeatability; 7/7 LOO separation on the 2 multi-sample devices (also separable by CFO alone)</div></div>
+    <div class="kpi"><div class="val" style="color:var(--pink)">1.49× Shift · +5.26 dB</div><div class="lbl">Passive Ch 1 Wi-Fi CSI motion contrast (11.21 vs 5.95 dB on 0.2–2.80 Hz plotted grid, zero TX)</div></div>
   </section>
 
   <div class="grid">
@@ -73,18 +73,18 @@
 
     <div class="card">
       <div class="card-hdr"><h2>3. Physical-Layer BLE RF Fingerprinting (20 MSPS PA Ramp Rise Time vs CFO)</h2><span id="roFp" class="readout">Hover points for anonymous transmitter features</span></div>
-      <p>Ten live <code>CRC-24 PASS</code> BLE packets across five anonymized transmitters (<code>BLE-Dev-1..5</code>, zero signal generator). Repeat transmitters separate cleanly solely by crystal CFO and microsecond-scale PA ramp envelope (<code>BLE-Dev-3</code> std = <code>74 ns</code>).</p>
+      <p>Ten live <code>CRC-24 PASS</code> BLE packets across five anonymized transmitters (<code>BLE-Dev-1..5</code>, zero signal generator). The two repeatedly observed transmitters in this session (<code>BLE-Dev-1</code> n=4, <code>BLE-Dev-3</code> n=3, rise-time std = <code>74 ns</code>) separate cleanly (7/7 LOO; a single CFO threshold at <code>+10 kHz</code> also separates those seven observations, so multi-day stability and independent rise-time contribution remain open).</p>
       <canvas id="cFp" role="img" aria-label="Scatter plot of PA rise time versus carrier frequency offset for five anonymous BLE devices"></canvas>
       <div class="legend"><span><i class="dot" style="background:#38bdf8"></i>BLE-Dev-1 (n=4, 3.85 µs)</span><span><i class="dot" style="background:#34d399"></i>BLE-Dev-3 (n=3, 2.19 ± 0.07 µs)</span><span><i class="dot" style="background:#fbbf24"></i>Single-hit transmitters (BLE-Dev-2/4/5)</span></div>
     </div>
 
     <div class="card">
       <div class="card-hdr"><h2>4. Passive 20 MHz Wi-Fi CSI Motion Radar — Time Series &amp; Micro-Doppler (Ch 1, 2412 MHz)</h2><span id="roRad" class="readout">Hover charts for frame / Doppler values</span></div>
-      <p>52-subcarrier <code>L-LTF</code> CSI normalized distance <code>||H(t) − H_still_ref||</code> (top) and common-band <code>0.2–2.80 Hz</code> PCA micro-Doppler SNR (bottom) comparing 12 s <strong>STILL</strong> (<code>14.70 Hz</code>) vs 12 s <strong>hand waving</strong> (<code>5.86 Hz</code>) off ambient Wi-Fi frames only.</p>
+      <p>52-subcarrier <code>L-LTF</code> CSI normalized distance <code>||H(t) − H_still_ref||</code> (top) and common-band <code>0.2–2.80 Hz</code> PCA micro-Doppler SNR (bottom) comparing 12 s <strong>STILL</strong> (<code>174</code> retained frames, <code>14.70 Hz</code>) vs 12 s <strong>hand waving</strong> (<code>70</code> retained frames, <code>5.86 Hz</code>) off ambient Wi-Fi frames grouped by a <code>±3 kHz</code> CFO heuristic.</p>
       <canvas id="cRadTime" role="img" aria-label="CSI distance from stationary baseline during 12s still and 12s hand wave captures"></canvas>
       <div style="height:12px"></div>
       <canvas id="cRadDop" role="img" aria-label="Common-band micro-Doppler power spectrum comparing still and motion runs"></canvas>
-      <div class="legend"><span><i class="dot" style="background:#34d399"></i>STILL baseline (mean shift 0.0763, Doppler SNR 5.95 dB)</span><span><i class="dot" style="background:#f472b6"></i>Hand-wave MOTION (mean shift 0.1140 [1.49×], Doppler SNR 12.67 dB [+6.72 dB])</span></div>
+      <div class="legend"><span><i class="dot" style="background:#34d399"></i>STILL baseline (mean shift 0.0763, Doppler peak 5.95 dB)</span><span><i class="dot" style="background:#f472b6"></i>Hand-wave MOTION (mean shift 0.1140 [1.49×], plotted Doppler peak 11.21 dB [+5.26 dB]; un-decimated peak 12.67 dB [+6.72 dB])</span></div>
     </div>
   </div>
 
@@ -267,7 +267,7 @@ function renderRadar(hoverT = null, hoverF = null) {
   };
   linePairs(c2.ctx, g2, rd.st_dop, '#34d399aa');
   linePairs(c2.ctx, g2, rd.mo_dop, '#f472b6');
-  c2.ctx.fillStyle = '#f472b6'; c2.ctx.fillText('MOTION Peak: 0.215 Hz (+12.67 dB SNR vs STILL +5.95 dB)', pad.l + 8, pad.t + 14);
+  c2.ctx.fillStyle = '#f472b6'; c2.ctx.fillText('MOTION Peak: 0.215 Hz (+11.21 dB plotted SNR vs STILL +5.95 dB, +5.26 dB contrast)', pad.l + 8, pad.t + 14);
   if (hoverF !== null) {
     const x = g2.xOf(hoverF);
     c2.ctx.strokeStyle = '#ffffff44'; c2.ctx.beginPath(); c2.ctx.moveTo(x, pad.t); c2.ctx.lineTo(x, c2.h - pad.b); c2.ctx.stroke();

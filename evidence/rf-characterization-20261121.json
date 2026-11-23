@@ -110,7 +110,7 @@
       "pdu_type_name": "SCAN_RSP",
       "tx_add_random": true,
       "length_bytes": 16,
-      "privacy_redaction": "Ambient advertiser address and identifying AD payload bytes are excluded from public artifacts.",
+      "privacy_redaction": "Ambient advertiser address and identifying AD payload bytes are excluded from the current files in this release tree.",
       "crc24_pass": true
     },
     "8_continuous_52ghz_stream_stream_5ghz_d": {

@@ -2,7 +2,7 @@
 
 The package includes original explanatory text, source-equivalent offline arithmetic, a frame verifier, deliberately artificial fixtures, aggregate run data and real relative delivery bins. 
 
-Complete historic ambient RF recordings, decoded traffic, private machine/network records, source conversations and operational archives remain private. Their unmodified identities are retained locally. No promise of future access or third-party disclosure is made.
+Complete historic ambient RF recordings, decoded traffic, private machine/network records, source conversations and operational archives remain private. Device addresses and identifying BLE payload bytes are excluded from the current files in this release tree. Their unmodified identities are retained locally. No promise of future access or third-party disclosure is made.
 
 Public readers can repeat synthetic protocol/error tests, verify any compatible recording they supply, recompute cadence/count/byte arithmetic and reproduce the available delivery/filter figures. They cannot repeat the complete historical payload/wire/health audits from this reduced public export. A claim based on such an audit is labelled accordingly.
 

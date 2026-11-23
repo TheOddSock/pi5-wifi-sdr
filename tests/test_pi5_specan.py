@@ -101,7 +101,15 @@ class TestPi5SpecAn(unittest.TestCase):
         self.assertTrue(np.any(np.isfinite(stitched)))
 
     def test_synthetic_ble_decode_and_redaction(self) -> None:
-        from tools.pi5_specan.dsp import decode_ble_burst
+        from tools.pi5_specan.dsp import _ble_crc24, _ble_dewhiten, decode_ble_burst
+
+        # Fixed regression vectors for BLE CRC-24 polynomial (x^24+x^10+x^9+x^6+x^4+x^3+x+1, preset 0x555555)
+        # and Ch 38 7-bit whitening LFSR (x^7+x^4+1, init 0b1100110) so a shared bit-order mistake
+        # between encoder and decoder cannot pass silently.
+        ref_pdu = bytes.fromhex("420a11223344556603010600")
+        self.assertEqual(_ble_crc24(ref_pdu), 0x57A63A)
+        # First 4 whitened bytes on BLE Ch 38 (init state 0x66 = 0b1100110)
+        self.assertEqual(_ble_dewhiten(bytes(4), 38).hex(), "d6c54420")
 
         iq = _make_synthetic_ble_burst(ble_ch=38, center_mhz=2427.0, fs_hz=20e6)
         pkts = decode_ble_burst(iq, 20e6, 2427.0, 38, redact_mac=True)
@@ -111,6 +119,22 @@ class TestPi5SpecAn(unittest.TestCase):
         self.assertEqual(p["pdu_type"], "ADV_NONCONN_IND")
         self.assertEqual(p["length"], 10)
         self.assertEqual(p["mac"], "XX:XX:XX:XX:XX:XX")
+
+    def test_empty_replay_raises_and_synthetic_demo_runs(self) -> None:
+        import tempfile
+        from pathlib import Path
+        from tools.pi5_specan.server import SpecAnEngine, replay_directory, run_synthetic_demo
+
+        engine = SpecAnEngine(redact_mac=True)
+        with tempfile.TemporaryDirectory() as td:
+            with self.assertRaises(ValueError):
+                replay_directory(engine, Path(td), loop=False)
+
+        run_synthetic_demo(engine, loop=False, delay_s=0.0)
+        snap = engine.snapshot()
+        self.assertEqual(snap["status"]["sweeps"], 1)
+        self.assertEqual(snap["status"]["bursts"], 5)
+        self.assertGreaterEqual(snap["status"]["ble_total"], 1)
 
     def test_http_server_roundtrip(self) -> None:
         from tools.pi5_specan.server import SpecAnEngine, start_http_server

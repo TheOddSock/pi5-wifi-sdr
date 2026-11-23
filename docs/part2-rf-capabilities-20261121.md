@@ -42,13 +42,13 @@ Overriding the 59-entry `chan_info_20691` synthesizer table (`0x54540`, RAM `0x1
 
 Using `trigger=1` (`50 ns`/sample) on ambient RF (`60` BLE Ch 38 + `20` Wi-Fi Ch 1 = `80/80` clean bursts, `0` out-of-range words):
 - Decoded **`10` live `CRC-24 PASS` BLE packets** across `5` anonymous transmitters (`BLE-Dev-1..5`; real MACs mapped in memory only and never stored).
-- Multi-sample advertisers **`BLE-Dev-1`** (`n=4`, `t_rise = 3.850 ± 0.737 µs`, overshoot `+3.10 ± 1.36 dB`, CFO `-11.45 ± 7.08 kHz`, SNR `24.2 ± 3.8 dB`) and **`BLE-Dev-3`** (`n=3`, `t_rise = 2.189 ± 0.074 µs` — **`74 ns` repeatability**, overshoot `+1.03 ± 0.48 dB`, CFO `+30.33 ± 9.46 kHz`, SNR `23.5 ± 3.2 dB`) achieved **`7/7` (`100.0%`) leave-one-out nearest-centroid classification** solely from physical-layer features.
+- Multi-sample advertisers **`BLE-Dev-1`** (`n=4`, `t_rise = 3.850 ± 0.737 µs`, overshoot `+3.10 ± 1.36 dB`, CFO `-11.45 ± 7.08 kHz`, SNR `24.2 ± 3.8 dB`) and **`BLE-Dev-3`** (`n=3`, `t_rise = 2.189 ± 0.074 µs` — **`74 ns` repeatability**, overshoot `+1.03 ± 0.48 dB`, CFO `+30.33 ± 9.46 kHz`, SNR `23.5 ± 3.2 dB`) achieved **`7/7` (`100.0%`) leave-one-out nearest-centroid separation** in this session (the other three advertisers appeared once each; a single carrier-offset threshold at `+10 kHz` also separates all seven observations, so the additional contribution of rise time and multi-day recognition remain open).
 
 ---
 
 ## 4. Passive `20 MHz` Wi-Fi CSI & Motion / Micro-Doppler Radar ([`tools/pi5_radar/`](../tools/pi5_radar/README.md))
 
-Extracting 52-subcarrier IEEE 802.11 `L-STF + L-LTF` complex Channel State Information (`H(k)`) and 64-tap Channel Impulse Response (`CIR`) passively from ambient Wi-Fi Ch 1 (`2412 MHz`, `trigger=1`, zero MAC/payload decoding):
+Extracting 52-subcarrier IEEE 802.11 `L-STF + L-LTF` complex Channel State Information (`H(k)`) and 64-tap Channel Impulse Response (`CIR`) passively from ambient Wi-Fi Ch 1 (`2412 MHz`, `trigger=1`, zero MAC/payload decoding), using a `±3.0 kHz` carrier-offset grouping heuristic (distinct stationary transmitters whose carrier offsets fall within `3 kHz` can still be grouped together, and the two 12-second trials yielded `174` versus `70` retained frames, so successive motion observations were about `2.5×` farther apart in time):
 
 | Metric (`still-live-a` vs `motion-live-a`, 12 s each) | STILL (`12.003 s`) | Hand-Wave MOTION (`12.003 s`) | Contrast |
 |---|---:|---:|---:|
@@ -59,4 +59,4 @@ Extracting 52-subcarrier IEEE 802.11 `L-STF + L-LTF` complex Channel State Infor
 | Distance from STILL Template (`50th` / `75th` %ile) | `0.0587` / `0.0672` | `0.0859` / `0.1097` | **`1.46×` / `1.63×`** |
 | Calibrated Phase Std Dev (`rad`) | `0.0811` | `0.1095` | **`1.35×`** |
 | Delayed Multipath Tap 4 (`200 ns` CIR) | `0.0136` (`std 0.0054`) | `0.0181` (`std 0.0086`) | **`+33%` mag / `1.59×` std** |
-| Micro-Doppler Peak SNR (`0.2–2.80 Hz` common band) | `5.95 dB` (`2.494 Hz`; `7.50 dB` over `0.2–7.35 Hz`) | **`12.67 dB`** (`0.215 Hz`; `12.60 dB` over `0.2–2.93 Hz`) | **`+6.72 dB` common (`+5.10 dB` own)** |
+| Micro-Doppler Peak SNR (`0.2–2.80 Hz` plotted grid / un-decimated) | `5.95 dB` (`2.494 Hz`; `7.50 dB` over `0.2–7.35 Hz`) | **`11.21 dB` plotted / `12.67 dB` un-decimated** (`0.215 Hz`; `12.60 dB` over `0.2–2.93 Hz`) | **`+5.26 dB` plotted (`+6.72 dB` un-decimated / `+5.10 dB` own)** |

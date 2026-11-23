@@ -98,12 +98,14 @@
       "cir_tap4_mean": 0.0181,
       "cir_tap4_std": 0.0086,
       "doppler_own_band_snr_db": 12.60,
+      "doppler_common_2p8hz_plotted_snr_db": 11.21,
       "doppler_common_2p8hz_snr_db": 12.67
     },
     "contrast": {
       "ref_dist_mean_ratio": 1.494,
       "ref_dist_p75_ratio": 1.632,
       "phase_std_ratio": 1.35,
+      "doppler_common_2p8hz_plotted_snr_gain_db": 5.26,
       "doppler_common_2p8hz_snr_gain_db": 6.72,
       "doppler_own_band_snr_gain_db": 5.10
     }

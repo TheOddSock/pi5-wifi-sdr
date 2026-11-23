@@ -20,6 +20,6 @@ Each setting contributed eight bursts of 16,000 complex samples. We removed the 
 
 The measured lower transition lies between 4,699 and 4,748 MHz on the receiver LO axis. The upper transition lies between 6,474 and 6,548 MHz. The 6,473/6,474 MHz pair used the second harmonic of a 3,237.5 MHz generator setting. From 4,748 to 4,999 MHz the shifts exceeded 1 MHz at the nominal sample rate. Their cause remains unresolved.
 
-Adding the earlier 780.5 MHz low-band endpoint estimate to 1,726 MHz gives 2,506.5 MHz across two separate endpoint spans. Neither instantaneous bandwidth nor continuous tuning coverage was measured by that addition.
+The separate low-band sweep tracked test signals across passing LO settings from 2,220 to 3,001 MHz (an endpoint separation of 781 MHz). Neither instantaneous bandwidth nor continuous tuning coverage between tested points was measured in either band.
 
 [Download the aggregate measurements](../evidence/lo-pair-sweep-20261122.json).

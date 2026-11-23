@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "version": "0.7.0",
-  "status": "approved",
+  "status": "post_release_development",
   "licence_selection_status": "selected_by_owner",
   "licence_scopes": {
     "project-code": {
@@ -33,16 +33,16 @@
   "public_release_time_utc": null,
   "approved_creators": [
     {
-      "name": "TheOddSock",
-      "given-names": "Adam",
-      "family-names": "Davies"
+      "name": "TheOddSock"
     }
   ],
-  "publication_approved": true,
+  "publication_approved": false,
   "public_repository_url": "https://github.com/TheOddSock/pi5-wifi-sdr",
   "version_doi": null,
   "concept_doi": null,
-  "release_blockers": [],
+  "release_blockers": [
+    "The existing release approval covers the tagged v0.7.0 snapshot."
+  ],
   "manifest_policy": "Manifest and SHA256SUMS are excluded from their own artifact list; review-bundle manifest binds both externally",
   "artifacts": [
     {
@@ -75,8 +75,8 @@
     },
     {
       "path": "CONTRIBUTIONS.md",
-      "bytes": 430,
-      "sha256": "44d15fbc5bd5a986145055839e2926f523a27684f0b4c517b322ba5def63e8e6",
+      "bytes": 425,
+      "sha256": "9f0e2630b4d4f89749cf0d448aebd92755482f0116454afe2034e0f9a1ad0db3",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
@@ -110,8 +110,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 12057,
-      "sha256": "56356979c8b4a9a04ae4da8e1a2555a71e97bf04eb9d89b91d61d7569119f51d",
+      "bytes": 7533,
+      "sha256": "98098006723ec04fe0a372d2dd6fb29d4c805db433ea7b3235e460d511fe0a6d",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
@@ -124,8 +124,8 @@
     },
     {
       "path": "docs/current-findings.md",
-      "bytes": 5783,
-      "sha256": "d5af071f9c046ef03250dfdea52d48bf90c4e82cedc1966104824cfa4adc2bef",
+      "bytes": 5801,
+      "sha256": "41d461b2de27c35c898fae364f30ee0d20fcc458091fccfaf96a381c9b50bfe3",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
@@ -138,22 +138,22 @@
     },
     {
       "path": "docs/limitations.md",
-      "bytes": 4369,
-      "sha256": "9a721d2c800adc5820e0ec20db6699ddcfe006fbf366f3fb88210f55192d2829",
+      "bytes": 4749,
+      "sha256": "889cc551978d6ffae1e38ac3a775bc83a292e515920bea870df08ef255f282a3",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
     {
       "path": "docs/lo-pair-sweep-20261122.md",
-      "bytes": 2189,
-      "sha256": "c46f886807e266246ecbb7aeb6b0ef72ee6807c0a91fa6f0eb6308c55b19443d",
+      "bytes": 2223,
+      "sha256": "45fb3aa889296d0da56d54e9fd2aa74d0868f9c05e2ccbb46a8f1fd3bc363252",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
     {
       "path": "docs/part2-rf-capabilities-20261121.md",
-      "bytes": 8345,
-      "sha256": "da4c1eb20484a0d66755f16fdb50c8dd5edba4c502d5eaba788a4051a2ea399d",
+      "bytes": 8926,
+      "sha256": "2503888884e06e413ed048fa38477921d783989135d5487aea725907149da464",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
@@ -166,15 +166,15 @@
     },
     {
       "path": "docs/rf-characterization-20261121.md",
-      "bytes": 5091,
-      "sha256": "015395e9027d883bad032516ca5661c7d7eb87e4dc97f04d0116db80d09707ef",
+      "bytes": 5104,
+      "sha256": "dda9657385ddcee85a65ad094a66518b057804cd91b6ea60fd13c66c7d5d7135",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
     {
       "path": "docs/tools-specan-rtltcp.md",
-      "bytes": 2155,
-      "sha256": "656fa2bdc45528408c585682823d5b520ad56b125e8a82063305d6814064045d",
+      "bytes": 2279,
+      "sha256": "3b49c1f87d16e505256b9cea230abf38247647b50ea951c18dbc3635858e87a4",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
@@ -208,8 +208,8 @@
     },
     {
       "path": "evidence/data-availability.md",
-      "bytes": 2942,
-      "sha256": "419871d7259bc02837dd0f92ccb8834ae14116138e81ad21f4aabb4744416b39",
+      "bytes": 3051,
+      "sha256": "0772f6367a785e2e0b406949eba314fa39a21675d5a69bf93103f22ccddda721",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
@@ -250,8 +250,8 @@
     },
     {
       "path": "evidence/part2-rf-capabilities-20261121.json",
-      "bytes": 4939,
-      "sha256": "d5deea225f7f66775f4fac88c9a47557df38be8e73c2ea0e441f17aaa02dcebf",
+      "bytes": 5047,
+      "sha256": "3e746d684c632e4309ad4c5609158948bab82bf1f3bfa7c3668abfeec55d1712",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
@@ -271,8 +271,8 @@
     },
     {
       "path": "evidence/rf-characterization-20261121.json",
-      "bytes": 5329,
-      "sha256": "dfb22f1c6ee3affdfffc1ec96a140d7973eb3ea058a34bdb8e9e056eb94da3e5",
+      "bytes": 5351,
+      "sha256": "6c40b66f7fdb3dd0ca08809ce646fcf6417fed55ca3fb54cb4dbe32bf032d5ca",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
@@ -361,6 +361,13 @@
       "role": "approved_release_artifact"
     },
     {
+      "path": "paper/figures/gnuradio-waterfall.png",
+      "bytes": 248188,
+      "sha256": "13b6dfe6c31a0b7fae44e7e6e0526ce7e143587be4745e2db1cb1f6020e2007b",
+      "licence_scope": "project-documentation",
+      "role": "approved_release_artifact"
+    },
+    {
       "path": "paper/figures/known-signal-reviewed.png",
       "bytes": 121448,
       "sha256": "60540c51c12f9deb8a81b231bd64969747f9dd968b5a220d3e8a647f46ff3111",
@@ -383,8 +390,8 @@
     },
     {
       "path": "paper/metadata.json",
-      "bytes": 843,
-      "sha256": "62795fd24546f8ccda7c9426b0e8bc49ba42471082ecc0d79c80246b5523e0e1",
+      "bytes": 814,
+      "sha256": "d20aed91d1b178c7958da92c49bf0793a8c6b76fb0d65663ad3a2dda4f21edce",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
@@ -397,15 +404,15 @@
     },
     {
       "path": "paper/release.html",
-      "bytes": 281115,
-      "sha256": "2b94e9c6091ad8e666d28294d76fa68c5299c7dbba3ce5e79e0e5bfb32a8b4db",
+      "bytes": 280684,
+      "sha256": "da2c80c05f24ec9a941f99ba13abf358c5c367f433e58dd89633a8c04f69b435",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
     {
       "path": "paper/report.md",
-      "bytes": 36692,
-      "sha256": "d4c9a5b9027b6c98aeeef04b05f13e79ff301268110d34c60b603f152e0e76bb",
+      "bytes": 36480,
+      "sha256": "e363d9162c9c7e9dc274007f9f44c13d9e63ac32040c65f1f14fa4901f6485fb",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
@@ -425,15 +432,15 @@
     },
     {
       "path": "release/approved-config.json",
-      "bytes": 31565,
-      "sha256": "bb392deb5aba63d69189f26ff3f57391381887aad9971918aefb8525a2e42ee8",
+      "bytes": 31062,
+      "sha256": "a9bafbf8591fa29a56b2c8eb0e04424cde0f30caeec3fd77041b4f62a31dde64",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
     {
       "path": "release/archive-metadata.md",
-      "bytes": 1707,
-      "sha256": "aa5639ba86b8316c07841ce62a65c7aa8a5543eb4b8ddbe790d19378c53f96a2",
+      "bytes": 1690,
+      "sha256": "4dfd08796bd7c8cbafe649bff7a0c2cb68e1526b994ee81f009bed912819fef2",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
@@ -496,7 +503,7 @@
     {
       "path": "site/asset-manifest.json",
       "bytes": 34972,
-      "sha256": "4e179df5c6de0ed7220206c59808178fe55fceee9ab00af78abbf784c77e225a",
+      "sha256": "6c5aa486f329f6c98fc73459f15ba673081195eb9d6153b0b8a7794bd01ab1ea",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
@@ -544,8 +551,8 @@
     },
     {
       "path": "site/dist/part2-showcase.html",
-      "bytes": 33820,
-      "sha256": "739ac804a291f72b388c112b71c38254a9c9bb7cb5b7daa21d6eb463f9208138",
+      "bytes": 33901,
+      "sha256": "c1556c124f55454c9df0f01f75890ed43f3f542b932398619804aed5b8978b88",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
@@ -586,8 +593,8 @@
     },
     {
       "path": "site/dist/reading/files/CONTRIBUTIONS.html",
-      "bytes": 819,
-      "sha256": "9c1d3b86fb332360b3122e202e89f7242c37496f78447aa99718baf312326259",
+      "bytes": 816,
+      "sha256": "f8f25b1d74206ae6614a904c5a8d94474330e3835f037b2f20c423a78f6f5888",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
@@ -656,8 +663,8 @@
     },
     {
       "path": "site/dist/reading/files/docs/lo-pair-sweep-20261122.html",
-      "bytes": 3088,
-      "sha256": "63c991ef36cfcd1f5294af41eec7e294ba0acdba7bdc1178470ab90949b43437",
+      "bytes": 3122,
+      "sha256": "b1f63995b9814bba406cb6eb7eaa0f827c74656e2e01f9ddd183c52120aa7563",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
@@ -859,8 +866,8 @@
     },
     {
       "path": "site/dist/reading/files/paper/metadata.json",
-      "bytes": 843,
-      "sha256": "62795fd24546f8ccda7c9426b0e8bc49ba42471082ecc0d79c80246b5523e0e1",
+      "bytes": 814,
+      "sha256": "d20aed91d1b178c7958da92c49bf0793a8c6b76fb0d65663ad3a2dda4f21edce",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
@@ -873,22 +880,22 @@
     },
     {
       "path": "site/dist/reading/files/paper/report.html",
-      "bytes": 39298,
-      "sha256": "9b84a3a2ca81eb5f8f6e5d3ec93ff6a76c9434a6f133b0e7e5b62a51a930b5d6",
+      "bytes": 39195,
+      "sha256": "998a31c8f5f74d41e2fb66ac529080b9bcd9b044c1679d6ee4de05332f32f8cb",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
     {
       "path": "site/dist/reading/files/release/approved-config.json",
-      "bytes": 31565,
-      "sha256": "bb392deb5aba63d69189f26ff3f57391381887aad9971918aefb8525a2e42ee8",
+      "bytes": 31062,
+      "sha256": "a9bafbf8591fa29a56b2c8eb0e04424cde0f30caeec3fd77041b4f62a31dde64",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
     {
       "path": "site/dist/reading/files/release/archive-metadata.html",
-      "bytes": 2176,
-      "sha256": "8fea64f3ce3a8f613661ed187353548839257b561fa7d053a6a14f4e540ee396",
+      "bytes": 2167,
+      "sha256": "33f10bcc5dc38a0730d1bad6ed947023a0a2d0be57bd7bc73129a3c982be5a3a",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
@@ -1818,8 +1825,8 @@
     },
     {
       "path": "site/dist/reading/report.html",
-      "bytes": 280630,
-      "sha256": "1522d51c3f635d8486c97aee66ecdcc363fbd940d19e1bcf8ebcf5853a16d0f0",
+      "bytes": 280199,
+      "sha256": "330bda4307350e9261d4770d1354511acc9e3f3de555fdc535e41717d8053f52",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
@@ -1832,8 +1839,8 @@
     },
     {
       "path": "site/dist/rf-characterization.html",
-      "bytes": 82594,
-      "sha256": "e15156757df620e4366fd51926af322870ff3d1cce12f61edf5238baf08eaf65",
+      "bytes": 82619,
+      "sha256": "6523a9e55cac78d5da2fbb55ef7a2cb70871553d5af1ce7148e4019bac050a7c",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
@@ -2679,8 +2686,8 @@
     },
     {
       "path": "tests/test_pi5_specan.py",
-      "bytes": 12044,
-      "sha256": "6a194138a84ce8cd3ba949f956d21ed21191f3cfd9b2a97793041c4c57a79e74",
+      "bytes": 13305,
+      "sha256": "1a3f129844aa2ad97f2e1a9930d2ad84b1a980cabb5a7dd6e27783aea125263f",
       "licence_scope": "project-code",
       "role": "approved_release_artifact"
     },
@@ -2742,8 +2749,8 @@
     },
     {
       "path": "tools/pi5_radar/README.md",
-      "bytes": 2610,
-      "sha256": "ae7f1012ea16b3eed4fd9cbe6dda7541630cf9cad4b14bd1c2439a6864661ac6",
+      "bytes": 2999,
+      "sha256": "1de9fc1854e6122678fb0e4f9eb9f32a6ad39669a19487f554200ddb2a27efb8",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
@@ -2777,8 +2784,8 @@
     },
     {
       "path": "tools/pi5_rtltcp/README.md",
-      "bytes": 1550,
-      "sha256": "83379f6e8d2764a2710a5c7e9cdeadecdab2941906d1283f818c943d2d0d4f0d",
+      "bytes": 2118,
+      "sha256": "3a28471d54870d7155985c2cd4037646561a38b6e7790aee14096613a876ded8",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
@@ -2798,8 +2805,8 @@
     },
     {
       "path": "tools/pi5_specan/README.md",
-      "bytes": 3014,
-      "sha256": "beb72b24142f92445bf99e9115ad7c0e3241d7f14112383f6895a86f69cbaf04",
+      "bytes": 3525,
+      "sha256": "03c6efd20a9b76a535b638291d4624669255bbbfe0f3302d9f3f449cbbb94196",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
@@ -2826,8 +2833,8 @@
     },
     {
       "path": "tools/pi5_specan/server.py",
-      "bytes": 16874,
-      "sha256": "dce23f06c6a0c2ce2dce6379a5e2f4e33545d05829750db16bb3be4ef083d5df",
+      "bytes": 21778,
+      "sha256": "bdacae0155374678fcb3ccc089ebfc2558ecb7c740c34ccc11556bd8db745146",
       "licence_scope": "project-code",
       "role": "approved_release_artifact"
     },

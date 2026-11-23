@@ -5,9 +5,7 @@
   "title": "Sustained Selected Complex Receive Streaming from the BCM43455 on Raspberry Pi 5",
   "creators": [
     {
-      "name": "TheOddSock",
-      "given-names": "Adam",
-      "family-names": "Davies"
+      "name": "TheOddSock"
     }
   ],
   "contributions": "TheOddSock: project direction and editorial review. Implementation, investigation, analysis and report preparation used extensive AI assistance, described in AI_ASSISTANCE.md. This statement does not claim unaided invention, independent manual code review or external hardware replication.",
