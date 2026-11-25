@@ -110,8 +110,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 7533,
-      "sha256": "98098006723ec04fe0a372d2dd6fb29d4c805db433ea7b3235e460d511fe0a6d",
+      "bytes": 7714,
+      "sha256": "8f3ef11094f004c140c623b865a041b3cd017376eb0c4f9e262d0013be381b36",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },
@@ -336,6 +336,13 @@
       "path": "examples/synthetic-frames.json",
       "bytes": 370,
       "sha256": "4854c8843132012641debcf4b74a783e189bfc330b5f19a8ef173421f9dfee39",
+      "licence_scope": "project-documentation",
+      "role": "approved_release_artifact"
+    },
+    {
+      "path": "paper/figures/architecture-overview.png",
+      "bytes": 103910,
+      "sha256": "d810b75fefecbb8de26c079a77372782c89dcd73dc2a9cb68a09c59cdf09d790",
       "licence_scope": "project-documentation",
       "role": "approved_release_artifact"
     },

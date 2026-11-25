@@ -2,9 +2,7 @@
 
 A Raspberry Pi 5 can operate its onboard Wi-Fi chip as an experimental, uncalibrated software-defined radio receiver, streaming about 833,000 selected complex radio samples per second for an hour (`3,000,238,080` samples) or capturing 200 µs bursts at 80 MSPS. The chip has a diagnostic collector for short captures; modified firmware and a Linux driver read completed blocks to the host while the collector keeps running. Across discrete tuning tests, the receiver tracked test signals at local-oscillator settings from 2,220–3,001 MHz and 4,748–6,474 MHz. In a separate short capture, the same Wi-Fi chip received an over-the-air Bluetooth LE packet that passed 24-bit CRC verification after software demodulation.
 
-![GNU Radio 3.10.12.0 QtGUI spectrum, consecutive-frame waterfall, 6.475 GHz dual-LO step, and band-pass filtered I/Q waveform from Raspberry Pi 5 BCM43455c0 captures](paper/figures/gnuradio-waterfall.png)
-
-*Replay of saved Pi captures in GNU Radio 3.10.12.0 (`qtgui` / `Qwt`, with `I/Q` conjugated as `I - jQ` for display). Left: spectrum and consecutive-frame waterfall of the 833.33 kSPS continuous stream at `2,412.0 MHz` LO showing a narrow `+60.2 kHz` test carrier and intermittent broadband activity. Top right: two separate 20 MSPS captures of a `6,475.0 MHz` test signal (the signal generator's second harmonic) shifting by `-1.00 MHz` (`+2.03 MHz` to `+1.03 MHz`) when the requested LO steps from `6,473.0` to `6,474.0 MHz`. Bottom right: `45–75 kHz` band-pass filtered `I` and `Q` waveform of the `+60.2 kHz` carrier.*
+![Normal Raspberry Pi 5 Wi-Fi receiver versus BCM43455c0 diagnostic I/Q capture across continuous streaming and 20/80 MSPS snapshot paths](paper/figures/architecture-overview.png)
 
 ## What this project achieves
 
@@ -18,6 +16,10 @@ The Broadcom BCM43455c0 contains an internal diagnostic collector that records c
 | Discrete PLL probe sweeps | High band: seven of eleven tested LO pairs tracked the source, with passing settings from 4,748 to 6,474 MHz and four failing edge pairs. Low band: six of nine tested LO pairs tracked the source, with passing settings from 2,220 to 3,001 MHz and three failing edge pairs. Continuous coverage between tested points remains unverified. [High-band sweep](docs/lo-pair-sweep-20261122.md) · [Low-band sweep](docs/part2-rf-capabilities-20261121.md#2-out-of-band-fractional-n-pll-tuning-22203001-mhz-spot-map--6-ghz-wi-fi-6e-reception) |
 
 ## GNU Radio and SDR client integration
+
+![GNU Radio 3.10.12.0 QtGUI spectrum, consecutive-frame waterfall, 6.475 GHz dual-LO step, and band-pass filtered I/Q waveform from Raspberry Pi 5 BCM43455c0 captures](paper/figures/gnuradio-waterfall.png)
+
+*Replay of saved Pi captures in GNU Radio 3.10.12.0 (`qtgui` / `Qwt`, with `I/Q` conjugated as `I - jQ` for display). Left: spectrum and consecutive-frame waterfall of the 833.33 kSPS continuous stream at `2,412.0 MHz` LO showing a narrow `+60.2 kHz` test carrier and intermittent broadband activity. Top right: two separate 20 MSPS captures of a `6,475.0 MHz` test signal (the signal generator's second harmonic) shifting by `-1.00 MHz` (`+2.03 MHz` to `+1.03 MHz`) when the requested LO steps from `6,473.0` to `6,474.0 MHz`. Bottom right: `45–75 kHz` band-pass filtered `I` and `Q` waveform of the `+60.2 kHz` carrier.*
 
 An [`rtl_tcp`-compatible network bridge](tools/pi5_rtltcp/README.md) (`tools/pi5_rtltcp`) streams I/Q samples at the fixed upstream capture frequency and sample rate over TCP port `1234` in `cu8` (standard 8-bit RTL-SDR, with per-frame DC offset removal and `I - jQ` conjugation) or `cs16` (headerless signed 16-bit `I - jQ` for a GNU Radio TCP Source block). The companion [spectrum and BLE analyzer](tools/pi5_specan/README.md) (`tools/pi5_specan`) combines snapshots from selected channels in the 2.4 and 5 GHz Wi-Fi bands. [Integration guide](docs/tools-specan-rtltcp.md)
 
